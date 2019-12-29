@@ -7,4 +7,6 @@ Tested on Forge 28.1.0 with MC 1.14.4
 
 Tested on survival singleplayer with no other mods
 
-![gif](https://media.giphy.com/media/QvjBuifUlC0aXuv5Wz/giphy.gif)
+![](https://media.giphy.com/media/QvjBuifUlC0aXuv5Wz/giphy.gif)
+
+![](http://i.imgur.com/tmJHGJX.gif)
