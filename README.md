@@ -15,7 +15,7 @@ Both features should work with all vanilla inventories, and can be toggled on or
 - ~~Make it work with more inventories.~~ Implemented in 0.2.0
 - Test/check/fix multiplayer/server compatibility
 - Test/check/fix mod compatibility
-- Add usage/license info
+- ~~Add usage/license info~~ GPL3
 
 ## Other info
 Tested on Forge 28.1.0 with MC 1.14.4
