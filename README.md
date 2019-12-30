@@ -5,6 +5,8 @@ Allows for moving, sprinting, jumping, etc. from within your inventory
 
 [gif](https://imgur.com/tmJHGJX)
 
+### [Releases](https://github.com/PieKing1215/InvMove/releases)
+
 ## TODO
 - Make it work with more inventories.
 - Test more thoroughly
