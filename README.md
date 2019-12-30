@@ -13,8 +13,8 @@ Both features should work with all vanilla inventories, and can be toggled on or
 
 ## TODO
 - ~~Make it work with more inventories.~~ Implemented in 0.2.0
-- Test more thoroughly
-- Mod compatibility
+- Test/check/fix multiplayer/server compatibility
+- Test/check/fix mod compatibility
 - Add usage/license info
 
 ## Other info
