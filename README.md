@@ -7,7 +7,6 @@ Also disables the darkened background in inventories that don't pause the game.
 
 Both features should work with all vanilla inventories, and can be toggled on or off per-inventory in the config file.
 
-[gif](https://imgur.com/4kIfTBz)
 ![](demo/InvMove-0.2.0.gif)
 
 ### [Releases](https://github.com/PieKing1215/InvMove/releases)
