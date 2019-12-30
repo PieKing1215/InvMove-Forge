@@ -23,3 +23,5 @@ Tested on Forge 28.1.0 with MC 1.14.4
 Tested on survival singleplayer with no other mods
 
 Made after [I couldn't find an existing mod for this](https://redd.it/egwe8w).
+
+Licensed under the [GNU General Public License v3.0](LICENSE.md)
