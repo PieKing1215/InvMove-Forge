@@ -12,8 +12,9 @@ apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'idea'
 
-version = '0.1.0'
+version = '0.2.0'
 group = 'me.pieking1215.invmove' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'InvMove'
 
@@ -99,6 +100,7 @@ dependencies {
     // compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
     // compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
 
+    compile 'org.springframework:spring-aop:5.2.2.RELEASE'
     // The 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
     // provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
 
