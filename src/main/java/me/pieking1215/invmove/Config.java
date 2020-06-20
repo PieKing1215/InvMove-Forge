@@ -2,7 +2,6 @@ package me.pieking1215.invmove;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.client.ConfigGuiHandler;
-import net.minecraftforge.fml.client.IModGuiFactory;
 
 public class Config {
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
@@ -14,6 +13,7 @@ public class Config {
     public static class General {
         public final ForgeConfigSpec.ConfigValue<Boolean> enabled;
         public final ForgeConfigSpec.ConfigValue<Boolean> moveInInventories;
+        public final ForgeConfigSpec.ConfigValue<Boolean> sneakInInventories;
         public final ForgeConfigSpec.ConfigValue<Boolean> uiBackground;
 
         public General(ForgeConfigSpec.Builder builder) {
@@ -30,6 +30,10 @@ public class Config {
                     .comment("Enables/Disables the ability to disable individual ui backgrounds [false/true|default:true]")
                     .translation("uiBackground.invmove.config")
                     .define("uiBackground", true);
+            sneakInInventories = builder
+                    .comment("Enables/Disables the ability to sneak when moveInInventories is enabled [false/true|default:true]")
+                    .translation("sneakInInventories.invmove.config")
+                    .define("sneakInInventories", true);
             builder.pop();
         }
     }

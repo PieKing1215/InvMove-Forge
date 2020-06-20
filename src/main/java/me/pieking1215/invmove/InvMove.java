@@ -1,5 +1,6 @@
 package me.pieking1215.invmove;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.recipebook.IRecipeShownListener;
 import net.minecraft.client.gui.recipebook.RecipeBookGui;
@@ -25,19 +26,28 @@ import net.minecraft.client.gui.screen.inventory.ShulkerBoxScreen;
 import net.minecraft.client.gui.screen.inventory.SmokerScreen;
 import net.minecraft.client.gui.screen.inventory.StonecutterScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
+import net.minecraft.client.particle.ParticleManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.MovementInput;
+import net.minecraft.util.MovementInputFromOptions;
 import net.minecraftforge.client.event.GuiOpenEvent;
+import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.InputUpdateEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.config.ModConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.lwjgl.opengl.GL11;
 
+import java.awt.Container;
 import java.lang.reflect.Field;
 
 @Mod("invmove")
@@ -45,7 +55,6 @@ public class InvMove {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public InvMove() {
-
         MinecraftForge.EVENT_BUS.register(this);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.spec);
@@ -67,7 +76,7 @@ public class InvMove {
             KeyBinding.updateKeyBindState();
 
             // tick movement
-            manualTickMovement(event.getMovementInput(), Minecraft.getInstance().player.shouldRenderSneaking() || Minecraft.getInstance().player.func_213300_bk(), Minecraft.getInstance().player.isSpectator());
+            manualTickMovement(event.getMovementInput(), Minecraft.getInstance().player.func_228354_I_(), Minecraft.getInstance().player.isSpectator());
 
             // set sprinting using raw keybind data
             Minecraft.getInstance().player.setSprinting(rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSprint));
@@ -109,34 +118,27 @@ public class InvMove {
 
         if(screen instanceof AnvilScreen){
             try{
-                Field f_nameField = AnvilScreen.class.getDeclaredField("nameField");
-                f_nameField.setAccessible(true);
-                TextFieldWidget nameField = (TextFieldWidget) f_nameField.get((AnvilScreen)screen);
 
-                if(nameField.func_212955_f()) return false;
+                TextFieldWidget nameField = ObfuscationReflectionHelper.getPrivateValue(AnvilScreen.class, (AnvilScreen)screen, "field_147091_w"); //nameField
+                if(nameField.canWrite()) return false;
 
             }catch(Exception e){}
         }
 
         if(screen instanceof CreativeScreen){
             try{
-                Field f_searchField = CreativeScreen.class.getDeclaredField("searchField");
-                f_searchField.setAccessible(true);
-                TextFieldWidget searchField = (TextFieldWidget) f_searchField.get((CreativeScreen)screen);
 
-                if(searchField.func_212955_f()) return false;
+                TextFieldWidget searchField = ObfuscationReflectionHelper.getPrivateValue(CreativeScreen.class, (CreativeScreen)screen, "field_147062_A"); //searchField
+                if(searchField.canWrite()) return false;
 
             }catch(Exception e){}
         }
 
         if(screen instanceof IRecipeShownListener){
             try{
-                RecipeBookGui recipeBookGui = ((IRecipeShownListener)screen).func_194310_f();
-                Field f_searchBar = RecipeBookGui.class.getDeclaredField("searchBar");
-                f_searchBar.setAccessible(true);
-                TextFieldWidget searchBar = (TextFieldWidget) f_searchBar.get(recipeBookGui);
 
-                if(searchBar.func_212955_f()) return false;
+                TextFieldWidget searchBar = ObfuscationReflectionHelper.getPrivateValue(RecipeBookGui.class, ((IRecipeShownListener)screen).getRecipeGui(), "field_193962_q"); //searchField
+                if(searchBar.canWrite()) return false;
 
             }catch(Exception e){}
         }
@@ -157,8 +159,8 @@ public class InvMove {
         input.moveForward = input.forwardKeyDown == input.backKeyDown ? 0.0F : (float)(input.forwardKeyDown ? 1 : -1);
         input.moveStrafe = input.leftKeyDown == input.rightKeyDown ? 0.0F : (float)(input.leftKeyDown ? 1 : -1);
         input.jump = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindJump);
-        input.sneak = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSneak);
-        if (!noDampening && (input.sneak || slow)) {
+        input.sneaking = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSneak) && Config.GENERAL.sneakInInventories.get();
+        if (!noDampening && (input.sneaking || slow)) {
             input.moveStrafe = (float)((double)input.moveStrafe * 0.3D);
             input.moveForward = (float)((double)input.moveForward * 0.3D);
         }
@@ -169,244 +171,30 @@ public class InvMove {
      */
     public boolean rawIsKeyDown(KeyBinding key){
         try{
-            Field f = KeyBinding.class.getDeclaredField("pressed");
-            f.setAccessible(true);
-            return f.getBoolean(key);
+            return ObfuscationReflectionHelper.getPrivateValue(KeyBinding.class, key, "field_74513_e"); // pressed
         }catch(Exception e){
             LOGGER.warn("Failed to access KeyBinding.pressed on \"" + key + "\": " + e.getMessage());
+            e.printStackTrace();
         }
 
         return false;
     }
 
     @SubscribeEvent
-    public void onGuiOpen(GuiOpenEvent event){
+    public void onGUIDraw(GuiScreenEvent.DrawScreenEvent.Pre event){
         Screen screen = event.getGui();
-        if(shouldDisableScreenBackground(screen)){
-            if(screen instanceof InventoryScreen){
-                InventoryScreen wrap = (InventoryScreen) screen;
-                InventoryScreen wrapper = new InventoryScreen(Minecraft.getInstance().player){
-                    @Override
-                    public void renderBackground() {}
-                };
-                event.setGui(wrapper);
-            }else if(screen instanceof CreativeScreen) {
-                CreativeScreen wrap = (CreativeScreen) screen;
 
-                CreativeScreen wrapper = new CreativeScreen(Minecraft.getInstance().player){
-                    @Override
-                    public void renderBackground() {}
-                };
-                event.setGui(wrapper);
-            }else if(screen instanceof ChestScreen){
-                ChestScreen wrap = (ChestScreen) screen;
+        if(shouldDisableScreenBackground(screen)) {
+            RenderSystem.translatef(10000, 10000, 0);
+        }
+    }
 
-                try{
-                    Field f = ContainerScreen.class.getDeclaredField("playerInventory");
-                    f.setAccessible(true);
+    @SubscribeEvent
+    public void onGUIBackgroundDraw(GuiScreenEvent.BackgroundDrawnEvent event){
+        Screen screen = event.getGui();
 
-                    ChestScreen wrapper = new ChestScreen(wrap.getContainer(), (PlayerInventory)f.get(wrap), wrap.getTitle()){
-                        @Override
-                        public void renderBackground() {}
-                    };
-                    event.setGui(wrapper);
-                }catch(Exception e){}
-            }else if(screen instanceof ShulkerBoxScreen){
-                ShulkerBoxScreen wrap = (ShulkerBoxScreen) screen;
-
-                try{
-                    Field f = ContainerScreen.class.getDeclaredField("playerInventory");
-                    f.setAccessible(true);
-
-                    ShulkerBoxScreen wrapper = new ShulkerBoxScreen(wrap.getContainer(), (PlayerInventory)f.get(wrap), wrap.getTitle()){
-                        @Override
-                        public void renderBackground() {}
-                    };
-                    event.setGui(wrapper);
-                }catch(Exception e){}
-            }else if(screen instanceof CraftingScreen){
-                CraftingScreen wrap = (CraftingScreen) screen;
-
-                try{
-                    Field f = ContainerScreen.class.getDeclaredField("playerInventory");
-                    f.setAccessible(true);
-
-                    CraftingScreen wrapper = new CraftingScreen(wrap.getContainer(), (PlayerInventory)f.get(wrap), wrap.getTitle()){
-                        @Override
-                        public void renderBackground() {}
-                    };
-                    event.setGui(wrapper);
-                }catch(Exception e){}
-            }else if(screen instanceof DispenserScreen){
-                DispenserScreen wrap = (DispenserScreen) screen;
-
-                try{
-                    Field f = ContainerScreen.class.getDeclaredField("playerInventory");
-                    f.setAccessible(true);
-
-                    DispenserScreen wrapper = new DispenserScreen(wrap.getContainer(), (PlayerInventory)f.get(wrap), wrap.getTitle()){
-                        @Override
-                        public void renderBackground() {}
-                    };
-                    event.setGui(wrapper);
-                }catch(Exception e){}
-            }else if(screen instanceof HopperScreen){
-                HopperScreen wrap = (HopperScreen) screen;
-
-                try{
-                    Field f = ContainerScreen.class.getDeclaredField("playerInventory");
-                    f.setAccessible(true);
-
-                    HopperScreen wrapper = new HopperScreen(wrap.getContainer(), (PlayerInventory)f.get(wrap), wrap.getTitle()){
-                        @Override
-                        public void renderBackground() {}
-                    };
-                    event.setGui(wrapper);
-                }catch(Exception e){}
-            }else if(screen instanceof EnchantmentScreen){
-                EnchantmentScreen wrap = (EnchantmentScreen) screen;
-
-                try{
-                    Field f = ContainerScreen.class.getDeclaredField("playerInventory");
-                    f.setAccessible(true);
-
-                    EnchantmentScreen wrapper = new EnchantmentScreen(wrap.getContainer(), (PlayerInventory)f.get(wrap), wrap.getTitle()){
-                        @Override
-                        public void renderBackground() {}
-                    };
-                    event.setGui(wrapper);
-                }catch(Exception e){}
-            }else if(screen instanceof AnvilScreen){
-                AnvilScreen wrap = (AnvilScreen) screen;
-
-                try{
-                    Field f = ContainerScreen.class.getDeclaredField("playerInventory");
-                    f.setAccessible(true);
-
-                    AnvilScreen wrapper = new AnvilScreen(wrap.getContainer(), (PlayerInventory)f.get(wrap), wrap.getTitle()){
-                        @Override
-                        public void renderBackground() {}
-                    };
-                    event.setGui(wrapper);
-                }catch(Exception e){}
-            }else if(screen instanceof BeaconScreen){
-                BeaconScreen wrap = (BeaconScreen) screen;
-
-                try{
-                    Field f = ContainerScreen.class.getDeclaredField("playerInventory");
-                    f.setAccessible(true);
-
-                    BeaconScreen wrapper = new BeaconScreen(wrap.getContainer(), (PlayerInventory)f.get(wrap), wrap.getTitle()){
-                        @Override
-                        public void renderBackground() {}
-                    };
-                    event.setGui(wrapper);
-                }catch(Exception e){}
-            }else if(screen instanceof BrewingStandScreen){
-                BrewingStandScreen wrap = (BrewingStandScreen) screen;
-
-                try{
-                    Field f = ContainerScreen.class.getDeclaredField("playerInventory");
-                    f.setAccessible(true);
-
-                    BrewingStandScreen wrapper = new BrewingStandScreen(wrap.getContainer(), (PlayerInventory)f.get(wrap), wrap.getTitle()){
-                        @Override
-                        public void renderBackground() {}
-                    };
-                    event.setGui(wrapper);
-                }catch(Exception e){}
-            }else if(screen instanceof FurnaceScreen){
-                FurnaceScreen wrap = (FurnaceScreen) screen;
-
-                try{
-                    Field f = ContainerScreen.class.getDeclaredField("playerInventory");
-                    f.setAccessible(true);
-
-                    FurnaceScreen wrapper = new FurnaceScreen(wrap.getContainer(), (PlayerInventory)f.get(wrap), wrap.getTitle()){
-                        @Override
-                        public void renderBackground() {}
-                    };
-                    event.setGui(wrapper);
-                }catch(Exception e){}
-            }else if(screen instanceof BlastFurnaceScreen){
-                BlastFurnaceScreen wrap = (BlastFurnaceScreen) screen;
-
-                try{
-                    Field f = ContainerScreen.class.getDeclaredField("playerInventory");
-                    f.setAccessible(true);
-
-                    BlastFurnaceScreen wrapper = new BlastFurnaceScreen(wrap.getContainer(), (PlayerInventory)f.get(wrap), wrap.getTitle()){
-                        @Override
-                        public void renderBackground() {}
-                    };
-                    event.setGui(wrapper);
-                }catch(Exception e){}
-            }else if(screen instanceof SmokerScreen){
-                SmokerScreen wrap = (SmokerScreen) screen;
-
-                try{
-                    Field f = ContainerScreen.class.getDeclaredField("playerInventory");
-                    f.setAccessible(true);
-
-                    SmokerScreen wrapper = new SmokerScreen(wrap.getContainer(), (PlayerInventory)f.get(wrap), wrap.getTitle()){
-                        @Override
-                        public void renderBackground() {}
-                    };
-                    event.setGui(wrapper);
-                }catch(Exception e){}
-            }else if(screen instanceof LoomScreen){
-                LoomScreen wrap = (LoomScreen) screen;
-
-                try{
-                    Field f = ContainerScreen.class.getDeclaredField("playerInventory");
-                    f.setAccessible(true);
-
-                    LoomScreen wrapper = new LoomScreen(wrap.getContainer(), (PlayerInventory)f.get(wrap), wrap.getTitle()){
-                        @Override
-                        public void renderBackground() {}
-                    };
-                    event.setGui(wrapper);
-                }catch(Exception e){}
-            }else if(screen instanceof CartographyTableScreen){
-                CartographyTableScreen wrap = (CartographyTableScreen) screen;
-
-                try{
-                    Field f = ContainerScreen.class.getDeclaredField("playerInventory");
-                    f.setAccessible(true);
-
-                    CartographyTableScreen wrapper = new CartographyTableScreen(wrap.getContainer(), (PlayerInventory)f.get(wrap), wrap.getTitle()){
-                        @Override
-                        public void renderBackground() {}
-                    };
-                    event.setGui(wrapper);
-                }catch(Exception e){}
-            }else if(screen instanceof GrindstoneScreen){
-                GrindstoneScreen wrap = (GrindstoneScreen) screen;
-
-                try{
-                    Field f = ContainerScreen.class.getDeclaredField("playerInventory");
-                    f.setAccessible(true);
-
-                    GrindstoneScreen wrapper = new GrindstoneScreen(wrap.getContainer(), (PlayerInventory)f.get(wrap), wrap.getTitle()){
-                        @Override
-                        public void renderBackground() {}
-                    };
-                    event.setGui(wrapper);
-                }catch(Exception e){}
-            }else if(screen instanceof StonecutterScreen){
-                StonecutterScreen wrap = (StonecutterScreen) screen;
-
-                try{
-                    Field f = ContainerScreen.class.getDeclaredField("playerInventory");
-                    f.setAccessible(true);
-
-                    StonecutterScreen wrapper = new StonecutterScreen(wrap.getContainer(), (PlayerInventory)f.get(wrap), wrap.getTitle()){
-                        @Override
-                        public void renderBackground() {}
-                    };
-                    event.setGui(wrapper);
-                }catch(Exception e){}
-            }
+        if(shouldDisableScreenBackground(screen)) {
+            RenderSystem.translatef(-10000, -10000, 0);
         }
     }
 
