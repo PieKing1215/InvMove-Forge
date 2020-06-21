@@ -29,7 +29,7 @@ The mod is licensed under the [GNU General Public License v3.0](LICENSE.md)
 ## TODO
 - ~~Make it work with more inventories.~~ Implemented in 0.2.0
 - ~~Add usage/license info~~ GPL3
-- ~~Refactor onGuiOpen to reduce redundancy/make it more general~~ New background disable method
+- ~~Refactor onGuiOpen to reduce redundancy/make it more general~~ New background disable method in 0.3.0
 - Refactor allowMovementInScreen to reduce redundancy/make it more general
 - Test/check/fix multiplayer/server compatibility
 - Test/check/fix mod compatibility
