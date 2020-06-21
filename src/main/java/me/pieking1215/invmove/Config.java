@@ -254,12 +254,12 @@ public class Config {
 
             ConfigEntryBuilder eb = builder.getEntryBuilder();
             ConfigCategory general = builder.getOrCreateCategory("key.invmove.category.general");
-            general.addEntry(eb.startBooleanToggle("config.invmove.enable", GENERAL.enabled.get()).setDefaultValue(true).setSaveConsumer(GENERAL.enabled::set).setTooltip(I18n.format("tooltip.config.invmove.enable")).build());
+            general.addEntry(eb.startBooleanToggle("config.invmove.enable", GENERAL.enabled.get()).setDefaultValue(true).setSaveConsumer(GENERAL.enabled::set).setTooltip(I18n.format("tooltip.config.invmove.enable").split("\n")).build());
 
             ConfigCategory movement = builder.getOrCreateCategory("key.invmove.category.movement");
-            movement.addEntry(eb.startBooleanToggle("config.invmove.movement.enable", GENERAL.moveInInventories.get()).setDefaultValue(true).setSaveConsumer(GENERAL.moveInInventories::set).setTooltip(I18n.format("tooltip.config.invmove.movement.enable")).build());
-            movement.addEntry(eb.startBooleanToggle("config.invmove.movement.sneak", GENERAL.sneakInInventories.get()).setDefaultValue(false).setSaveConsumer(GENERAL.sneakInInventories::set).setTooltip(I18n.format("tooltip.config.invmove.movement.sneak")).build());
-            movement.addEntry(eb.startBooleanToggle("config.invmove.movement.jump", GENERAL.jumpInInventories.get()).setDefaultValue(true).setSaveConsumer(GENERAL.jumpInInventories::set).setTooltip(I18n.format("tooltip.config.invmove.movement.jump")).build());
+            movement.addEntry(eb.startBooleanToggle("config.invmove.movement.enable", GENERAL.moveInInventories.get()).setDefaultValue(true).setSaveConsumer(GENERAL.moveInInventories::set).setTooltip(I18n.format("tooltip.config.invmove.movement.enable").split("\n")).build());
+            movement.addEntry(eb.startBooleanToggle("config.invmove.movement.sneak", GENERAL.sneakInInventories.get()).setDefaultValue(false).setSaveConsumer(GENERAL.sneakInInventories::set).setTooltip(I18n.format("tooltip.config.invmove.movement.sneak").split("\n")).build());
+            movement.addEntry(eb.startBooleanToggle("config.invmove.movement.jump", GENERAL.jumpInInventories.get()).setDefaultValue(true).setSaveConsumer(GENERAL.jumpInInventories::set).setTooltip(I18n.format("tooltip.config.invmove.movement.jump").split("\n")).build());
 
             SubCategoryBuilder movementTypes = eb.startSubCategory("Inventory Types");
             movementTypes.add(eb.startBooleanToggle("config.invmove.type.inventory", UI_MOVEMENT.inventory.get()).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.inventory::set).build());
@@ -283,7 +283,7 @@ public class Config {
             movement.addEntry(movementTypes.build());
 
             ConfigCategory background = builder.getOrCreateCategory("key.invmove.category.background");
-            background.addEntry(eb.startBooleanToggle("config.invmove.background.enable", GENERAL.uiBackground.get()).setDefaultValue(true).setSaveConsumer(GENERAL.uiBackground::set).setTooltip(I18n.format("tooltip.config.invmove.background.enable")).build());
+            background.addEntry(eb.startBooleanToggle("config.invmove.background.enable", GENERAL.uiBackground.get()).setDefaultValue(true).setSaveConsumer(GENERAL.uiBackground::set).setTooltip(I18n.format("tooltip.config.invmove.background.enable").split("\n")).build());
 
             SubCategoryBuilder backgroundTypes = eb.startSubCategory("Inventory Types");
             backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.inventory", !UI_BACKGROUND.inventory.get()).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.inventory.set(!b)).build());
