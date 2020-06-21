@@ -16,7 +16,6 @@ import net.minecraft.client.gui.screen.inventory.BlastFurnaceScreen;
 import net.minecraft.client.gui.screen.inventory.BrewingStandScreen;
 import net.minecraft.client.gui.screen.inventory.CartographyTableScreen;
 import net.minecraft.client.gui.screen.inventory.ChestScreen;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.screen.inventory.CraftingScreen;
 import net.minecraft.client.gui.screen.inventory.CreativeScreen;
 import net.minecraft.client.gui.screen.inventory.DispenserScreen;
@@ -26,46 +25,31 @@ import net.minecraft.client.gui.screen.inventory.ShulkerBoxScreen;
 import net.minecraft.client.gui.screen.inventory.SmokerScreen;
 import net.minecraft.client.gui.screen.inventory.StonecutterScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.particle.ParticleManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.MovementInput;
-import net.minecraft.util.MovementInputFromOptions;
-import net.minecraftforge.client.event.GuiOpenEvent;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.InputUpdateEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.config.ModConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.lwjgl.opengl.GL11;
-
-import java.awt.Container;
-import java.lang.reflect.Field;
 
 @Mod("invmove")
 public class InvMove {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public InvMove() {
-        MinecraftForge.EVENT_BUS.register(this);
-
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.spec);
-
-        // the config button is just not implemented right now
-//        ModList.get().getModContainerById("invmove").get().registerExtensionPoint(ExtensionPoint.CONFIGGUIFACTORY, new Supplier<BiFunction<Minecraft, Screen, Screen>>() {
-//            @Override
-//            public BiFunction<Minecraft, Screen, Screen> get() {
-//                return (minecraft, guiModList) -> null;
-//            }
-//        });
+        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+            MinecraftForge.EVENT_BUS.register(this);
+            ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.spec);
+            Config.registerClothConfig();
+        });
     }
 
     @SubscribeEvent
@@ -158,7 +142,7 @@ public class InvMove {
         input.rightKeyDown = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindRight);
         input.moveForward = input.forwardKeyDown == input.backKeyDown ? 0.0F : (float)(input.forwardKeyDown ? 1 : -1);
         input.moveStrafe = input.leftKeyDown == input.rightKeyDown ? 0.0F : (float)(input.leftKeyDown ? 1 : -1);
-        input.jump = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindJump);
+        input.jump = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindJump) && Config.GENERAL.jumpInInventories.get();
         input.sneaking = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSneak) && Config.GENERAL.sneakInInventories.get();
         if (!noDampening && (input.sneaking || slow)) {
             input.moveStrafe = (float)((double)input.moveStrafe * 0.3D);
