@@ -40,7 +40,7 @@ public class Config {
                     .translation("uiBackground.invmove.config")
                     .define("uiBackground", true);
             sneakInInventories = builder
-                    .comment("Enables/Disables the ability to sneak when moveInInventories is enabled [false/true|default:true]")
+                    .comment("Enables/Disables the ability to sneak when moveInInventories is enabled [false/true|default:false]")
                     .translation("sneakInInventories.invmove.config")
                     .define("sneakInInventories", false);
             jumpInInventories = builder

@@ -31,6 +31,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.InputUpdateEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -69,8 +70,6 @@ public class InvMove {
     }
 
     private boolean allowMovementInScreen(Screen screen) {
-
-
         if(screen == null) return false;
 
         if(!Config.GENERAL.enabled.get()) return false;
@@ -164,20 +163,29 @@ public class InvMove {
         return false;
     }
 
-    @SubscribeEvent
+    // To disable the inventory background, we "disable" rendering at the start of Screen drawing
+    //   and "reenable" rendering after the background is drawn.
+    // Since the first thing to render is typically the background, this should work pretty nicely
+    //   without having to wrap every different type of Screen.
+    // We want to be last to get DrawScreenEvent.Pre, but first to get BackgroundDrawnEvent,
+    //   so we don't break other mods drawing during BackgroundDrawnEvent
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onGUIDraw(GuiScreenEvent.DrawScreenEvent.Pre event){
         Screen screen = event.getGui();
 
         if(shouldDisableScreenBackground(screen)) {
+            // "disable" rendering
             RenderSystem.translatef(10000, 10000, 0);
         }
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onGUIBackgroundDraw(GuiScreenEvent.BackgroundDrawnEvent event){
         Screen screen = event.getGui();
 
         if(shouldDisableScreenBackground(screen)) {
+            // "reenable" rendering
             RenderSystem.translatef(-10000, -10000, 0);
         }
     }
