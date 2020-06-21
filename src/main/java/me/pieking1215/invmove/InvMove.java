@@ -101,28 +101,22 @@ public class InvMove {
 
         if(screen instanceof AnvilScreen){
             try{
-
                 TextFieldWidget nameField = ObfuscationReflectionHelper.getPrivateValue(AnvilScreen.class, (AnvilScreen)screen, "field_147091_w"); //nameField
                 if(nameField.canWrite()) return false;
-
             }catch(Exception e){}
         }
 
         if(screen instanceof CreativeScreen){
             try{
-
                 TextFieldWidget searchField = ObfuscationReflectionHelper.getPrivateValue(CreativeScreen.class, (CreativeScreen)screen, "field_147062_A"); //searchField
                 if(searchField.canWrite()) return false;
-
             }catch(Exception e){}
         }
 
         if(screen instanceof IRecipeShownListener){
             try{
-
                 TextFieldWidget searchBar = ObfuscationReflectionHelper.getPrivateValue(RecipeBookGui.class, ((IRecipeShownListener)screen).getRecipeGui(), "field_193962_q"); //searchField
                 if(searchBar.canWrite()) return false;
-
             }catch(Exception e){}
         }
 

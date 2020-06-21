@@ -3,28 +3,33 @@
 
 ![](demo/InvMove-0.2.0.gif)
 
-Allows for moving, sprinting, jumping, etc. from within inventories.
+Allows for moving, jumping, sprinting, etc. from within inventories.
 
 Also disables the darkened background in inventories that don't pause the game.
 
-Both features should work with all vanilla inventories, and can be toggled on or off per-inventory in the config file.
+Both features should work with all vanilla inventories, and can be toggled on or off per-inventory in the config menu.
+
+This mod is client-side, but it may raise alarms if used on servers with anticheat.
+I take no responsibility if you get banned or something because you used this on public servers.
 
 Made after [I couldn't find an existing mod for this](https://redd.it/egwe8w).
 
 ### [Releases](https://github.com/PieKing1215/InvMove/releases)
 
+Requires [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config-forge) so the config screen works.
+
 ## Usage
 
-Feel free to use in packs if you wish (though it is currently untested with other mods)
+Feel free to use in packs if you wish (though compatibility hasn't been tested thoroughly)
 
-It's only tested on Forge 28.1.0 with MC 1.14.4, on a singleplayer world with no other mods
+Tested on Forge 31.2.0 with MC 1.15.2, on both singleplayer and multiplayer.
 
 The mod is licensed under the [GNU General Public License v3.0](LICENSE.md)
 
 ## TODO
 - ~~Make it work with more inventories.~~ Implemented in 0.2.0
 - ~~Add usage/license info~~ GPL3
-- Refactor allowMovementInScreen and onGuiOpen to reduce redundancy/make it more general
+- ~~Refactor onGuiOpen to reduce redundancy/make it more general~~ New background disable method
+- Refactor allowMovementInScreen to reduce redundancy/make it more general
 - Test/check/fix multiplayer/server compatibility
 - Test/check/fix mod compatibility
-- Test/check/fix version compatibility
