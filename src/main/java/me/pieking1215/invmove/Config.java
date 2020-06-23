@@ -1,5 +1,10 @@
 package me.pieking1215.invmove;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import me.shedaniel.forge.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.forge.clothconfig2.api.ConfigCategory;
 import me.shedaniel.forge.clothconfig2.api.ConfigEntryBuilder;
@@ -9,7 +14,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.client.ConfigGuiHandler;
+import net.minecraftforge.fml.loading.FMLConfig;
+import net.minecraftforge.fml.loading.FMLPaths;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
 
 public class Config {
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
@@ -17,6 +29,35 @@ public class Config {
     public static final UIBackground UI_BACKGROUND = new UIBackground(BUILDER);
     public static final UIMovement UI_MOVEMENT = new UIMovement(BUILDER);
     public static final ForgeConfigSpec spec = BUILDER.build();
+
+    public static boolean hasFinalizedConfig = false;
+    public static File unknownScreensConfig;
+
+    public static void doneLoading() {
+        hasFinalizedConfig = true;
+
+        try {
+            File dotMinecraft = FMLPaths.GAMEDIR.get().resolve(FMLConfig.defaultConfigPath()).toFile().getParentFile();
+            File f = new File(dotMinecraft, "config/invMove/unknown_screens.json");
+            System.out.println("gsgerera " + f.getAbsolutePath());
+            f.getParentFile().mkdirs();
+            if(!f.exists()) f.createNewFile();
+            unknownScreensConfig = f;
+
+            JsonReader jr = new JsonReader(new FileReader(f));
+            JsonElement jp = new JsonParser().parse(jr);
+            if(jp.isJsonObject()) {
+                JsonObject obj = jp.getAsJsonObject();
+                obj.entrySet().forEach(e -> {
+                    UI_BACKGROUND.seenScreens.put(e.getKey(), e.getValue().getAsBoolean());
+                });
+            }
+            jr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public static class General {
         public final ForgeConfigSpec.ConfigValue<Boolean> enabled;
@@ -70,6 +111,7 @@ public class Config {
         public final ForgeConfigSpec.ConfigValue<Boolean> cartography;
         public final ForgeConfigSpec.ConfigValue<Boolean> grindstone;
         public final ForgeConfigSpec.ConfigValue<Boolean> stonecutter;
+        public final HashMap<String, Boolean> seenScreens = new HashMap<>();
 
         public UIBackground(ForgeConfigSpec.Builder builder) {
             builder.push("UIBackground");
@@ -146,6 +188,7 @@ public class Config {
                     .translation("stonecutter.uibackground.invmove.config")
                     .define("stonecutter", false);
             builder.pop();
+
         }
     }
 
@@ -262,7 +305,7 @@ public class Config {
             movement.addEntry(eb.startBooleanToggle("config.invmove.movement.sneak", GENERAL.sneakInInventories.get()).setDefaultValue(false).setSaveConsumer(GENERAL.sneakInInventories::set).setTooltip(I18n.format("tooltip.config.invmove.movement.sneak").split("\n")).build());
             movement.addEntry(eb.startBooleanToggle("config.invmove.movement.jump", GENERAL.jumpInInventories.get()).setDefaultValue(true).setSaveConsumer(GENERAL.jumpInInventories::set).setTooltip(I18n.format("tooltip.config.invmove.movement.jump").split("\n")).build());
 
-            SubCategoryBuilder movementTypes = eb.startSubCategory("Inventory Types");
+            SubCategoryBuilder movementTypes = eb.startSubCategory("key.invmove.category.types");
             movementTypes.add(eb.startBooleanToggle("config.invmove.type.inventory", UI_MOVEMENT.inventory.get()).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.inventory::set).build());
             movementTypes.add(eb.startBooleanToggle("config.invmove.type.creative", UI_MOVEMENT.creative.get()).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.creative::set).build());
             movementTypes.add(eb.startBooleanToggle("config.invmove.type.crafting", UI_MOVEMENT.crafting.get()).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.crafting::set).build());
@@ -286,7 +329,7 @@ public class Config {
             ConfigCategory background = builder.getOrCreateCategory("key.invmove.category.background");
             background.addEntry(eb.startBooleanToggle("config.invmove.background.enable", GENERAL.uiBackground.get()).setDefaultValue(true).setSaveConsumer(GENERAL.uiBackground::set).setTooltip(I18n.format("tooltip.config.invmove.background.enable").split("\n")).build());
 
-            SubCategoryBuilder backgroundTypes = eb.startSubCategory("Inventory Types");
+            SubCategoryBuilder backgroundTypes = eb.startSubCategory("key.invmove.category.types");
             backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.inventory", !UI_BACKGROUND.inventory.get()).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.inventory.set(!b)).build());
             backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.creative", !UI_BACKGROUND.creative.get()).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.creative.set(!b)).build());
             backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.crafting", !UI_BACKGROUND.crafting.get()).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.crafting.set(!b)).build());
@@ -307,7 +350,36 @@ public class Config {
             backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.stonecutter", !UI_BACKGROUND.stonecutter.get()).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.stonecutter.set(!b)).build());
             background.addEntry(backgroundTypes.build());
 
-            return builder.setSavingRunnable(spec::save).build();
+            SubCategoryBuilder backgroundTypesSeen = eb.startSubCategory("key.invmove.category.types.unrecognized");
+            for(String scr : UI_BACKGROUND.seenScreens.keySet()){
+                backgroundTypesSeen.add(eb.startBooleanToggle(scr, !UI_BACKGROUND.seenScreens.get(scr)).setDefaultValue(true).setSaveConsumer(b -> {
+                    UI_BACKGROUND.seenScreens.put(scr, !b);
+                }).build());
+            }
+            background.addEntry(backgroundTypesSeen.build());
+
+
+            return builder.setSavingRunnable(() -> {
+                spec.save();
+
+                try {
+                    if (unknownScreensConfig != null) {
+                        unknownScreensConfig.getParentFile().mkdirs();
+                        if (!unknownScreensConfig.exists()) unknownScreensConfig.createNewFile();
+                        JsonWriter jw = new JsonWriter(new FileWriter(unknownScreensConfig));
+                        jw.setIndent("  ");
+                        jw.beginObject();
+                        for(String scr : UI_BACKGROUND.seenScreens.keySet()) {
+                            jw.name(scr).value(UI_BACKGROUND.seenScreens.get(scr));
+                        }
+                        jw.endObject();
+                        jw.close();
+                    }
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+
+            }).build();
         });
     }
 }

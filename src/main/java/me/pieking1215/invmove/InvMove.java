@@ -1,6 +1,7 @@
 package me.pieking1215.invmove;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import me.pieking1215.invmove.compat.Compatibility;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.recipebook.IRecipeShownListener;
 import net.minecraft.client.gui.recipebook.RecipeBookGui;
@@ -9,6 +10,7 @@ import net.minecraft.client.gui.screen.EnchantmentScreen;
 import net.minecraft.client.gui.screen.GrindstoneScreen;
 import net.minecraft.client.gui.screen.HopperScreen;
 import net.minecraft.client.gui.screen.LoomScreen;
+import net.minecraft.client.gui.screen.MainMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.inventory.AnvilScreen;
 import net.minecraft.client.gui.screen.inventory.BeaconScreen;
@@ -34,12 +36,16 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.config.ModConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.lang.reflect.Field;
+import java.util.Optional;
 
 @Mod("invmove")
 public class InvMove {
@@ -50,6 +56,7 @@ public class InvMove {
             MinecraftForge.EVENT_BUS.register(this);
             ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.spec);
             Config.registerClothConfig();
+            Compatibility.loadCompatibility();
         });
     }
 
@@ -96,21 +103,23 @@ public class InvMove {
         if(screen instanceof GrindstoneScreen       && !Config.UI_MOVEMENT.grindstone.get()) return false;
         if(screen instanceof StonecutterScreen      && !Config.UI_MOVEMENT.stonecutter.get()) return false;
 
+        if(screen instanceof ChatScreen) return false;
+
         // don't allow movement when focused on an active textfield
         // would be better if there was a way to do it for any Screen
 
-        if(screen instanceof AnvilScreen){
-            try{
-                TextFieldWidget nameField = ObfuscationReflectionHelper.getPrivateValue(AnvilScreen.class, (AnvilScreen)screen, "field_147091_w"); //nameField
-                if(nameField.canWrite()) return false;
-            }catch(Exception e){}
-        }
+        try{
+            Field[] fs = screen.getClass().getDeclaredFields();
 
-        if(screen instanceof CreativeScreen){
-            try{
-                TextFieldWidget searchField = ObfuscationReflectionHelper.getPrivateValue(CreativeScreen.class, (CreativeScreen)screen, "field_147062_A"); //searchField
-                if(searchField.canWrite()) return false;
-            }catch(Exception e){}
+            for(Field f : fs){
+                f.setAccessible(true);
+                if(f.getType() == TextFieldWidget.class){
+                    TextFieldWidget tfw = (TextFieldWidget)f.get(screen);
+                    if(tfw != null && tfw.canWrite()) return false;
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
 
         if(screen instanceof IRecipeShownListener){
@@ -120,7 +129,8 @@ public class InvMove {
             }catch(Exception e){}
         }
 
-        if(screen instanceof ChatScreen) return false;
+        Optional<Boolean> compatMove = Compatibility.shouldAllowMovement(screen);
+        if(compatMove.isPresent()) return compatMove.get();
 
         return true;
     }
@@ -186,11 +196,14 @@ public class InvMove {
 
     private boolean shouldDisableScreenBackground(Screen screen) {
 
+        if(!Config.hasFinalizedConfig) Config.doneLoading();
+
         if(!Config.GENERAL.enabled.get()) return false;
         if(!Config.GENERAL.uiBackground.get()) return false;
 
         if(screen == null) return false;
         if(screen.isPauseScreen()) return false;
+        if(screen instanceof MainMenuScreen) return false;
 
         if(screen instanceof InventoryScreen)           return !Config.UI_BACKGROUND.inventory.get();
         if(screen instanceof CreativeScreen)            return !Config.UI_BACKGROUND.creative.get();
@@ -210,6 +223,13 @@ public class InvMove {
         if(screen instanceof CartographyTableScreen)    return !Config.UI_BACKGROUND.cartography.get();
         if(screen instanceof GrindstoneScreen)          return !Config.UI_BACKGROUND.grindstone.get();
         if(screen instanceof StonecutterScreen)         return !Config.UI_BACKGROUND.stonecutter.get();
+
+        Class<? extends Screen> scr = screen.getClass();
+        if(Config.UI_BACKGROUND.seenScreens.containsKey(scr.getName())){
+            return !Config.UI_BACKGROUND.seenScreens.get(scr.getName());
+        }else{
+            Config.UI_BACKGROUND.seenScreens.put(scr.getName(), true);
+        }
 
         return false;
     }

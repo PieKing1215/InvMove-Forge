@@ -18,7 +18,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.3.0'
+version = '0.4.0'
 group = 'me.pieking1215.invmove' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'InvMove'
 
@@ -90,6 +90,24 @@ minecraft {
     }
 }
 
+repositories {
+    maven { // JEI & Tinkers
+        name 'DVS1 Maven FS'
+        url 'https://dvs1.progwml6.com/files/maven'
+    }
+    repositories {//Curseforge maven, in case some other maven goes offline and for mods that don't have a maven
+        maven {
+            name = "CurseForge"
+            url = "https://minecraft.curseforge.com/api/maven/"
+        }
+        repositories {
+            maven { // JEI & Tinkers
+                name 'IE'
+                url 'https://maven.blamejared.com'
+            }
+        }
+    }
+}
 dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
@@ -101,9 +119,14 @@ dependencies {
     // compile "some.group:artifact:version"
 
     // Real examples
-    // compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
+    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
     // compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
+    //compile 'wile.engineersdecor:engineersdecor-1.15.2:1.1.0-b1'
     implementation(fg.deobf("curse.maven:cloth-config-forge:2938583"))
+    runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
+    compileOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
+    runtimeOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:0.15-105-a2b2b71a")
+    compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:0.15-105-a2b2b71a")
 
     // The 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
     // provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'

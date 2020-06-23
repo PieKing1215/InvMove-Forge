@@ -17,6 +17,8 @@
 "config.invmove.background.enable": "Hide Inventory Backgrounds",
 "tooltip.config.invmove.background.enable": "Hides the background tint while inside inventories.\nYou can manually turn off certain inventories below.",
 
+"key.invmove.category.types": "UI Types",
+
 "config.invmove.type.inventory": "Survival Inventory",
 "config.invmove.type.creative": "Creative Inventory",
 "config.invmove.type.chest": "Chest",
@@ -34,6 +36,7 @@
 "config.invmove.type.loom": "Loom",
 "config.invmove.type.cartography": "Cartography Table",
 "config.invmove.type.grindstone": "Grindstone",
-"config.invmove.type.stonecutter": "Stonecutter"
+"config.invmove.type.stonecutter": "Stonecutter",
 
+"key.invmove.category.types.unrecognized": "Unrecognized UI Types"
 }
