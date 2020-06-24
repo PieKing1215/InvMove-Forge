@@ -111,6 +111,7 @@ public class Config {
         public final ForgeConfigSpec.ConfigValue<Boolean> cartography;
         public final ForgeConfigSpec.ConfigValue<Boolean> grindstone;
         public final ForgeConfigSpec.ConfigValue<Boolean> stonecutter;
+        public final ForgeConfigSpec.ConfigValue<Boolean> villager;
         public final HashMap<String, Boolean> seenScreens = new HashMap<>();
 
         public UIBackground(ForgeConfigSpec.Builder builder) {
@@ -187,6 +188,10 @@ public class Config {
                     .comment("Enables/Disables the stonecutter menu UI background [false/true|default:false]")
                     .translation("stonecutter.uibackground.invmove.config")
                     .define("stonecutter", false);
+            villager = builder
+                    .comment("Enables/Disables the villager menu UI background [false/true|default:false]")
+                    .translation("villager.uibackground.invmove.config")
+                    .define("villager", false);
             builder.pop();
 
         }
@@ -211,6 +216,7 @@ public class Config {
         public final ForgeConfigSpec.ConfigValue<Boolean> cartography;
         public final ForgeConfigSpec.ConfigValue<Boolean> grindstone;
         public final ForgeConfigSpec.ConfigValue<Boolean> stonecutter;
+        public final ForgeConfigSpec.ConfigValue<Boolean> villager;
 
         public UIMovement(ForgeConfigSpec.Builder builder) {
             builder.push("UIMove");
@@ -286,6 +292,10 @@ public class Config {
                     .comment("Enables/Disables moving in the stonecutter menu [false/true|default:false]")
                     .translation("stonecutter.uimovement.invmove.config")
                     .define("stonecutter", true);
+            villager = builder
+                    .comment("Enables/Disables moving in the villager menu [false/true|default:false]")
+                    .translation("villager.uimovement.invmove.config")
+                    .define("villager", true);
             builder.pop();
         }
     }
@@ -324,6 +334,7 @@ public class Config {
             movementTypes.add(eb.startBooleanToggle("config.invmove.type.cartography", UI_MOVEMENT.cartography.get()).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.cartography::set).build());
             movementTypes.add(eb.startBooleanToggle("config.invmove.type.grindstone", UI_MOVEMENT.grindstone.get()).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.grindstone::set).build());
             movementTypes.add(eb.startBooleanToggle("config.invmove.type.stonecutter", UI_MOVEMENT.stonecutter.get()).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.stonecutter::set).build());
+            movementTypes.add(eb.startBooleanToggle("config.invmove.type.villager", UI_MOVEMENT.villager.get()).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.villager::set).build());
             movement.addEntry(movementTypes.build());
 
             ConfigCategory background = builder.getOrCreateCategory("key.invmove.category.background");
@@ -348,6 +359,7 @@ public class Config {
             backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.cartography", !UI_BACKGROUND.cartography.get()).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.cartography.set(!b)).build());
             backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.grindstone", !UI_BACKGROUND.grindstone.get()).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.grindstone.set(!b)).build());
             backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.stonecutter", !UI_BACKGROUND.stonecutter.get()).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.stonecutter.set(!b)).build());
+            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.villager", !UI_BACKGROUND.villager.get()).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.villager.set(!b)).build());
             background.addEntry(backgroundTypes.build());
 
             SubCategoryBuilder backgroundTypesSeen = eb.startSubCategory("key.invmove.category.types.unrecognized");

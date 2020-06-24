@@ -37,6 +37,7 @@
 "config.invmove.type.cartography": "Cartography Table",
 "config.invmove.type.grindstone": "Grindstone",
 "config.invmove.type.stonecutter": "Stonecutter",
+"config.invmove.type.villager": "Villager",
 
 "key.invmove.category.types.unrecognized": "Unrecognized UI Types"
 }

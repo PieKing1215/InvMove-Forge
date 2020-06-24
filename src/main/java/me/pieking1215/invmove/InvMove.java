@@ -23,6 +23,7 @@ import net.minecraft.client.gui.screen.inventory.CreativeScreen;
 import net.minecraft.client.gui.screen.inventory.DispenserScreen;
 import net.minecraft.client.gui.screen.inventory.FurnaceScreen;
 import net.minecraft.client.gui.screen.inventory.InventoryScreen;
+import net.minecraft.client.gui.screen.inventory.MerchantScreen;
 import net.minecraft.client.gui.screen.inventory.ShulkerBoxScreen;
 import net.minecraft.client.gui.screen.inventory.SmokerScreen;
 import net.minecraft.client.gui.screen.inventory.StonecutterScreen;
@@ -45,6 +46,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Mod("invmove")
@@ -102,18 +106,16 @@ public class InvMove {
         if(screen instanceof CartographyTableScreen && !Config.UI_MOVEMENT.cartography.get()) return false;
         if(screen instanceof GrindstoneScreen       && !Config.UI_MOVEMENT.grindstone.get()) return false;
         if(screen instanceof StonecutterScreen      && !Config.UI_MOVEMENT.stonecutter.get()) return false;
-
-        if(screen instanceof ChatScreen) return false;
+        if(screen instanceof MerchantScreen         && !Config.UI_MOVEMENT.villager.get()) return false;
 
         // don't allow movement when focused on an active textfield
-        // would be better if there was a way to do it for any Screen
 
         try{
-            Field[] fs = screen.getClass().getDeclaredFields();
+            Field[] fs = getDeclaredFieldsSuper(screen.getClass());
 
             for(Field f : fs){
                 f.setAccessible(true);
-                if(f.getType() == TextFieldWidget.class){
+                if(TextFieldWidget.class.isAssignableFrom(f.getType())){
                     TextFieldWidget tfw = (TextFieldWidget)f.get(screen);
                     if(tfw != null && tfw.canWrite()) return false;
                 }
@@ -133,6 +135,16 @@ public class InvMove {
         if(compatMove.isPresent()) return compatMove.get();
 
         return true;
+    }
+
+    public Field[] getDeclaredFieldsSuper(Class aClass) {
+        List<Field> fs = new ArrayList<>();
+
+        do{
+            fs.addAll(Arrays.asList(aClass.getDeclaredFields()));
+        }while((aClass = aClass.getSuperclass()) != null);
+
+        return fs.toArray(new Field[0]);
     }
 
     /**
@@ -203,7 +215,9 @@ public class InvMove {
 
         if(screen == null) return false;
         if(screen.isPauseScreen()) return false;
+
         if(screen instanceof MainMenuScreen) return false;
+        if(screen instanceof ChatScreen) return false;
 
         if(screen instanceof InventoryScreen)           return !Config.UI_BACKGROUND.inventory.get();
         if(screen instanceof CreativeScreen)            return !Config.UI_BACKGROUND.creative.get();
@@ -223,6 +237,11 @@ public class InvMove {
         if(screen instanceof CartographyTableScreen)    return !Config.UI_BACKGROUND.cartography.get();
         if(screen instanceof GrindstoneScreen)          return !Config.UI_BACKGROUND.grindstone.get();
         if(screen instanceof StonecutterScreen)         return !Config.UI_BACKGROUND.stonecutter.get();
+        if(screen instanceof MerchantScreen)            return !Config.UI_BACKGROUND.villager.get();
+
+
+        Optional<Boolean> compatBack = Compatibility.shouldDisableBackground(screen);
+        if(compatBack.isPresent()) return compatBack.get();
 
         Class<? extends Screen> scr = screen.getClass();
         if(Config.UI_BACKGROUND.seenScreens.containsKey(scr.getName())){
