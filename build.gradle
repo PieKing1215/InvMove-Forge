@@ -13,9 +13,34 @@ plugins {
     id("com.wynprice.cursemaven") version("2.1.1")
 }
 
+repositories {
+    maven { // JEI & Tinkers
+        name 'DVS1 Maven FS'
+        url 'https://dvs1.progwml6.com/files/maven'
+    }
+    maven {
+        name "ic2"
+        url "http://maven.ic2.player.to"
+    }
+    maven { // IE & Quark
+        name 'blamejared'
+        url 'https://maven.blamejared.com'
+    }
+    maven {
+        name "curseforge"
+        url "https://minecraft.curseforge.com/api/maven/"
+    }
+    maven {
+        name "theillusivec4"
+        url "https://maven.theillusivec4.top/"
+    }
+}
+
+
+
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-apply plugin: 'eclipse'
+//apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '0.4.0'
@@ -90,24 +115,7 @@ minecraft {
     }
 }
 
-repositories {
-    maven { // JEI & Tinkers
-        name 'DVS1 Maven FS'
-        url 'https://dvs1.progwml6.com/files/maven'
-    }
-    repositories {//Curseforge maven, in case some other maven goes offline and for mods that don't have a maven
-        maven {
-            name = "CurseForge"
-            url = "https://minecraft.curseforge.com/api/maven/"
-        }
-        repositories {
-            maven { // JEI & Tinkers
-                name 'IE'
-                url 'https://maven.blamejared.com'
-            }
-        }
-    }
-}
+
 dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
@@ -122,11 +130,50 @@ dependencies {
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
     // compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
     //compile 'wile.engineersdecor:engineersdecor-1.15.2:1.1.0-b1'
-    implementation(fg.deobf("curse.maven:cloth-config-forge:2938583"))
-    runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
+
+    runtimeOnly fg.deobf("curse.maven:cloth-config-forge:2938583")
+    compileOnly fg.deobf("curse.maven:cloth-config-forge:2938583")
+
+    //runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
     compileOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
-    runtimeOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:0.15-105-a2b2b71a")
+    //compileOnly fg.deobf("mezz.jei:jei-1.15.2:api")
+
+    //runtimeOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:0.15-105-a2b2b71a")
     compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:0.15-105-a2b2b71a")
+
+    //runtimeOnly fg.deobf("curse.maven:engineersdecor:2968300")
+    compileOnly fg.deobf("curse.maven:engineersdecor:2968300")
+
+    //runtimeOnly fg.deobf("curse.maven:cctweaked:2985036")
+    compileOnly fg.deobf("curse.maven:cctweaked:2985036")
+
+    //runtimeOnly fg.deobf("curse.maven:musicmaker:2959062")
+    compileOnly fg.deobf("curse.maven:musicmaker:2959062")
+
+    //runtimeOnly fg.deobf("curse.maven:embellishcraft:2940414")
+    compileOnly fg.deobf("curse.maven:embellishcraft:2940414")
+
+    //runtimeOnly fg.deobf("curse.maven:refinedstorage:2982967")
+    compileOnly fg.deobf("curse.maven:refinedstorage:2982967")
+
+    //runtimeOnly fg.deobf("curse.maven:crayfishfurniture:2853267")
+    compileOnly fg.deobf("curse.maven:crayfishfurniture:2853267")
+
+    //runtimeOnly fg.deobf("curse.maven:corailwoodcutter:2947573")
+    compileOnly fg.deobf("curse.maven:corailwoodcutter:2947573")
+
+    //runtimeOnly fg.deobf("curse.maven:charm:2973470")
+    compileOnly fg.deobf("curse.maven:charm:2973470")
+
+    //runtimeOnly fg.deobf("curse.maven:create:2979593")
+    compileOnly fg.deobf("curse.maven:create:2979593")
+
+    //runtimeOnly fg.deobf("top.theillusivec4.curios:curios:FORGE-1.15.2-2.0-beta2")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios:FORGE-1.15.2-2.0-beta2")
+
+    compileOnly fg.deobf("vazkii.autoreglib:AutoRegLib:1.5-41.80")
+    //runtimeOnly fg.deobf("vazkii.quark:Quark:r2.1-236.1111")
+    compileOnly fg.deobf("vazkii.quark:Quark:r2.1-236.1111")
 
     // The 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
     // provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
