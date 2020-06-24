@@ -6,12 +6,19 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.recipebook.IRecipeShownListener;
 import net.minecraft.client.gui.recipebook.RecipeBookGui;
 import net.minecraft.client.gui.screen.ChatScreen;
+import net.minecraft.client.gui.screen.DirtMessageScreen;
+import net.minecraft.client.gui.screen.EditSignScreen;
 import net.minecraft.client.gui.screen.EnchantmentScreen;
 import net.minecraft.client.gui.screen.GrindstoneScreen;
 import net.minecraft.client.gui.screen.HopperScreen;
+import net.minecraft.client.gui.screen.IngameMenuScreen;
 import net.minecraft.client.gui.screen.LoomScreen;
 import net.minecraft.client.gui.screen.MainMenuScreen;
+import net.minecraft.client.gui.screen.OptionsScreen;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.SettingsScreen;
+import net.minecraft.client.gui.screen.WorkingScreen;
+import net.minecraft.client.gui.screen.WorldSelectionScreen;
 import net.minecraft.client.gui.screen.inventory.AnvilScreen;
 import net.minecraft.client.gui.screen.inventory.BeaconScreen;
 import net.minecraft.client.gui.screen.inventory.BlastFurnaceScreen;
@@ -37,8 +44,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.client.gui.screen.ModListScreen;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.config.ModConfig;
@@ -86,7 +93,16 @@ public class InvMove {
         if(!Config.GENERAL.enabled.get()) return false;
         if(!Config.GENERAL.moveInInventories.get()) return false;
 
-        if(screen.isPauseScreen()) return false;
+        if(screen.isPauseScreen() && Minecraft.getInstance().isSingleplayer() && !Minecraft.getInstance().getIntegratedServer().getPublic()) return false;
+        if(screen instanceof WorkingScreen) return false;
+        if(screen instanceof DirtMessageScreen) return false;
+        if(screen instanceof WorldSelectionScreen) return false;
+        if(screen instanceof ModListScreen) return false;
+        if(screen instanceof IngameMenuScreen) return false;
+        if(screen instanceof OptionsScreen) return false;
+        if(screen instanceof SettingsScreen) return false;
+
+        if(screen instanceof EditSignScreen) return false;
 
         if(screen instanceof InventoryScreen        && !Config.UI_MOVEMENT.inventory.get()) return false;
         if(screen instanceof CreativeScreen         && !Config.UI_MOVEMENT.creative.get()) return false;
@@ -214,7 +230,16 @@ public class InvMove {
         if(!Config.GENERAL.uiBackground.get()) return false;
 
         if(screen == null) return false;
-        if(screen.isPauseScreen()) return false;
+        if(screen.isPauseScreen() && Minecraft.getInstance().isSingleplayer() && !Minecraft.getInstance().getIntegratedServer().getPublic()) return false;
+        if(screen instanceof WorkingScreen) return false;
+        if(screen instanceof DirtMessageScreen) return false;
+        if(screen instanceof WorldSelectionScreen) return false;
+        if(screen instanceof ModListScreen) return false;
+        if(screen instanceof IngameMenuScreen) return false;
+        if(screen instanceof OptionsScreen) return false;
+        if(screen instanceof SettingsScreen) return false;
+
+        if(screen instanceof EditSignScreen) return false;
 
         if(screen instanceof MainMenuScreen) return false;
         if(screen instanceof ChatScreen) return false;
