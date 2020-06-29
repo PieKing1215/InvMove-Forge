@@ -20,7 +20,7 @@ Requires [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-confi
 
 ## Config
 ![](demo/where_config.png)
-![](demo/config_screen.png)
+<img src="demo/config_screen.png" alt="alt text" width="657" height="528">
 ### InvMove has an ingame config menu which can be accessed from the Forge mod list.<br>
 In the config menu, you can find several options:<br>
 #### General:
