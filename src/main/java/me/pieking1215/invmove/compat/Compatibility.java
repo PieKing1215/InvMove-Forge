@@ -49,9 +49,10 @@ public class Compatibility {
 
     public static Optional<Boolean> shouldAllowMovement(Screen screen) {
         for(ModCompatibility c : compats.values()){
+            if(c == null) continue;
             try{
                 Optional<Boolean> ob = c.shouldAllowMovement(screen);
-                if(ob.isPresent()){
+                if(ob != null && ob.isPresent()){
                     return Optional.of(ob.get());
                 }
             }catch(Exception e){
