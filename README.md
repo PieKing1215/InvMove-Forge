@@ -40,6 +40,7 @@ In the config menu, you can find several options:<br>
 ### As of version 0.4.0, InvMove has actual mod support.<br>
 
 InvMove has specific support for certain mods, but any GUIs from unrecognized mods are added into the config dynamically and can be manually enabled.<br>
+Unrecognized GUIs will only appear in the config once they have been opened/seen in-game.
 
 Explicitly supported mods have their own sections in the config, and come with tested default settings.
 
