@@ -39,7 +39,7 @@ In the config menu, you can find several options:<br>
 - (Expandable categories that let you enable/disable the background for certain inventories)
 </details>
 
-## Compatibility
+## Compatibility / Mod Support
 <details>
   <summary>Click to expand.</summary>
   
