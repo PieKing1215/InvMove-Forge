@@ -24,7 +24,7 @@ public class Compatibility {
 
         compatMods.put("cloth-config2"       , "me.pieking1215.invmove.compat.ClothConfigCompatibility");
         compatMods.put("immersiveengineering", "me.pieking1215.invmove.compat.ImmersiveEngineeringCompatibility");
-        //compatMods.put("engineersdecor"      , "me.pieking1215.invmove.compat.EngineersDecorCompatibility");
+        compatMods.put("engineersdecor"      , "me.pieking1215.invmove.compat.EngineersDecorCompatibility");
         compatMods.put("computercraft"       , "me.pieking1215.invmove.compat.CCTweakedCompatibility");
         compatMods.put("xercamusic"          , "me.pieking1215.invmove.compat.MusicMakerModCompatibility");
         compatMods.put("embellishcraft"      , "me.pieking1215.invmove.compat.EmbellishCraftCompatibility");
