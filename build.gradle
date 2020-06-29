@@ -131,7 +131,7 @@ dependencies {
     // compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
     //compile 'wile.engineersdecor:engineersdecor-1.15.2:1.1.0-b1'
 
-    //runtimeOnly fg.deobf("curse.maven:cloth-config-forge:2938583")
+    runtimeOnly fg.deobf("curse.maven:cloth-config-forge:2938583")
     compileOnly fg.deobf("curse.maven:cloth-config-forge:2938583")
 
     //runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
