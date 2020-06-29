@@ -19,6 +19,9 @@ Made after [I couldn't find an existing mod for this](https://redd.it/egwe8w).
 Requires [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config-forge) so the config screen works.
 
 ## Config
+<details>
+  <summary>Click to expand.</summary>
+  
 ![](demo/where_config.png)
 <img src="demo/config_screen.png" alt="alt text" width="657" height="528">
 ### InvMove has an ingame config menu which can be accessed from the Forge mod list.<br>
@@ -34,8 +37,12 @@ In the config menu, you can find several options:<br>
 #### UI Background:
 - Hide Inventory Backgrounds: Hides the background tint while in inventories.
 - (Expandable categories that let you enable/disable the background for certain inventories)
+</details>
 
 ## Compatibility
+<details>
+  <summary>Click to expand.</summary>
+  
 ![](demo/mod_demo.gif)
 ### As of version 0.4.0, InvMove has actual mod support.<br>
 
@@ -64,7 +71,7 @@ InvMove explicitly supports the following mods:
 - [Optifine](https://www.optifine.net/)
 - [Quark](https://www.curseforge.com/minecraft/mc-mods/quark)
 - [Refined Storage](https://www.curseforge.com/minecraft/mc-mods/refined-storage)
-
+</details>
 
 ## Usage
 
