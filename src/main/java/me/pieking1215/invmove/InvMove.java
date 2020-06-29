@@ -6,6 +6,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.recipebook.IRecipeShownListener;
 import net.minecraft.client.gui.recipebook.RecipeBookGui;
 import net.minecraft.client.gui.screen.ChatScreen;
+import net.minecraft.client.gui.screen.ConfirmScreen;
+import net.minecraft.client.gui.screen.CreateWorldScreen;
 import net.minecraft.client.gui.screen.DirtMessageScreen;
 import net.minecraft.client.gui.screen.EditSignScreen;
 import net.minecraft.client.gui.screen.EnchantmentScreen;
@@ -65,9 +67,9 @@ public class InvMove {
     public InvMove() {
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             MinecraftForge.EVENT_BUS.register(this);
+            Compatibility.loadCompatibility();
             ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.spec);
             Config.registerClothConfig();
-            Compatibility.loadCompatibility();
         });
     }
 
@@ -126,6 +128,7 @@ public class InvMove {
 
         // don't allow movement when focused on an active textfield
 
+        // search all fields and superclass fields for a TextFieldWidget
         try{
             Field[] fs = getDeclaredFieldsSuper(screen.getClass());
 
@@ -149,6 +152,13 @@ public class InvMove {
 
         Optional<Boolean> compatMove = Compatibility.shouldAllowMovement(screen);
         if(compatMove.isPresent()) return compatMove.get();
+
+        Class<? extends Screen> scr = screen.getClass();
+        if(Config.UI_MOVEMENT.seenScreens.containsKey(scr.getName())){
+            return Config.UI_MOVEMENT.seenScreens.get(scr.getName());
+        }else{
+            Config.UI_MOVEMENT.seenScreens.put(scr.getName(), true);
+        }
 
         return true;
     }
@@ -223,10 +233,10 @@ public class InvMove {
     }
 
     private boolean shouldDisableScreenBackground(Screen screen) {
+        if(!Config.GENERAL.enabled.get()) return false;
 
         if(!Config.hasFinalizedConfig) Config.doneLoading();
 
-        if(!Config.GENERAL.enabled.get()) return false;
         if(!Config.GENERAL.uiBackground.get()) return false;
 
         if(screen == null) return false;
@@ -238,6 +248,8 @@ public class InvMove {
         if(screen instanceof IngameMenuScreen) return false;
         if(screen instanceof OptionsScreen) return false;
         if(screen instanceof SettingsScreen) return false;
+        if(screen instanceof CreateWorldScreen) return false;
+        if(screen instanceof ConfirmScreen) return false;
 
         if(screen instanceof EditSignScreen) return false;
 

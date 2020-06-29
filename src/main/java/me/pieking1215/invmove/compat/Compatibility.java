@@ -3,23 +3,28 @@ package me.pieking1215.invmove.compat;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraftforge.fml.ModList;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Optional;
 
 public class Compatibility {
 
-    private static List<IModCompatibility> compats;
+    private static LinkedHashMap<String, ModCompatibility> compats;
 
     public static void loadCompatibility(){
-        compats = new ArrayList<>();
+        // it's linked since the order matters
+        compats = new LinkedHashMap<>();
 
-        HashMap<String, String> compatMods = new HashMap<>();
+        LinkedHashMap<String, String> compatMods = new LinkedHashMap<>();
 
+        // mods with special behavior in shouldAllowMovement or
+        //   shouldDisableBackground that need to have higher priority
         compatMods.put("jei"                 , "me.pieking1215.invmove.compat.JEICompatibility");
+        compatMods.put("quark"               , "me.pieking1215.invmove.compat.QuarkCompatibility");
+
+        compatMods.put("cloth-config2"       , "me.pieking1215.invmove.compat.ClothConfigCompatibility");
         compatMods.put("immersiveengineering", "me.pieking1215.invmove.compat.ImmersiveEngineeringCompatibility");
-        compatMods.put("engineersdecor"      , "me.pieking1215.invmove.compat.EngineersDecorCompatibility");
+        //compatMods.put("engineersdecor"      , "me.pieking1215.invmove.compat.EngineersDecorCompatibility");
         compatMods.put("computercraft"       , "me.pieking1215.invmove.compat.CCTweakedCompatibility");
         compatMods.put("xercamusic"          , "me.pieking1215.invmove.compat.MusicMakerModCompatibility");
         compatMods.put("embellishcraft"      , "me.pieking1215.invmove.compat.EmbellishCraftCompatibility");
@@ -27,14 +32,13 @@ public class Compatibility {
         compatMods.put("cfm"                 , "me.pieking1215.invmove.compat.CrayfishFurnitureCompatibility");
         compatMods.put("corail_woodcutter"   , "me.pieking1215.invmove.compat.CorailWoodcutterCompatibility");
         compatMods.put("charm"               , "me.pieking1215.invmove.compat.CharmCompatibility");
-        compatMods.put("quark"               , "me.pieking1215.invmove.compat.QuarkCompatibility");
         compatMods.put("create"              , "me.pieking1215.invmove.compat.CreateCompatibility");
         compatMods.put("curios"              , "me.pieking1215.invmove.compat.CuriosCompatibility");
 
         for (String s : compatMods.keySet()){
             if(ModList.get().isLoaded(s)){
                 try {
-                    compats.add(Class.forName(compatMods.get(s)).asSubclass(IModCompatibility.class).newInstance());
+                    compats.put(s, Class.forName(compatMods.get(s)).asSubclass(ModCompatibility.class).newInstance());
                 } catch (InstantiationException | ClassNotFoundException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
@@ -44,7 +48,7 @@ public class Compatibility {
     }
 
     public static Optional<Boolean> shouldAllowMovement(Screen screen) {
-        for(IModCompatibility c : compats){
+        for(ModCompatibility c : compats.values()){
             try{
                 Optional<Boolean> ob = c.shouldAllowMovement(screen);
                 if(ob.isPresent()){
@@ -62,7 +66,7 @@ public class Compatibility {
     }
 
     public static Optional<Boolean> shouldDisableBackground(Screen screen) {
-        for(IModCompatibility c : compats){
+        for(ModCompatibility c : compats.values()){
             try{
                 Optional<Boolean> ob = c.shouldDisableBackground(screen);
                 if(ob.isPresent()){
@@ -78,4 +82,9 @@ public class Compatibility {
 
         return Optional.empty();
     }
+
+    public static HashMap<String, ModCompatibility> getCompatibilities(){
+        return compats;
+    }
+
 }

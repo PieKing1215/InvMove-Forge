@@ -134,41 +134,40 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:cloth-config-forge:2938583")
     compileOnly fg.deobf("curse.maven:cloth-config-forge:2938583")
 
-    //runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
     compileOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
-    //compileOnly fg.deobf("mezz.jei:jei-1.15.2:api")
 
-    //runtimeOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:0.15-105-a2b2b71a")
+    runtimeOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:0.15-105-a2b2b71a")
     compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:0.15-105-a2b2b71a")
 
-    //runtimeOnly fg.deobf("curse.maven:engineersdecor:2968300")
+    runtimeOnly fg.deobf("curse.maven:engineersdecor:2968300")
     compileOnly fg.deobf("curse.maven:engineersdecor:2968300")
 
-    //runtimeOnly fg.deobf("curse.maven:cctweaked:2985036")
+    runtimeOnly fg.deobf("curse.maven:cctweaked:2985036")
     compileOnly fg.deobf("curse.maven:cctweaked:2985036")
 
-    //runtimeOnly fg.deobf("curse.maven:musicmaker:2959062")
+    runtimeOnly fg.deobf("curse.maven:musicmaker:2959062")
     compileOnly fg.deobf("curse.maven:musicmaker:2959062")
 
     //runtimeOnly fg.deobf("curse.maven:embellishcraft:2940414")
     compileOnly fg.deobf("curse.maven:embellishcraft:2940414")
 
-    //runtimeOnly fg.deobf("curse.maven:refinedstorage:2982967")
+    runtimeOnly fg.deobf("curse.maven:refinedstorage:2982967")
     compileOnly fg.deobf("curse.maven:refinedstorage:2982967")
 
-    //runtimeOnly fg.deobf("curse.maven:crayfishfurniture:2853267")
+    runtimeOnly fg.deobf("curse.maven:crayfishfurniture:2853267")
     compileOnly fg.deobf("curse.maven:crayfishfurniture:2853267")
 
-    //runtimeOnly fg.deobf("curse.maven:corailwoodcutter:2947573")
+    runtimeOnly fg.deobf("curse.maven:corailwoodcutter:2947573")
     compileOnly fg.deobf("curse.maven:corailwoodcutter:2947573")
 
-    //runtimeOnly fg.deobf("curse.maven:charm:2973470")
+    runtimeOnly fg.deobf("curse.maven:charm:2973470")
     compileOnly fg.deobf("curse.maven:charm:2973470")
 
-    //runtimeOnly fg.deobf("curse.maven:create:2979593")
+    runtimeOnly fg.deobf("curse.maven:create:2979593")
     compileOnly fg.deobf("curse.maven:create:2979593")
 
-    //runtimeOnly fg.deobf("top.theillusivec4.curios:curios:FORGE-1.15.2-2.0-beta2")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios:FORGE-1.15.2-2.0-beta2")
     compileOnly fg.deobf("top.theillusivec4.curios:curios:FORGE-1.15.2-2.0-beta2")
 
     compileOnly fg.deobf("vazkii.autoreglib:AutoRegLib:1.5-41.80")
