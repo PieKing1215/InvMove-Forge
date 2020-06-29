@@ -10,7 +10,7 @@ logoFile="logo.png"
 #credits=""
 authors="PieKing1215"
 description='''
-Lets you move while in your inventory
+Lets you move while in inventories.
 '''
 
 [[dependencies.invmove]]
