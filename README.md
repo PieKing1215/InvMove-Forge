@@ -87,4 +87,5 @@ The mod is licensed under the [GNU General Public License v3.0](LICENSE.md)
 
 ## Upcoming
 More mod compatibilities, bug fixes, and code cleanup will come as v0.4.X.<br>
-Once it's stable and has a good amount of compatibilities, it'll become v1.0.0.
+Once it's stable and has a good amount of compatibilities, it'll become v1.0.0.<br>
+I'll most likely backport to 1.14 at some point, and there's a chance I'll look into 1.12, though this isn't high on my priority list.
