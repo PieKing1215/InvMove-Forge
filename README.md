@@ -84,3 +84,7 @@ This mod may not be reposted to any other third-party websites.<br>
 Tested on Forge 31.2.0 with MC 1.15.2, on both singleplayer and multiplayer.
 
 The mod is licensed under the [GNU General Public License v3.0](LICENSE.md)
+
+## Upcoming
+More mod compatibilities and fixes will come as v0.4.X.
+Once it's stable and has a good amount of compatibilities, it'll become v1.0.0.
