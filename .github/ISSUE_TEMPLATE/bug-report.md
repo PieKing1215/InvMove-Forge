@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Report a problem with the mod.
+about: Report a problem with the mod
 title: ''
 labels: bug
 assignees: ''
