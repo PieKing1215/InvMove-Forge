@@ -27,5 +27,5 @@ Crashlogs can be found at .minecraft/crash-reports/
 
 **Version and Mod List**
 List the version of InvMove and the version of Forge the issue happens on.
-List any other mods being used.
-If possible, try to reproduce the bug with the smallest number of other mods you can. This can help me figure out where the problem occurs.
+List any other mods being used (other than Cloth Config).
+(If possible, try to reproduce the bug with the smallest number of other mods you can. This can help me figure out where the problem occurs.)
