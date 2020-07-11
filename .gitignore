@@ -26,3 +26,8 @@ run
 
 # Files from Forge MDK
 forge*changelog.txt
+
+# testing
+!testServer/
+testServer/
+testServer/*
