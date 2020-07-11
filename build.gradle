@@ -157,9 +157,6 @@ dependencies {
     //runtimeOnly fg.deobf("curse.maven:crayfishfurniture:2853267")
     compileOnly fg.deobf("curse.maven:crayfishfurniture:2853267")
 
-    //runtimeOnly fg.deobf("curse.maven:corailwoodcutter:2947573")
-    compileOnly fg.deobf("curse.maven:corailwoodcutter:2947573")
-
     //runtimeOnly fg.deobf("curse.maven:charm:2973470")
     compileOnly fg.deobf("curse.maven:charm:2973470")
 

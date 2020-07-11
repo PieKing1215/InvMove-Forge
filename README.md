@@ -59,7 +59,6 @@ If there's a mod you want to be added, also please start a ticket in the [issue 
 InvMove explicitly supports the following mods:
 - [CC: Tweaked](https://www.curseforge.com/minecraft/mc-mods/cc-tweaked)
 - [Charm](https://www.curseforge.com/minecraft/mc-mods/charm)
-- [Corail Woodcutter](https://www.curseforge.com/minecraft/mc-mods/corail-woodcutter)
 - [Create](https://www.curseforge.com/minecraft/mc-mods/create)
 - [Curios API](https://www.curseforge.com/minecraft/mc-mods/curios)
 - [EmbellishCraft](https://www.curseforge.com/minecraft/mc-mods/embellishcraft)

@@ -30,7 +30,6 @@ public class Compatibility {
         compatMods.put("embellishcraft"      , "me.pieking1215.invmove.compat.EmbellishCraftCompatibility");
         compatMods.put("refinedstorage"      , "me.pieking1215.invmove.compat.RefinedStorageCompatibility");
         compatMods.put("cfm"                 , "me.pieking1215.invmove.compat.CrayfishFurnitureCompatibility");
-        compatMods.put("corail_woodcutter"   , "me.pieking1215.invmove.compat.CorailWoodcutterCompatibility");
         compatMods.put("charm"               , "me.pieking1215.invmove.compat.CharmCompatibility");
         compatMods.put("create"              , "me.pieking1215.invmove.compat.CreateCompatibility");
         compatMods.put("curios"              , "me.pieking1215.invmove.compat.CuriosCompatibility");
