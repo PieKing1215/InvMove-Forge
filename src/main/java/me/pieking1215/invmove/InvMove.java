@@ -80,6 +80,9 @@ public class InvMove {
             // tick keybinds (since opening the ui unpresses all keys)
             KeyBinding.updateKeyBindState();
 
+            // this is needed for compatibility with ItemPhysic
+            Minecraft.getInstance().gameSettings.keyBindDrop.setPressed(false);
+
             // tick movement
             manualTickMovement(event.getMovementInput(), Minecraft.getInstance().player.func_228354_I_(), Minecraft.getInstance().player.isSpectator());
 
