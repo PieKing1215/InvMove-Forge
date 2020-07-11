@@ -10,8 +10,7 @@ logoFile="logo.png"
 #credits=""
 authors="PieKing1215"
 description='''
-Lets you move while in inventories.
-'''
+Lets you move while in inventories.'''
 
 [[dependencies.invmove]]
     modId="forge"
