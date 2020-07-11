@@ -65,6 +65,7 @@ InvMove explicitly supports the following mods:
 - [EmbellishCraft](https://www.curseforge.com/minecraft/mc-mods/embellishcraft)
 - [Engineer's Decor](https://www.curseforge.com/minecraft/mc-mods/engineers-decor)
 - [Immersive Engineering](https://www.curseforge.com/minecraft/mc-mods/immersive-engineering)
+- [ItemPhysic Full](https://www.curseforge.com/minecraft/mc-mods/itemphysic)
 - [Just Enough Items (JEI)](https://www.curseforge.com/minecraft/mc-mods/jei)
 - [MrCrayfish's Furniture Mod](https://www.curseforge.com/minecraft/mc-mods/mrcrayfish-furniture-mod)
 - [Music Maker Mod](https://www.curseforge.com/minecraft/mc-mods/music-maker-mod)
