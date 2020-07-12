@@ -54,7 +54,7 @@ minecraft {
     // stable_#            Stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'snapshot', version: '20200514-1.15.1'
+    mappings channel: 'snapshot', version: '20191014-1.14.3'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
@@ -119,7 +119,7 @@ dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.15.2-31.2.0'
+    minecraft 'net.minecraftforge:forge:1.14.4-28.2.23'
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
@@ -130,47 +130,49 @@ dependencies {
     // compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
     //compile 'wile.engineersdecor:engineersdecor-1.15.2:1.1.0-b1'
 
-    runtimeOnly fg.deobf("curse.maven:cloth-config-forge:2938583")
-    compileOnly fg.deobf("curse.maven:cloth-config-forge:2938583")
+    runtimeOnly fg.deobf("curse.maven:cloth-config-forge:2813656")
+    compileOnly fg.deobf("curse.maven:cloth-config-forge:2813656")
 
-    //runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
-    compileOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.14.4:6.0.0.18")
+    compileOnly fg.deobf("mezz.jei:jei-1.14.4:6.0.0.18")
 
-    //runtimeOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:0.15-105-a2b2b71a")
-    compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:0.15-105-a2b2b71a")
+    runtimeOnly fg.deobf("curse.maven:immersiveengineering:2980313")
+    compileOnly fg.deobf("curse.maven:immersiveengineering:2980313")
 
-    //runtimeOnly fg.deobf("curse.maven:engineersdecor:2968300")
-    compileOnly fg.deobf("curse.maven:engineersdecor:2968300")
+    runtimeOnly fg.deobf("curse.maven:engineersdecor:2991021")
+    compileOnly fg.deobf("curse.maven:engineersdecor:2991021")
 
-    //runtimeOnly fg.deobf("curse.maven:cctweaked:2985036")
-    compileOnly fg.deobf("curse.maven:cctweaked:2985036")
+    runtimeOnly fg.deobf("curse.maven:cctweaked:2992882")
+    compileOnly fg.deobf("curse.maven:cctweaked:2992882")
 
-    //runtimeOnly fg.deobf("curse.maven:musicmaker:2959062")
-    compileOnly fg.deobf("curse.maven:musicmaker:2959062")
+    runtimeOnly fg.deobf("curse.maven:musicmaker:2943382")
+    compileOnly fg.deobf("curse.maven:musicmaker:2943382")
 
-    //runtimeOnly fg.deobf("curse.maven:embellishcraft:2940414")
-    compileOnly fg.deobf("curse.maven:embellishcraft:2940414")
+    runtimeOnly fg.deobf("curse.maven:embellishcraft:2866599")
+    compileOnly fg.deobf("curse.maven:embellishcraft:2866599")
 
-    //runtimeOnly fg.deobf("curse.maven:refinedstorage:2982967")
-    compileOnly fg.deobf("curse.maven:refinedstorage:2982967")
+    runtimeOnly fg.deobf("curse.maven:refinedstorage:2851763")
+    compileOnly fg.deobf("curse.maven:refinedstorage:2851763")
 
-    //runtimeOnly fg.deobf("curse.maven:crayfishfurniture:2853267")
-    compileOnly fg.deobf("curse.maven:crayfishfurniture:2853267")
+    runtimeOnly fg.deobf("curse.maven:crayfishfurniture:2841415")
+    compileOnly fg.deobf("curse.maven:crayfishfurniture:2841415")
 
-    //runtimeOnly fg.deobf("curse.maven:charm:2973470")
-    compileOnly fg.deobf("curse.maven:charm:2973470")
+    runtimeOnly fg.deobf("curse.maven:charm:2939809")
+    compileOnly fg.deobf("curse.maven:charm:2939809")
 
-    //runtimeOnly fg.deobf("curse.maven:create:2979593")
-    compileOnly fg.deobf("curse.maven:create:2979593")
+    runtimeOnly fg.deobf("curse.maven:create:2952509")
+    compileOnly fg.deobf("curse.maven:create:2952509")
 
-    //runtimeOnly fg.deobf("top.theillusivec4.curios:curios:FORGE-1.15.2-2.0-beta2")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios:FORGE-1.15.2-2.0-beta2")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios:FORGE-1.14.4-1.0.6.1")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios:FORGE-1.14.4-1.0.6.1")
 
-    compileOnly fg.deobf("vazkii.autoreglib:AutoRegLib:1.5-41.80")
-    //runtimeOnly fg.deobf("vazkii.quark:Quark:r2.1-236.1111")
-    compileOnly fg.deobf("vazkii.quark:Quark:r2.1-236.1111")
+    runtimeOnly fg.deobf("curse.maven:autoreglib:2821794")
+    compileOnly fg.deobf("curse.maven:autoreglib:2821794")
 
-    runtimeOnly fg.deobf("curse.maven:gamemodmenuoption:2990175")
+    runtimeOnly fg.deobf("curse.maven:quark:2889792")
+    compileOnly fg.deobf("curse.maven:quark:2889792")
+
+    runtimeOnly fg.deobf("curse.maven:gamemodmenuoption:2855452")
 
     // The 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
     // provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'

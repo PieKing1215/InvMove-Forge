@@ -1,16 +1,16 @@
 package me.pieking1215.invmove.compat;
 
-import com.simibubi.create.content.contraptions.relays.advanced.sequencer.SequencedGearshiftScreen;
-import com.simibubi.create.content.curiosities.symmetry.SymmetryWandScreen;
-import com.simibubi.create.content.curiosities.zapper.blockzapper.BlockzapperScreen;
-import com.simibubi.create.content.curiosities.zapper.terrainzapper.WorldshaperScreen;
-import com.simibubi.create.content.logistics.block.inventories.AdjustableCrateScreen;
-import com.simibubi.create.content.logistics.block.redstone.StockpileSwitchScreen;
-import com.simibubi.create.content.logistics.item.filter.AttributeFilterScreen;
-import com.simibubi.create.content.logistics.item.filter.FilterScreen;
-import com.simibubi.create.content.schematics.block.SchematicTableScreen;
-import com.simibubi.create.content.schematics.block.SchematicannonScreen;
-import com.simibubi.create.content.schematics.client.SchematicEditScreen;
+import com.simibubi.create.modules.contraptions.relays.advanced.sequencer.SequencedGearshiftScreen;
+import com.simibubi.create.modules.curiosities.symmetry.SymmetryWandScreen;
+import com.simibubi.create.modules.curiosities.zapper.blockzapper.BlockzapperScreen;
+import com.simibubi.create.modules.curiosities.zapper.terrainzapper.TerrainzapperScreen;
+import com.simibubi.create.modules.logistics.block.inventories.FlexcrateScreen;
+import com.simibubi.create.modules.logistics.block.StockswitchScreen;
+import com.simibubi.create.modules.logistics.item.filter.AttributeFilterScreen;
+import com.simibubi.create.modules.logistics.item.filter.FilterScreen;
+import com.simibubi.create.modules.schematics.block.SchematicTableScreen;
+import com.simibubi.create.modules.schematics.block.SchematicannonScreen;
+import com.simibubi.create.modules.schematics.client.SchematicEditScreen;
 import com.simibubi.create.foundation.gui.TextInputPromptScreen;
 import com.simibubi.create.foundation.gui.ToolSelectionScreen;
 import net.minecraft.client.gui.screen.Screen;
@@ -20,6 +20,7 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class CreateCompatibility extends ModCompatibility {
+
 
     AtomicBoolean SymmetryWandScreen_movement = new AtomicBoolean(true);
     AtomicBoolean WorldshaperScreen_movement = new AtomicBoolean(true);
@@ -85,19 +86,19 @@ public class CreateCompatibility extends ModCompatibility {
     @Override
     public Optional<Boolean> shouldAllowMovement(Screen screen) {
 
-        if(screen instanceof SymmetryWandScreen)          return Optional.of(SymmetryWandScreen_movement.get());
-        if(screen instanceof WorldshaperScreen)           return Optional.of(WorldshaperScreen_movement.get());
-        if(screen instanceof BlockzapperScreen)           return Optional.of(BlockzapperScreen_movement.get());
-        if(screen instanceof SequencedGearshiftScreen)    return Optional.of(SequencedGearshiftScreen_movement.get());
-        if(screen instanceof SchematicannonScreen)        return Optional.of(SchematicannonScreen_movement.get());
-        if(screen instanceof SchematicTableScreen)        return Optional.of(SchematicTableScreen_movement.get());
-        if(screen instanceof SchematicEditScreen)         return Optional.of(SchematicEditScreen_movement.get());
-        if(screen instanceof AdjustableCrateScreen)       return Optional.of(AdjustableCrateScreen_movement.get());
-        if(screen instanceof StockpileSwitchScreen)       return Optional.of(StockpileSwitchScreen_movement.get());
-        if(screen instanceof AttributeFilterScreen)       return Optional.of(AttributeFilterScreen_movement.get());
-        if(screen instanceof FilterScreen)                return Optional.of(FilterScreen_movement.get());
-        if(screen instanceof ToolSelectionScreen)         return Optional.of(ToolSelectionScreen_movement.get());
-        if(screen instanceof TextInputPromptScreen)       return Optional.of(TextInputPromptScreen_movement.get());
+        if(screen instanceof SymmetryWandScreen)       return Optional.of(SymmetryWandScreen_movement.get());
+        if(screen instanceof TerrainzapperScreen)      return Optional.of(WorldshaperScreen_movement.get());
+        if(screen instanceof BlockzapperScreen)        return Optional.of(BlockzapperScreen_movement.get());
+        if(screen instanceof SequencedGearshiftScreen) return Optional.of(SequencedGearshiftScreen_movement.get());
+        if(screen instanceof SchematicannonScreen)     return Optional.of(SchematicannonScreen_movement.get());
+        if(screen instanceof SchematicTableScreen)     return Optional.of(SchematicTableScreen_movement.get());
+        if(screen instanceof SchematicEditScreen)      return Optional.of(SchematicEditScreen_movement.get());
+        if(screen instanceof FlexcrateScreen)          return Optional.of(AdjustableCrateScreen_movement.get());
+        if(screen instanceof StockswitchScreen)        return Optional.of(StockpileSwitchScreen_movement.get());
+        if(screen instanceof AttributeFilterScreen)    return Optional.of(AttributeFilterScreen_movement.get());
+        if(screen instanceof FilterScreen)             return Optional.of(FilterScreen_movement.get());
+        if(screen instanceof ToolSelectionScreen)      return Optional.of(ToolSelectionScreen_movement.get());
+        if(screen instanceof TextInputPromptScreen)    return Optional.of(TextInputPromptScreen_movement.get());
 
         return Optional.empty();
     }
@@ -105,19 +106,19 @@ public class CreateCompatibility extends ModCompatibility {
     @Override
     public Optional<Boolean> shouldDisableBackground(Screen screen) {
 
-        if(screen instanceof SymmetryWandScreen)          return Optional.of(SymmetryWandScreen_background_disable.get());
-        if(screen instanceof WorldshaperScreen)           return Optional.of(WorldshaperScreen_background_disable.get());
-        if(screen instanceof BlockzapperScreen)           return Optional.of(BlockzapperScreen_background_disable.get());
-        if(screen instanceof SequencedGearshiftScreen)    return Optional.of(SequencedGearshiftScreen_background_disable.get());
-        if(screen instanceof SchematicannonScreen)        return Optional.of(SchematicannonScreen_background_disable.get());
-        if(screen instanceof SchematicTableScreen)        return Optional.of(SchematicTableScreen_background_disable.get());
-        if(screen instanceof SchematicEditScreen)         return Optional.of(SchematicEditScreen_background_disable.get());
-        if(screen instanceof AdjustableCrateScreen)       return Optional.of(AdjustableCrateScreen_background_disable.get());
-        if(screen instanceof StockpileSwitchScreen)       return Optional.of(StockpileSwitchScreen_background_disable.get());
-        if(screen instanceof AttributeFilterScreen)       return Optional.of(AttributeFilterScreen_background_disable.get());
-        if(screen instanceof FilterScreen)                return Optional.of(FilterScreen_background_disable.get());
-        if(screen instanceof ToolSelectionScreen)         return Optional.of(ToolSelectionScreen_background_disable.get());
-        if(screen instanceof TextInputPromptScreen)       return Optional.of(TextInputPromptScreen_background_disable.get());
+        if(screen instanceof SymmetryWandScreen)       return Optional.of(SymmetryWandScreen_background_disable.get());
+        if(screen instanceof TerrainzapperScreen)      return Optional.of(WorldshaperScreen_background_disable.get());
+        if(screen instanceof BlockzapperScreen)        return Optional.of(BlockzapperScreen_background_disable.get());
+        if(screen instanceof SequencedGearshiftScreen) return Optional.of(SequencedGearshiftScreen_background_disable.get());
+        if(screen instanceof SchematicannonScreen)     return Optional.of(SchematicannonScreen_background_disable.get());
+        if(screen instanceof SchematicTableScreen)     return Optional.of(SchematicTableScreen_background_disable.get());
+        if(screen instanceof SchematicEditScreen)      return Optional.of(SchematicEditScreen_background_disable.get());
+        if(screen instanceof FlexcrateScreen)          return Optional.of(AdjustableCrateScreen_background_disable.get());
+        if(screen instanceof StockswitchScreen)        return Optional.of(StockpileSwitchScreen_background_disable.get());
+        if(screen instanceof AttributeFilterScreen)    return Optional.of(AttributeFilterScreen_background_disable.get());
+        if(screen instanceof FilterScreen)             return Optional.of(FilterScreen_background_disable.get());
+        if(screen instanceof ToolSelectionScreen)      return Optional.of(ToolSelectionScreen_background_disable.get());
+        if(screen instanceof TextInputPromptScreen)    return Optional.of(TextInputPromptScreen_background_disable.get());
 
         return Optional.empty();
     }

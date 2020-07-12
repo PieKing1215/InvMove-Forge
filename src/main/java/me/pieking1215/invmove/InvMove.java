@@ -1,6 +1,6 @@
 package me.pieking1215.invmove;
 
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.platform.GlStateManager;
 import me.pieking1215.invmove.compat.Compatibility;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.recipebook.IRecipeShownListener;
@@ -18,7 +18,8 @@ import net.minecraft.client.gui.screen.LoomScreen;
 import net.minecraft.client.gui.screen.MainMenuScreen;
 import net.minecraft.client.gui.screen.OptionsScreen;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.SettingsScreen;
+import net.minecraft.client.gui.screen.VideoSettingsScreen;
+import net.minecraft.client.gui.screen.MouseSettingsScreen;
 import net.minecraft.client.gui.screen.WorkingScreen;
 import net.minecraft.client.gui.screen.WorldSelectionScreen;
 import net.minecraft.client.gui.screen.inventory.AnvilScreen;
@@ -47,7 +48,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.client.gui.screen.ModListScreen;
+import net.minecraftforge.fml.client.gui.GuiModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.config.ModConfig;
@@ -81,10 +82,12 @@ public class InvMove {
             KeyBinding.updateKeyBindState();
 
             // this is needed for compatibility with ItemPhysic
-            Minecraft.getInstance().gameSettings.keyBindDrop.setPressed(false);
+            KeyBinding.setKeyBindState(Minecraft.getInstance().gameSettings.keyBindDrop.getKey(), false);
 
             // tick movement
-            manualTickMovement(event.getMovementInput(), Minecraft.getInstance().player.func_228354_I_(), Minecraft.getInstance().player.isSpectator());
+            // func_213300_bk = isVisuallySwimming
+            // "player.shouldRenderSneaking() || player.func_213300_bk()" comes from 1.15's ClientPlayerEntity::func_228354_I_
+            manualTickMovement(event.getMovementInput(), Minecraft.getInstance().player.shouldRenderSneaking() || Minecraft.getInstance().player.func_213300_bk(), Minecraft.getInstance().player.isSpectator());
 
             // set sprinting using raw keybind data
             Minecraft.getInstance().player.setSprinting(rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSprint));
@@ -102,10 +105,11 @@ public class InvMove {
         if(screen instanceof WorkingScreen) return false;
         if(screen instanceof DirtMessageScreen) return false;
         if(screen instanceof WorldSelectionScreen) return false;
-        if(screen instanceof ModListScreen) return false;
+        if(screen instanceof GuiModList) return false;
         if(screen instanceof IngameMenuScreen) return false;
         if(screen instanceof OptionsScreen) return false;
-        if(screen instanceof SettingsScreen) return false;
+        if(screen instanceof VideoSettingsScreen) return false;
+        if(screen instanceof MouseSettingsScreen) return false;
 
         if(screen instanceof EditSignScreen) return false;
 
@@ -139,7 +143,8 @@ public class InvMove {
                 f.setAccessible(true);
                 if(TextFieldWidget.class.isAssignableFrom(f.getType())){
                     TextFieldWidget tfw = (TextFieldWidget)f.get(screen);
-                    if(tfw != null && tfw.canWrite()) return false;
+                    // func_212955_f = canWrite
+                    if(tfw != null && tfw.func_212955_f()) return false;
                 }
             }
         }catch(Exception e){
@@ -149,7 +154,8 @@ public class InvMove {
         if(screen instanceof IRecipeShownListener){
             try{
                 TextFieldWidget searchBar = ObfuscationReflectionHelper.getPrivateValue(RecipeBookGui.class, ((IRecipeShownListener)screen).getRecipeGui(), "field_193962_q"); //searchField
-                if(searchBar.canWrite()) return false;
+                // func_212955_f = canWrite
+                if(searchBar.func_212955_f()) return false;
             }catch(Exception e){}
         }
 
@@ -187,8 +193,8 @@ public class InvMove {
         input.moveForward = input.forwardKeyDown == input.backKeyDown ? 0.0F : (float)(input.forwardKeyDown ? 1 : -1);
         input.moveStrafe = input.leftKeyDown == input.rightKeyDown ? 0.0F : (float)(input.leftKeyDown ? 1 : -1);
         input.jump = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindJump) && Config.GENERAL.jumpInInventories.get();
-        input.sneaking = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSneak) && Config.GENERAL.sneakInInventories.get();
-        if (!noDampening && (input.sneaking || slow)) {
+        input.sneak = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSneak) && Config.GENERAL.sneakInInventories.get();
+        if (!noDampening && (input.sneak || slow)) {
             input.moveStrafe = (float)((double)input.moveStrafe * 0.3D);
             input.moveForward = (float)((double)input.moveForward * 0.3D);
         }
@@ -221,7 +227,7 @@ public class InvMove {
 
         if(shouldDisableScreenBackground(screen)) {
             // "disable" rendering
-            RenderSystem.translatef(10000, 10000, 0);
+            GlStateManager.translatef(10000, 10000, 0);
         }
     }
 
@@ -231,7 +237,7 @@ public class InvMove {
 
         if(shouldDisableScreenBackground(screen)) {
             // "reenable" rendering
-            RenderSystem.translatef(-10000, -10000, 0);
+            GlStateManager.translatef(-10000, -10000, 0);
         }
     }
 
@@ -247,10 +253,11 @@ public class InvMove {
         if(screen instanceof WorkingScreen) return false;
         if(screen instanceof DirtMessageScreen) return false;
         if(screen instanceof WorldSelectionScreen) return false;
-        if(screen instanceof ModListScreen) return false;
+        if(screen instanceof GuiModList) return false;
         if(screen instanceof IngameMenuScreen) return false;
         if(screen instanceof OptionsScreen) return false;
-        if(screen instanceof SettingsScreen) return false;
+        if(screen instanceof VideoSettingsScreen) return false;
+        if(screen instanceof MouseSettingsScreen) return false;
         if(screen instanceof CreateWorldScreen) return false;
         if(screen instanceof ConfirmScreen) return false;
 

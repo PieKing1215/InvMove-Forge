@@ -39,7 +39,7 @@ public class QuarkCompatibility extends ModCompatibility {
             } else {
                 try {
                     TextFieldWidget tw = (TextFieldWidget) ChestSearchingModule_searchBar.get(null);
-                    if (tw != null && tw.canWrite()) return Optional.of(false);
+                    if (tw != null && tw.func_212955_f()) return Optional.of(false);
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
