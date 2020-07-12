@@ -129,28 +129,31 @@ public class InvMove {
         if(screen instanceof StonecutterScreen      && !Config.UI_MOVEMENT.stonecutter.get()) return false;
         if(screen instanceof MerchantScreen         && !Config.UI_MOVEMENT.villager.get()) return false;
 
-        // don't allow movement when focused on an active textfield
+        if(Config.GENERAL.textFieldDisablesMovement.get()) {
+            // don't allow movement when focused on an active textfield
 
-        // search all fields and superclass fields for a TextFieldWidget
-        try{
-            Field[] fs = getDeclaredFieldsSuper(screen.getClass());
+            // search all fields and superclass fields for a TextFieldWidget
+            try {
+                Field[] fs = getDeclaredFieldsSuper(screen.getClass());
 
-            for(Field f : fs){
-                f.setAccessible(true);
-                if(TextFieldWidget.class.isAssignableFrom(f.getType())){
-                    TextFieldWidget tfw = (TextFieldWidget)f.get(screen);
-                    if(tfw != null && tfw.canWrite()) return false;
+                for (Field f : fs) {
+                    f.setAccessible(true);
+                    if (TextFieldWidget.class.isAssignableFrom(f.getType())) {
+                        TextFieldWidget tfw = (TextFieldWidget) f.get(screen);
+                        if (tfw != null && tfw.canWrite()) return false;
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            if (screen instanceof IRecipeShownListener) {
+                try {
+                    TextFieldWidget searchBar = ObfuscationReflectionHelper.getPrivateValue(RecipeBookGui.class, ((IRecipeShownListener) screen).getRecipeGui(), "field_193962_q"); //searchField
+                    if (searchBar.canWrite()) return false;
+                } catch (Exception e) {
                 }
             }
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
-        if(screen instanceof IRecipeShownListener){
-            try{
-                TextFieldWidget searchBar = ObfuscationReflectionHelper.getPrivateValue(RecipeBookGui.class, ((IRecipeShownListener)screen).getRecipeGui(), "field_193962_q"); //searchField
-                if(searchBar.canWrite()) return false;
-            }catch(Exception e){}
         }
 
         Optional<Boolean> compatMove = Compatibility.shouldAllowMovement(screen);
