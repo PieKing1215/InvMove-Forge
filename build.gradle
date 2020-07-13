@@ -149,6 +149,73 @@ dependencies {
     //runtimeOnly fg.deobf("curse.maven:quark:2889792")
     compileOnly fg.deobf("curse.maven:quark:2889792")
 
+    // Iron Chests
+    // www.curseforge.com/minecraft/mc-mods/iron-chests
+    //runtimeOnly fg.deobf("curse.maven:iron-chests:2898344")
+    compileOnly fg.deobf("curse.maven:iron-chests:2898344")
+
+    // Cooking for Blockheads
+    // www.curseforge.com/minecraft/mc-mods/cooking-for-blockheads
+    //runtimeOnly fg.deobf("curse.maven:cooking-for-blockheads:2986599")
+    compileOnly fg.deobf("curse.maven:cooking-for-blockheads:2986599")
+
+    // Patchouli
+    // www.curseforge.com/minecraft/mc-mods/patchouli
+    //runtimeOnly fg.deobf("curse.maven:patchouli:3000903")
+    compileOnly fg.deobf("curse.maven:patchouli:3000903")
+
+    // CodeChicken Lib 1.8.+
+    // www.curseforge.com/minecraft/mc-mods/codechicken-lib-1-8
+    //runtimeOnly fg.deobf("curse.maven:codechicken-lib-1-8:2969414")
+    //compileOnly fg.deobf("curse.maven:codechicken-lib-1-8:2969414")
+
+    // Botania
+    // www.curseforge.com/minecraft/mc-mods/botania
+    //runtimeOnly fg.deobf("curse.maven:botania:2993051")
+    compileOnly fg.deobf("curse.maven:botania:2993051")
+
+    // Ender Storage 1.8.+
+    // www.curseforge.com/minecraft/mc-mods/ender-storage-1-8
+    //runtimeOnly fg.deobf("curse.maven:ender-storage-1-8:2969923")
+    compileOnly fg.deobf("curse.maven:ender-storage-1-8:2969923")
+
+    // Mekanism
+    // www.curseforge.com/minecraft/mc-mods/mekanism
+    //runtimeOnly fg.deobf("curse.maven:mekanism:2996531")
+    compileOnly fg.deobf("curse.maven:mekanism:2996531")
+
+    // Mekanism Additions
+    // www.curseforge.com/minecraft/mc-mods/mekanism-additions
+    //runtimeOnly fg.deobf("curse.maven:mekanism-additions:2996535")
+    compileOnly fg.deobf("curse.maven:mekanism-additions:2996535")
+
+    // Mekanism Generators
+    // www.curseforge.com/minecraft/mc-mods/mekanism-generators
+    //runtimeOnly fg.deobf("curse.maven:mekanism-generators:2996533")
+    compileOnly fg.deobf("curse.maven:mekanism-generators:2996533")
+
+    // Mekanism Tools
+    // www.curseforge.com/minecraft/mc-mods/mekanism-tools
+    //runtimeOnly fg.deobf("curse.maven:mekanism-tools:2996534")
+    compileOnly fg.deobf("curse.maven:mekanism-tools:2996534")
+
+    // Titanium
+    // www.curseforge.com/minecraft/mc-mods/titanium
+    //runtimeOnly fg.deobf("curse.maven:titanium:2980252")
+    compileOnly fg.deobf("curse.maven:titanium:2980252")
+
+    // Industrial Foregoing
+    // www.curseforge.com/minecraft/mc-mods/industrial-foregoing
+    //runtimeOnly fg.deobf("curse.maven:industrial-foregoing:2980323")
+    compileOnly fg.deobf("curse.maven:industrial-foregoing:2980323")
+
+    // Waystones
+    // www.curseforge.com/minecraft/mc-mods/waystones
+    //runtimeOnly fg.deobf("curse.maven:waystones:2991235")
+    compileOnly fg.deobf("curse.maven:waystones:2991235")
+
+    // utility / testing
+
     // GameMenuModOption
     // www.curseforge.com/minecraft/mc-mods/gamemenumodoption
     runtimeOnly fg.deobf("curse.maven:gamemenumodoption:2855452")

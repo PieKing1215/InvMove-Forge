@@ -99,6 +99,7 @@ public class Config {
         public final ForgeConfigSpec.ConfigValue<Boolean> jumpInInventories;
         public final ForgeConfigSpec.ConfigValue<Boolean> textFieldDisablesMovement;
         public final ForgeConfigSpec.ConfigValue<Boolean> uiBackground;
+        public final ForgeConfigSpec.ConfigValue<Boolean> debugDisplay;
 
         public General(ForgeConfigSpec.Builder builder) {
             builder.push("General");
@@ -126,6 +127,10 @@ public class Config {
                     .comment("Enables/Disables the ability to move in inventories while a text field is focused [false/true|default:true]")
                     .translation("textFieldDisablesMovement.invmove.config")
                     .define("textFieldDisablesMovement", true);
+            debugDisplay = builder
+                    .comment("Enables/Disables the debug display [false/true|default:false]")
+                    .translation("debugDisplay.invmove.config")
+                    .define("debugDisplay", false);
             builder.pop();
         }
     }
@@ -348,6 +353,7 @@ public class Config {
             ConfigEntryBuilder eb = builder.getEntryBuilder();
             ConfigCategory general = builder.getOrCreateCategory("key.invmove.category.general");
             general.addEntry(eb.startBooleanToggle("config.invmove.enable", getBoolSafe(GENERAL.enabled, true)).setDefaultValue(true).setSaveConsumer(GENERAL.enabled::set).setTooltip(I18n.format("tooltip.config.invmove.enable").split("\n")).build());
+            general.addEntry(eb.startBooleanToggle("config.invmove.debugDisplay", getBoolSafe(GENERAL.debugDisplay, false)).setDefaultValue(false).setSaveConsumer(GENERAL.debugDisplay::set).setTooltip(I18n.format("tooltip.config.invmove.debugDisplay").split("\n")).build());
 
             // movement
 

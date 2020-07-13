@@ -234,6 +234,25 @@ public class InvMove {
         }
     }
 
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public void onGUIDrawPost(GuiScreenEvent.DrawScreenEvent.Post event){
+        if(Config.getBoolSafe(Config.GENERAL.debugDisplay, false)) {
+            Screen screen = event.getGui();
+
+            int i = 0;
+            Class cl = screen.getClass();
+            while (cl.getSuperclass() != null) {
+                double scale = 1;
+                RenderSystem.scaled(scale, scale, 1);
+                Minecraft.getInstance().fontRenderer.drawStringWithShadow(cl.getName(), 4, 4 + 10 * i, 0xffffffff);
+                RenderSystem.scaled(1 / scale, 1 / scale, 1);
+
+                i++;
+                cl = cl.getSuperclass();
+            }
+        }
+    }
+
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onGUIBackgroundDraw(GuiScreenEvent.BackgroundDrawnEvent event){
         Screen screen = event.getGui();
