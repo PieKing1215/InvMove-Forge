@@ -29,7 +29,7 @@ public class JEICompatibility extends ModCompatibility {
     @Override
     public Optional<Boolean> shouldAllowMovement(Screen screen) {
 
-        if(!SPECIAL_OverlayFocus_movement.get() && Config.GENERAL.textFieldDisablesMovement.get() && Internal.getRuntime().getIngredientListOverlay().hasKeyboardFocus()) return Optional.of(false);
+        if(!SPECIAL_OverlayFocus_movement.get() && Config.getBoolSafe(Config.GENERAL.textFieldDisablesMovement, true) && Internal.getRuntime().getIngredientListOverlay().hasKeyboardFocus()) return Optional.of(false);
 
         if(screen instanceof RecipesGui) return Optional.of(RecipesGui_movement.get());
 

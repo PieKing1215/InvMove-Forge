@@ -98,8 +98,8 @@ public class InvMove {
     private boolean allowMovementInScreen(Screen screen) {
         if(screen == null) return false;
 
-        if(!Config.GENERAL.enabled.get()) return false;
-        if(!Config.GENERAL.moveInInventories.get()) return false;
+        if(!Config.getBoolSafe(Config.GENERAL.enabled, true)) return false;
+        if(!Config.getBoolSafe(Config.GENERAL.enabled, true)) return false;
 
         if(screen.isPauseScreen() && Minecraft.getInstance().isSingleplayer() && !Minecraft.getInstance().getIntegratedServer().getPublic()) return false;
         if(screen instanceof WorkingScreen) return false;
@@ -113,27 +113,27 @@ public class InvMove {
 
         if(screen instanceof EditSignScreen) return false;
 
-        if(screen instanceof InventoryScreen        && !Config.UI_MOVEMENT.inventory.get()) return false;
-        if(screen instanceof CreativeScreen         && !Config.UI_MOVEMENT.creative.get()) return false;
-        if(screen instanceof CraftingScreen         && !Config.UI_MOVEMENT.crafting.get()) return false;
-        if(screen instanceof ChestScreen            && !Config.UI_MOVEMENT.chest.get()) return false;
-        if(screen instanceof ShulkerBoxScreen       && !Config.UI_MOVEMENT.shulker.get()) return false;
-        if(screen instanceof DispenserScreen        && !Config.UI_MOVEMENT.dispenser.get()) return false;
-        if(screen instanceof HopperScreen           && !Config.UI_MOVEMENT.hopper.get()) return false;
-        if(screen instanceof EnchantmentScreen      && !Config.UI_MOVEMENT.enchantment.get()) return false;
-        if(screen instanceof AnvilScreen            && !Config.UI_MOVEMENT.anvil.get()) return false;
-        if(screen instanceof BeaconScreen           && !Config.UI_MOVEMENT.beacon.get()) return false;
-        if(screen instanceof BrewingStandScreen     && !Config.UI_MOVEMENT.brewing.get()) return false;
-        if(screen instanceof FurnaceScreen          && !Config.UI_MOVEMENT.furnace.get()) return false;
-        if(screen instanceof BlastFurnaceScreen     && !Config.UI_MOVEMENT.blastFurnace.get()) return false;
-        if(screen instanceof SmokerScreen           && !Config.UI_MOVEMENT.smoker.get()) return false;
-        if(screen instanceof LoomScreen             && !Config.UI_MOVEMENT.loom.get()) return false;
-        if(screen instanceof CartographyTableScreen && !Config.UI_MOVEMENT.cartography.get()) return false;
-        if(screen instanceof GrindstoneScreen       && !Config.UI_MOVEMENT.grindstone.get()) return false;
-        if(screen instanceof StonecutterScreen      && !Config.UI_MOVEMENT.stonecutter.get()) return false;
-        if(screen instanceof MerchantScreen         && !Config.UI_MOVEMENT.villager.get()) return false;
+        if(screen instanceof InventoryScreen        && !Config.getBoolSafe(Config.UI_MOVEMENT.inventory, true)) return false;
+        if(screen instanceof CreativeScreen         && !Config.getBoolSafe(Config.UI_MOVEMENT.creative, true)) return false;
+        if(screen instanceof CraftingScreen         && !Config.getBoolSafe(Config.UI_MOVEMENT.crafting, true)) return false;
+        if(screen instanceof ChestScreen            && !Config.getBoolSafe(Config.UI_MOVEMENT.chest, true)) return false;
+        if(screen instanceof ShulkerBoxScreen       && !Config.getBoolSafe(Config.UI_MOVEMENT.shulker, true)) return false;
+        if(screen instanceof DispenserScreen        && !Config.getBoolSafe(Config.UI_MOVEMENT.dispenser, true)) return false;
+        if(screen instanceof HopperScreen           && !Config.getBoolSafe(Config.UI_MOVEMENT.hopper, true)) return false;
+        if(screen instanceof EnchantmentScreen      && !Config.getBoolSafe(Config.UI_MOVEMENT.enchantment, true)) return false;
+        if(screen instanceof AnvilScreen            && !Config.getBoolSafe(Config.UI_MOVEMENT.anvil, true)) return false;
+        if(screen instanceof BeaconScreen           && !Config.getBoolSafe(Config.UI_MOVEMENT.beacon, true)) return false;
+        if(screen instanceof BrewingStandScreen     && !Config.getBoolSafe(Config.UI_MOVEMENT.brewing, true)) return false;
+        if(screen instanceof FurnaceScreen          && !Config.getBoolSafe(Config.UI_MOVEMENT.furnace, true)) return false;
+        if(screen instanceof BlastFurnaceScreen     && !Config.getBoolSafe(Config.UI_MOVEMENT.blastFurnace, true)) return false;
+        if(screen instanceof SmokerScreen           && !Config.getBoolSafe(Config.UI_MOVEMENT.smoker, true)) return false;
+        if(screen instanceof LoomScreen             && !Config.getBoolSafe(Config.UI_MOVEMENT.loom, true)) return false;
+        if(screen instanceof CartographyTableScreen && !Config.getBoolSafe(Config.UI_MOVEMENT.cartography, true)) return false;
+        if(screen instanceof GrindstoneScreen       && !Config.getBoolSafe(Config.UI_MOVEMENT.grindstone, true)) return false;
+        if(screen instanceof StonecutterScreen      && !Config.getBoolSafe(Config.UI_MOVEMENT.stonecutter, true)) return false;
+        if(screen instanceof MerchantScreen         && !Config.getBoolSafe(Config.UI_MOVEMENT.villager, true)) return false;
 
-        if(Config.GENERAL.textFieldDisablesMovement.get()) {
+        if(Config.getBoolSafe(Config.GENERAL.textFieldDisablesMovement, true)) {
             // don't allow movement when focused on an active textfield
 
             // search all fields and superclass fields for a TextFieldWidget
@@ -195,8 +195,8 @@ public class InvMove {
         input.rightKeyDown = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindRight);
         input.moveForward = input.forwardKeyDown == input.backKeyDown ? 0.0F : (float)(input.forwardKeyDown ? 1 : -1);
         input.moveStrafe = input.leftKeyDown == input.rightKeyDown ? 0.0F : (float)(input.leftKeyDown ? 1 : -1);
-        input.jump = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindJump) && Config.GENERAL.jumpInInventories.get();
-        input.sneak = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSneak) && Config.GENERAL.sneakInInventories.get();
+        input.jump = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindJump) && Config.getBoolSafe(Config.GENERAL.jumpInInventories, true);
+        input.sneak = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSneak) && Config.getBoolSafe(Config.GENERAL.sneakInInventories, false);
         if (!noDampening && (input.sneak || slow)) {
             input.moveStrafe = (float)((double)input.moveStrafe * 0.3D);
             input.moveForward = (float)((double)input.moveForward * 0.3D);
@@ -245,11 +245,12 @@ public class InvMove {
     }
 
     private boolean shouldDisableScreenBackground(Screen screen) {
-        if(!Config.GENERAL.enabled.get()) return false;
+
+        if(!Config.getBoolSafe(Config.GENERAL.enabled, true)) return false;
 
         if(!Config.hasFinalizedConfig) Config.doneLoading();
 
-        if(!Config.GENERAL.uiBackground.get()) return false;
+        if(!Config.getBoolSafe(Config.GENERAL.uiBackground, true)) return false;
 
         if(screen == null) return false;
         if(screen.isPauseScreen() && Minecraft.getInstance().isSingleplayer() && !Minecraft.getInstance().getIntegratedServer().getPublic()) return false;
@@ -269,25 +270,25 @@ public class InvMove {
         if(screen instanceof MainMenuScreen) return false;
         if(screen instanceof ChatScreen) return false;
 
-        if(screen instanceof InventoryScreen)           return !Config.UI_BACKGROUND.inventory.get();
-        if(screen instanceof CreativeScreen)            return !Config.UI_BACKGROUND.creative.get();
-        if(screen instanceof CraftingScreen)            return !Config.UI_BACKGROUND.crafting.get();
-        if(screen instanceof ChestScreen)               return !Config.UI_BACKGROUND.chest.get();
-        if(screen instanceof ShulkerBoxScreen)          return !Config.UI_BACKGROUND.shulker.get();
-        if(screen instanceof DispenserScreen)           return !Config.UI_BACKGROUND.dispenser.get();
-        if(screen instanceof HopperScreen)              return !Config.UI_BACKGROUND.hopper.get();
-        if(screen instanceof EnchantmentScreen)         return !Config.UI_BACKGROUND.enchantment.get();
-        if(screen instanceof AnvilScreen)               return !Config.UI_BACKGROUND.anvil.get();
-        if(screen instanceof BeaconScreen)              return !Config.UI_BACKGROUND.beacon.get();
-        if(screen instanceof BrewingStandScreen)        return !Config.UI_BACKGROUND.brewing.get();
-        if(screen instanceof FurnaceScreen)             return !Config.UI_BACKGROUND.furnace.get();
-        if(screen instanceof BlastFurnaceScreen)        return !Config.UI_BACKGROUND.blastFurnace.get();
-        if(screen instanceof SmokerScreen)              return !Config.UI_BACKGROUND.smoker.get();
-        if(screen instanceof LoomScreen)                return !Config.UI_BACKGROUND.loom.get();
-        if(screen instanceof CartographyTableScreen)    return !Config.UI_BACKGROUND.cartography.get();
-        if(screen instanceof GrindstoneScreen)          return !Config.UI_BACKGROUND.grindstone.get();
-        if(screen instanceof StonecutterScreen)         return !Config.UI_BACKGROUND.stonecutter.get();
-        if(screen instanceof MerchantScreen)            return !Config.UI_BACKGROUND.villager.get();
+        if(screen instanceof InventoryScreen)           return !Config.getBoolSafe(Config.UI_BACKGROUND.inventory, false);
+        if(screen instanceof CreativeScreen)            return !Config.getBoolSafe(Config.UI_BACKGROUND.creative, false);
+        if(screen instanceof CraftingScreen)            return !Config.getBoolSafe(Config.UI_BACKGROUND.crafting, false);
+        if(screen instanceof ChestScreen)               return !Config.getBoolSafe(Config.UI_BACKGROUND.chest, false);
+        if(screen instanceof ShulkerBoxScreen)          return !Config.getBoolSafe(Config.UI_BACKGROUND.shulker, false);
+        if(screen instanceof DispenserScreen)           return !Config.getBoolSafe(Config.UI_BACKGROUND.dispenser, false);
+        if(screen instanceof HopperScreen)              return !Config.getBoolSafe(Config.UI_BACKGROUND.hopper, false);
+        if(screen instanceof EnchantmentScreen)         return !Config.getBoolSafe(Config.UI_BACKGROUND.enchantment, false);
+        if(screen instanceof AnvilScreen)               return !Config.getBoolSafe(Config.UI_BACKGROUND.anvil, false);
+        if(screen instanceof BeaconScreen)              return !Config.getBoolSafe(Config.UI_BACKGROUND.beacon, false);
+        if(screen instanceof BrewingStandScreen)        return !Config.getBoolSafe(Config.UI_BACKGROUND.brewing, false);
+        if(screen instanceof FurnaceScreen)             return !Config.getBoolSafe(Config.UI_BACKGROUND.furnace, false);
+        if(screen instanceof BlastFurnaceScreen)        return !Config.getBoolSafe(Config.UI_BACKGROUND.blastFurnace, false);
+        if(screen instanceof SmokerScreen)              return !Config.getBoolSafe(Config.UI_BACKGROUND.smoker, false);
+        if(screen instanceof LoomScreen)                return !Config.getBoolSafe(Config.UI_BACKGROUND.loom, false);
+        if(screen instanceof CartographyTableScreen)    return !Config.getBoolSafe(Config.UI_BACKGROUND.cartography, false);
+        if(screen instanceof GrindstoneScreen)          return !Config.getBoolSafe(Config.UI_BACKGROUND.grindstone, false);
+        if(screen instanceof StonecutterScreen)         return !Config.getBoolSafe(Config.UI_BACKGROUND.stonecutter, false);
+        if(screen instanceof MerchantScreen)            return !Config.getBoolSafe(Config.UI_BACKGROUND.villager, false);
 
 
         Optional<Boolean> compatBack = Compatibility.shouldDisableBackground(screen);
