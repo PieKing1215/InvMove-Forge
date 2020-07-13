@@ -2,7 +2,6 @@ package me.pieking1215.invmove.compat;
 
 import codechicken.enderstorage.client.gui.GuiEnderItemStorage;
 import net.minecraft.client.gui.screen.Screen;
-import vazkii.botania.client.gui.bag.GuiFlowerBag;
 
 import java.util.Arrays;
 import java.util.Optional;
