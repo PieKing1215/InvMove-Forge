@@ -76,7 +76,7 @@ minecraft {
 
 dependencies {
 
-    minecraft 'net.minecraftforge:forge:1.15.2-31.2.0'
+    minecraft 'net.minecraftforge:forge:1.15.2-31.2.31'
 
     // Cloth Config API (Forge)
     // www.curseforge.com/minecraft/mc-mods/cloth-config-forge
@@ -135,7 +135,7 @@ dependencies {
 
     // Curios API
     // www.curseforge.com/minecraft/mc-mods/curios
-    //runtimeOnly fg.deobf("curse.maven:curios:2972162")
+    runtimeOnly fg.deobf("curse.maven:curios:2972162")
     compileOnly fg.deobf("curse.maven:curios:2972162")
 
     // AutoRegLib
@@ -147,6 +147,38 @@ dependencies {
     // www.curseforge.com/minecraft/mc-mods/quark
     //runtimeOnly fg.deobf("curse.maven:quark:2980651")
     compileOnly fg.deobf("curse.maven:quark:2980651")
+
+    // Iron Chests
+    // www.curseforge.com/minecraft/mc-mods/iron-chests
+    //runtimeOnly fg.deobf("curse.maven:iron-chests:2898344")
+    compileOnly fg.deobf("curse.maven:iron-chests:2898344")
+
+    // Cooking for Blockheads
+    // www.curseforge.com/minecraft/mc-mods/cooking-for-blockheads
+    //runtimeOnly fg.deobf("curse.maven:cooking-for-blockheads:2986599")
+    compileOnly fg.deobf("curse.maven:cooking-for-blockheads:2986599")
+
+    // Patchouli
+    // www.curseforge.com/minecraft/mc-mods/patchouli
+    //runtimeOnly fg.deobf("curse.maven:patchouli:3000903")
+    compileOnly fg.deobf("curse.maven:patchouli:3000903")
+
+    // CodeChicken Lib 1.8.+
+    // www.curseforge.com/minecraft/mc-mods/codechicken-lib-1-8
+    //runtimeOnly fg.deobf("curse.maven:codechicken-lib-1-8:2969414")
+    //compileOnly fg.deobf("curse.maven:codechicken-lib-1-8:2969414")
+
+    // Botania
+    // www.curseforge.com/minecraft/mc-mods/botania
+    //runtimeOnly fg.deobf("curse.maven:botania:2993051")
+    compileOnly fg.deobf("curse.maven:botania:2993051")
+
+    // Ender Storage 1.8.+
+    // www.curseforge.com/minecraft/mc-mods/ender-storage-1-8
+    //runtimeOnly fg.deobf("curse.maven:ender-storage-1-8:2969923")
+    compileOnly fg.deobf("curse.maven:ender-storage-1-8:2969923")
+
+    // utility / testing
 
     // GameMenuModOption
     // www.curseforge.com/minecraft/mc-mods/gamemenumodoption

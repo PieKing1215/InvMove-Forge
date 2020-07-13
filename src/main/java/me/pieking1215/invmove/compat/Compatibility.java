@@ -33,6 +33,11 @@ public class Compatibility {
         compatMods.put("charm"               , "me.pieking1215.invmove.compat.CharmCompatibility");
         compatMods.put("create"              , "me.pieking1215.invmove.compat.CreateCompatibility");
         compatMods.put("curios"              , "me.pieking1215.invmove.compat.CuriosCompatibility");
+        compatMods.put("ironchest"           , "me.pieking1215.invmove.compat.IronChestsCompatibility");
+        compatMods.put("cookingforblockheads", "me.pieking1215.invmove.compat.CookingForBlockheadsCompatibility");
+        compatMods.put("patchouli"           , "me.pieking1215.invmove.compat.PatchouliCompatibility");
+        compatMods.put("botania"             , "me.pieking1215.invmove.compat.BotaniaCompatibility");
+        compatMods.put("enderstorage"        , "me.pieking1215.invmove.compat.EnderStorageCompatibility");
 
         for (String s : compatMods.keySet()){
             if(ModList.get().isLoaded(s)){
