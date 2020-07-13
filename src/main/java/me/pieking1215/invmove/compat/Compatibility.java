@@ -5,6 +5,7 @@ import net.minecraftforge.fml.ModList;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Optional;
 
 public class Compatibility {
@@ -38,6 +39,10 @@ public class Compatibility {
         compatMods.put("patchouli"           , "me.pieking1215.invmove.compat.PatchouliCompatibility");
         compatMods.put("botania"             , "me.pieking1215.invmove.compat.BotaniaCompatibility");
         compatMods.put("enderstorage"        , "me.pieking1215.invmove.compat.EnderStorageCompatibility");
+        compatMods.put("mekanism"            , "me.pieking1215.invmove.compat.MekanismCompatibility");
+        compatMods.put("mekanismgenerators"  , "me.pieking1215.invmove.compat.MekanismGeneratorsCompatibility");
+        compatMods.put("waystones"           , "me.pieking1215.invmove.compat.WaystonesCompatibility");
+        compatMods.put("industrialforegoing" , "me.pieking1215.invmove.compat.IndustrialForegoingCompatibility");
 
         for (String s : compatMods.keySet()){
             if(ModList.get().isLoaded(s)){
