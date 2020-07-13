@@ -27,7 +27,7 @@ public class QuarkCompatibility extends ModCompatibility {
     @Override
     public Optional<Boolean> shouldAllowMovement(Screen screen) {
 
-        if(!SPECIAL_ChestSearchFocus_movement.get() && Config.GENERAL.textFieldDisablesMovement.get()) {
+        if(!SPECIAL_ChestSearchFocus_movement.get() && Config.getBoolSafe(Config.GENERAL.textFieldDisablesMovement, true)) {
             if (ChestSearchingModule_searchBar == null) {
                 Field[] fs = ChestSearchingModule.class.getDeclaredFields();
                 for (Field f : fs) {

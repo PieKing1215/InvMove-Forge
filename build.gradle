@@ -172,6 +172,11 @@ dependencies {
 
     runtimeOnly fg.deobf("curse.maven:gamemodmenuoption:2990175")
 
+    // Commands4Configs
+    // www.curseforge.com/minecraft/mc-mods/commands4configs/files/3002158
+    // for testing https://github.com/PieKing1215/InvMove/issues/2
+    //runtimeOnly fg.deobf("curse.maven:commands4configs:3002158")
+
     // The 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
     // provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
 
