@@ -1,6 +1,9 @@
 buildscript {
     repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven {
+            name = "forge"
+            url = "https://files.minecraftforge.net/maven"
+        }
         jcenter()
         mavenCentral()
     }
@@ -10,69 +13,36 @@ buildscript {
 }
 
 repositories {
-    maven { // JEI & Tinkers
-        name 'DVS1 Maven FS'
-        url 'https://dvs1.progwml6.com/files/maven'
+    maven {
+        name = "curseforge"
+        url = "https://minecraft.curseforge.com/api/maven/"
     }
     maven {
-        name "ic2"
-        url "http://maven.ic2.player.to"
-    }
-    maven { // IE & Quark
-        name 'blamejared'
-        url 'https://maven.blamejared.com'
-    }
-    maven {
-        name "curseforge"
-        url "https://minecraft.curseforge.com/api/maven/"
-    }
-    maven {
-        name "theillusivec4"
-        url "https://maven.theillusivec4.top/"
-    }
-    maven {
+        name = "cursemaven"
         url = "https://www.cursemaven.com"
     }
 }
 
-
-
 apply plugin: 'net.minecraftforge.gradle'
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-//apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '1.15.2-0.4.2'
-group = 'me.pieking1215.invmove' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'me.pieking1215.invmove'
 archivesBaseName = 'InvMove'
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
-    // The mappings can be changed at any time, and must be in the following format.
-    // snapshot_YYYYMMDD   Snapshot are built nightly.
-    // stable_#            Stables are built at the discretion of the MCP team.
-    // Use non-default mappings at your own risk. they may not always work.
-    // Simply re-run your setup task after changing the mappings to update your workspace.
     mappings channel: 'snapshot', version: '20200514-1.15.1'
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
-    
-    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
-    // Default run configurations.
-    // These can be tweaked, removed, or duplicated as needed.
     runs {
         client {
             workingDirectory project.file('run')
-
-            // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
-            // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                examplemod {
+                invmove {
                     source sourceSets.main
                 }
             }
@@ -80,15 +50,11 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-
-            // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
-            // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                examplemod {
+                invmove {
                     source sourceSets.main
                 }
             }
@@ -96,17 +62,11 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-
-            // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
-            // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
-
-            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/')
-
+            args '--mod', 'invmove', '--all', '--output', file('src/generated/resources/')
             mods {
-                examplemod {
+                invmove {
                     source sourceSets.main
                 }
             }
@@ -114,82 +74,91 @@ minecraft {
     }
 }
 
-
 dependencies {
-    // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
-    // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
-    // The userdev artifact is a special name and will get all sorts of transformations applied to it.
+
     minecraft 'net.minecraftforge:forge:1.15.2-31.2.0'
 
-    // You may put jars on which you depend on in ./libs or you may define them like so..
-    // compile "some.group:artifact:version:classifier"
-    // compile "some.group:artifact:version"
-
-    // Real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    // compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-    //compile 'wile.engineersdecor:engineersdecor-1.15.2:1.1.0-b1'
-
+    // Cloth Config API (Forge)
+    // www.curseforge.com/minecraft/mc-mods/cloth-config-forge
     runtimeOnly fg.deobf("curse.maven:cloth-config-forge:2938583")
     compileOnly fg.deobf("curse.maven:cloth-config-forge:2938583")
 
-    //runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
-    compileOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
+    // Just Enough Items (JEI)
+    // www.curseforge.com/minecraft/mc-mods/jei
+    //runtimeOnly fg.deobf("curse.maven:jei:2988823")
+    compileOnly fg.deobf("curse.maven:jei:2988823")
 
-    //runtimeOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:0.15-105-a2b2b71a")
-    compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:0.15-105-a2b2b71a")
+    // Immersive Engineering
+    // www.curseforge.com/minecraft/mc-mods/immersive-engineering
+    //runtimeOnly fg.deobf("curse.maven:immersive-engineering:3003002")
+    compileOnly fg.deobf("curse.maven:immersive-engineering:3003002")
 
-    //runtimeOnly fg.deobf("curse.maven:engineersdecor:2968300")
-    compileOnly fg.deobf("curse.maven:engineersdecor:2968300")
+    // Engineer's Decor
+    // www.curseforge.com/minecraft/mc-mods/engineers-decor
+    //runtimeOnly fg.deobf("curse.maven:engineers-decor:2991024")
+    compileOnly fg.deobf("curse.maven:engineers-decor:2991024")
 
-    //runtimeOnly fg.deobf("curse.maven:cctweaked:2985036")
-    compileOnly fg.deobf("curse.maven:cctweaked:2985036")
+    // CC: Tweaked
+    // www.curseforge.com/minecraft/mc-mods/cc-tweaked
+    //runtimeOnly fg.deobf("curse.maven:cc-tweaked:2985036")
+    compileOnly fg.deobf("curse.maven:cc-tweaked:2985036")
 
-    //runtimeOnly fg.deobf("curse.maven:musicmaker:2959062")
-    compileOnly fg.deobf("curse.maven:musicmaker:2959062")
+    // Music Maker Mod
+    // www.curseforge.com/minecraft/mc-mods/music-maker-mod
+    //runtimeOnly fg.deobf("curse.maven:music-maker-mod:2959062")
+    compileOnly fg.deobf("curse.maven:music-maker-mod:2959062")
 
-    //runtimeOnly fg.deobf("curse.maven:embellishcraft:2940414")
-    compileOnly fg.deobf("curse.maven:embellishcraft:2940414")
+    // EmbellishCraft
+    // www.curseforge.com/minecraft/mc-mods/embellishcraft
+    //runtimeOnly fg.deobf("curse.maven:embellishcraft:2987545")
+    compileOnly fg.deobf("curse.maven:embellishcraft:2987545")
 
-    //runtimeOnly fg.deobf("curse.maven:refinedstorage:2982967")
-    compileOnly fg.deobf("curse.maven:refinedstorage:2982967")
+    // Refined Storage
+    // www.curseforge.com/minecraft/mc-mods/refined-storage
+    //runtimeOnly fg.deobf("curse.maven:refined-storage:3002234")
+    compileOnly fg.deobf("curse.maven:refined-storage:3002234")
 
-    //runtimeOnly fg.deobf("curse.maven:crayfishfurniture:2853267")
-    compileOnly fg.deobf("curse.maven:crayfishfurniture:2853267")
+    // MrCrayfish's Furniture Mod
+    // www.curseforge.com/minecraft/mc-mods/mrcrayfish-furniture-mod
+    //runtimeOnly fg.deobf("curse.maven:mrcrayfish-furniture-mod:2853267")
+    compileOnly fg.deobf("curse.maven:mrcrayfish-furniture-mod:2853267")
 
+    // Charm
+    // www.curseforge.com/minecraft/mc-mods/charm
     //runtimeOnly fg.deobf("curse.maven:charm:2973470")
     compileOnly fg.deobf("curse.maven:charm:2973470")
 
+    // Create
+    // www.curseforge.com/minecraft/mc-mods/create
     //runtimeOnly fg.deobf("curse.maven:create:2979593")
     compileOnly fg.deobf("curse.maven:create:2979593")
 
-    //runtimeOnly fg.deobf("top.theillusivec4.curios:curios:FORGE-1.15.2-2.0-beta2")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios:FORGE-1.15.2-2.0-beta2")
+    // Curios API
+    // www.curseforge.com/minecraft/mc-mods/curios
+    //runtimeOnly fg.deobf("curse.maven:curios:2972162")
+    compileOnly fg.deobf("curse.maven:curios:2972162")
 
-    compileOnly fg.deobf("vazkii.autoreglib:AutoRegLib:1.5-41.80")
-    //runtimeOnly fg.deobf("vazkii.quark:Quark:r2.1-236.1111")
-    compileOnly fg.deobf("vazkii.quark:Quark:r2.1-236.1111")
+    // AutoRegLib
+    // www.curseforge.com/minecraft/mc-mods/autoreglib
+    //runtimeOnly fg.deobf("curse.maven:autoreglib:2911830")
+    compileOnly fg.deobf("curse.maven:autoreglib:2911830")
 
-    runtimeOnly fg.deobf("curse.maven:gamemodmenuoption:2990175")
+    // Quark
+    // www.curseforge.com/minecraft/mc-mods/quark
+    //runtimeOnly fg.deobf("curse.maven:quark:2980651")
+    compileOnly fg.deobf("curse.maven:quark:2980651")
+
+    // GameMenuModOption
+    // www.curseforge.com/minecraft/mc-mods/gamemenumodoption
+    runtimeOnly fg.deobf("curse.maven:gamemenumodoption:2990175")
 
     // Commands4Configs
     // www.curseforge.com/minecraft/mc-mods/commands4configs/files/3002158
     // for testing https://github.com/PieKing1215/InvMove/issues/2
     //runtimeOnly fg.deobf("curse.maven:commands4configs:3002158")
 
-    // The 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
-    // provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // These dependencies get remapped to your current MCP mappings
-    // deobf 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // For more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
 }
 
-// Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {
         attributes([
@@ -206,9 +175,7 @@ jar {
 
 // Example configuration to allow publishing using the maven-publish task
 // This is the preferred method to reobfuscate your jar file
-jar.finalizedBy('reobfJar') 
-// However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
-//publish.dependsOn('reobfJar')
+jar.finalizedBy('reobfJar')
 
 publishing {
     publications {
