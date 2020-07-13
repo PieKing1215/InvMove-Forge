@@ -85,7 +85,7 @@ dependencies {
 
     // Just Enough Items (JEI)
     // www.curseforge.com/minecraft/mc-mods/jei
-    runtimeOnly fg.deobf("curse.maven:jei:2988823")
+    //runtimeOnly fg.deobf("curse.maven:jei:2988823")
     compileOnly fg.deobf("curse.maven:jei:2988823")
 
     // Immersive Engineering
@@ -135,7 +135,7 @@ dependencies {
 
     // Curios API
     // www.curseforge.com/minecraft/mc-mods/curios
-    runtimeOnly fg.deobf("curse.maven:curios:2972162")
+    //runtimeOnly fg.deobf("curse.maven:curios:2972162")
     compileOnly fg.deobf("curse.maven:curios:2972162")
 
     // AutoRegLib
