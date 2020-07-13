@@ -15,6 +15,8 @@
 "tooltip.config.invmove.movement.jump": "Allow jumping while inside inventories.",
 "config.invmove.movement.textFieldDisables": "Text Field Disables Movement",
 "tooltip.config.invmove.movement.textFieldDisables": "Disable movement in inventories when a text field is focused.",
+"config.invmove.movement.debugDisplay": "Debug Display",
+"tooltip.config.invmove.movement.debugDisplay": "Enable debug display.",
 
 "config.invmove.background.enable": "Hide Inventory Backgrounds",
 "tooltip.config.invmove.background.enable": "Hides the background tint while inside inventories.\nYou can manually turn off certain inventories below.",
