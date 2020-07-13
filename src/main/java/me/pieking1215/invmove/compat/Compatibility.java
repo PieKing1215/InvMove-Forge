@@ -39,8 +39,6 @@ public class Compatibility {
         compatMods.put("patchouli"           , "me.pieking1215.invmove.compat.PatchouliCompatibility");
         compatMods.put("botania"             , "me.pieking1215.invmove.compat.BotaniaCompatibility");
         compatMods.put("enderstorage"        , "me.pieking1215.invmove.compat.EnderStorageCompatibility");
-        compatMods.put("mekanism"            , "me.pieking1215.invmove.compat.MekanismCompatibility");
-        compatMods.put("mekanismgenerators"  , "me.pieking1215.invmove.compat.MekanismGeneratorsCompatibility");
         compatMods.put("waystones"           , "me.pieking1215.invmove.compat.WaystonesCompatibility");
         compatMods.put("industrialforegoing" , "me.pieking1215.invmove.compat.IndustrialForegoingCompatibility");
 

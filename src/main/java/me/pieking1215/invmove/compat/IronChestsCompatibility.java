@@ -1,6 +1,6 @@
 package me.pieking1215.invmove.compat;
 
-import com.progwml6.ironchest.client.screen.IronChestScreen;
+import com.progwml6.ironchest.client.inventory.ChestScreen;
 import net.minecraft.client.gui.screen.Screen;
 
 import java.util.Arrays;
@@ -25,7 +25,7 @@ public class IronChestsCompatibility extends ModCompatibility {
     @Override
     public Optional<Boolean> shouldAllowMovement(Screen screen) {
 
-        if(screen instanceof IronChestScreen) return Optional.of(IronChest_movement.get());
+        if(screen instanceof ChestScreen) return Optional.of(IronChest_movement.get());
 
         return Optional.empty();
     }
@@ -33,7 +33,7 @@ public class IronChestsCompatibility extends ModCompatibility {
     @Override
     public Optional<Boolean> shouldDisableBackground(Screen screen) {
 
-        if(screen instanceof IronChestScreen) return Optional.of(IronChest_background_disable.get());
+        if(screen instanceof ChestScreen) return Optional.of(IronChest_background_disable.get());
 
         return Optional.empty();
     }

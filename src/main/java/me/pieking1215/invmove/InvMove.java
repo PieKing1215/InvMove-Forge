@@ -243,9 +243,9 @@ public class InvMove {
             Class cl = screen.getClass();
             while (cl.getSuperclass() != null) {
                 double scale = 1;
-                RenderSystem.scaled(scale, scale, 1);
+                GlStateManager.scaled(scale, scale, 1);
                 Minecraft.getInstance().fontRenderer.drawStringWithShadow(cl.getName(), 4, 4 + 10 * i, 0xffffffff);
-                RenderSystem.scaled(1 / scale, 1 / scale, 1);
+                GlStateManager.scaled(1 / scale, 1 / scale, 1);
 
                 i++;
                 cl = cl.getSuperclass();
