@@ -54,23 +54,33 @@ Explicitly supported mods have their own sections in the config, and come with t
 If you find problems with any of the explicitly supported mods, please start a ticket in the [issue tracker](https://github.com/PieKing1215/InvMove/issues).<br>
 If there's a mod you want to be added, also please start a ticket in the [issue tracker](https://github.com/PieKing1215/InvMove/issues), especially if it doesn't work enabling it from the "unrecognized" section of the config.
 
-*(The initial list of supported mods was arbitrarily chosen from a mod pack I'm playing)*
+*(The initial list of supported mods was arbitrarily chosen from a mod pack I'm playing.)*
+*(More are being added mostly by going through curseforge sorted by popularity)*
 
-InvMove explicitly supports the following mods:
+InvMove explicitly supports the following mods (as of version 0.4.2):
+- [Botania](https://www.curseforge.com/minecraft/mc-mods/botania)
 - [CC: Tweaked](https://www.curseforge.com/minecraft/mc-mods/cc-tweaked)
 - [Charm](https://www.curseforge.com/minecraft/mc-mods/charm)
+- [Cooking for Blockheads](https://www.curseforge.com/minecraft/mc-mods/cooking-for-blockheads)
 - [Create](https://www.curseforge.com/minecraft/mc-mods/create)
 - [Curios API](https://www.curseforge.com/minecraft/mc-mods/curios)
 - [EmbellishCraft](https://www.curseforge.com/minecraft/mc-mods/embellishcraft)
+- [Ender Storage 1.8.+](https://www.curseforge.com/minecraft/mc-mods/ender-storage-1-8)
 - [Engineer's Decor](https://www.curseforge.com/minecraft/mc-mods/engineers-decor)
 - [Immersive Engineering](https://www.curseforge.com/minecraft/mc-mods/immersive-engineering)
+- [Industrial Foregoing](https://www.curseforge.com/minecraft/mc-mods/industrial-foregoing)
+- [Iron Chests](https://www.curseforge.com/minecraft/mc-mods/iron-chests)
 - [ItemPhysic Full](https://www.curseforge.com/minecraft/mc-mods/itemphysic)
 - [Just Enough Items (JEI)](https://www.curseforge.com/minecraft/mc-mods/jei)
+- [Mekanism](https://www.curseforge.com/minecraft/mc-mods/mekanism)
+- [Mekanism Generators](https://www.curseforge.com/minecraft/mc-mods/mekanism-generators)
 - [MrCrayfish's Furniture Mod](https://www.curseforge.com/minecraft/mc-mods/mrcrayfish-furniture-mod)
 - [Music Maker Mod](https://www.curseforge.com/minecraft/mc-mods/music-maker-mod)
 - [Optifine](https://www.optifine.net/)
+- [Patchouli](https://www.curseforge.com/minecraft/mc-mods/patchouli)
 - [Quark](https://www.curseforge.com/minecraft/mc-mods/quark)
 - [Refined Storage](https://www.curseforge.com/minecraft/mc-mods/refined-storage)
+- [Waystones](https://www.curseforge.com/minecraft/mc-mods/waystones)
 </details>
 
 ## Usage
