@@ -8,6 +8,9 @@ import java.util.Optional;
 public class ClothConfigCompatibility extends ModCompatibility {
     @Override
     Optional<Boolean> shouldAllowMovement(Screen screen) {
+
+        if(screen instanceof ClothConfigScreen) return Optional.of(false);
+
         return Optional.empty();
     }
 
