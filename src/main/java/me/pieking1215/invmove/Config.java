@@ -155,6 +155,7 @@ public class Config {
         public final ForgeConfigSpec.ConfigValue<Boolean> grindstone;
         public final ForgeConfigSpec.ConfigValue<Boolean> stonecutter;
         public final ForgeConfigSpec.ConfigValue<Boolean> villager;
+        public final ForgeConfigSpec.ConfigValue<Boolean> book;
         public final HashMap<String, Boolean> seenScreens = new HashMap<>();
 
         public UIBackground(ForgeConfigSpec.Builder builder) {
@@ -235,6 +236,10 @@ public class Config {
                     .comment("Enables/Disables the villager menu UI background [false/true|default:false]")
                     .translation("villager.uibackground.invmove.config")
                     .define("villager", false);
+            book = builder
+                    .comment("Enables/Disables the book UI background [false/true|default:false]")
+                    .translation("book.uibackground.invmove.config")
+                    .define("book", false);
             builder.pop();
 
         }
@@ -260,6 +265,7 @@ public class Config {
         public final ForgeConfigSpec.ConfigValue<Boolean> grindstone;
         public final ForgeConfigSpec.ConfigValue<Boolean> stonecutter;
         public final ForgeConfigSpec.ConfigValue<Boolean> villager;
+        public final ForgeConfigSpec.ConfigValue<Boolean> book;
         public final HashMap<String, Boolean> seenScreens = new HashMap<>();
 
         public UIMovement(ForgeConfigSpec.Builder builder) {
@@ -340,6 +346,10 @@ public class Config {
                     .comment("Enables/Disables moving in the villager menu [false/true|default:false]")
                     .translation("villager.uimovement.invmove.config")
                     .define("villager", true);
+            book = builder
+                    .comment("Enables/Disables moving in the book menu [false/true|default:false]")
+                    .translation("book.uimovement.invmove.config")
+                    .define("book", true);
             builder.pop();
         }
     }
@@ -383,6 +393,7 @@ public class Config {
             movementTypes.add(eb.startBooleanToggle("config.invmove.type.grindstone",   getBoolSafe(UI_MOVEMENT.grindstone, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.grindstone::set   ).setYesNoTextSupplier(movement_yesNoText).build());
             movementTypes.add(eb.startBooleanToggle("config.invmove.type.stonecutter",  getBoolSafe(UI_MOVEMENT.stonecutter, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.stonecutter::set  ).setYesNoTextSupplier(movement_yesNoText).build());
             movementTypes.add(eb.startBooleanToggle("config.invmove.type.villager",     getBoolSafe(UI_MOVEMENT.villager, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.villager::set     ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle("config.invmove.type.book",         getBoolSafe(UI_MOVEMENT.book, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.book::set     ).setYesNoTextSupplier(movement_yesNoText).build());
             movement.addEntry(movementTypes.build());
 
             for(String modid : Compatibility.getCompatibilities().keySet()){
@@ -427,6 +438,7 @@ public class Config {
             backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.grindstone",   !getBoolSafe(UI_BACKGROUND.grindstone, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.grindstone.set(!b)   ).setYesNoTextSupplier(background_yesNoText).build());
             backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.stonecutter",  !getBoolSafe(UI_BACKGROUND.stonecutter, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.stonecutter.set(!b)  ).setYesNoTextSupplier(background_yesNoText).build());
             backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.villager",     !getBoolSafe(UI_BACKGROUND.villager, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.villager.set(!b)     ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.book",         !getBoolSafe(UI_BACKGROUND.book, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.book.set(!b)     ).setYesNoTextSupplier(background_yesNoText).build());
             background.addEntry(backgroundTypes.build());
 
             for(String modid : Compatibility.getCompatibilities().keySet()){

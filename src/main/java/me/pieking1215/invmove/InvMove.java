@@ -3,23 +3,56 @@ package me.pieking1215.invmove;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.pieking1215.invmove.compat.Compatibility;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.advancements.AdvancementsScreen;
 import net.minecraft.client.gui.recipebook.IRecipeShownListener;
 import net.minecraft.client.gui.recipebook.RecipeBookGui;
+import net.minecraft.client.gui.screen.AddServerScreen;
+import net.minecraft.client.gui.screen.AlertScreen;
 import net.minecraft.client.gui.screen.ChatScreen;
+import net.minecraft.client.gui.screen.CommandBlockScreen;
+import net.minecraft.client.gui.screen.ConfirmBackupScreen;
+import net.minecraft.client.gui.screen.ConfirmOpenLinkScreen;
 import net.minecraft.client.gui.screen.ConfirmScreen;
+import net.minecraft.client.gui.screen.ConnectingScreen;
+import net.minecraft.client.gui.screen.CreateBuffetWorldScreen;
+import net.minecraft.client.gui.screen.CreateFlatWorldScreen;
 import net.minecraft.client.gui.screen.CreateWorldScreen;
+import net.minecraft.client.gui.screen.CustomizeSkinScreen;
+import net.minecraft.client.gui.screen.DeathScreen;
+import net.minecraft.client.gui.screen.DemoScreen;
 import net.minecraft.client.gui.screen.DirtMessageScreen;
+import net.minecraft.client.gui.screen.DisconnectedScreen;
+import net.minecraft.client.gui.screen.DownloadTerrainScreen;
+import net.minecraft.client.gui.screen.EditBookScreen;
+import net.minecraft.client.gui.screen.EditMinecartCommandBlockScreen;
 import net.minecraft.client.gui.screen.EditSignScreen;
+import net.minecraft.client.gui.screen.EditStructureScreen;
+import net.minecraft.client.gui.screen.EditWorldScreen;
 import net.minecraft.client.gui.screen.EnchantmentScreen;
+import net.minecraft.client.gui.screen.ErrorScreen;
+import net.minecraft.client.gui.screen.FlatPresetsScreen;
 import net.minecraft.client.gui.screen.GrindstoneScreen;
 import net.minecraft.client.gui.screen.HopperScreen;
 import net.minecraft.client.gui.screen.IngameMenuScreen;
+import net.minecraft.client.gui.screen.JigsawScreen;
 import net.minecraft.client.gui.screen.LoomScreen;
 import net.minecraft.client.gui.screen.MainMenuScreen;
+import net.minecraft.client.gui.screen.MemoryErrorScreen;
+import net.minecraft.client.gui.screen.MultiplayerScreen;
+import net.minecraft.client.gui.screen.MultiplayerWarningScreen;
+import net.minecraft.client.gui.screen.OptimizeWorldScreen;
 import net.minecraft.client.gui.screen.OptionsScreen;
+import net.minecraft.client.gui.screen.ReadBookScreen;
+import net.minecraft.client.gui.screen.ResourcePacksScreen;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.ServerListScreen;
 import net.minecraft.client.gui.screen.SettingsScreen;
+import net.minecraft.client.gui.screen.ShareToLanScreen;
+import net.minecraft.client.gui.screen.SleepInMultiplayerScreen;
+import net.minecraft.client.gui.screen.StatsScreen;
+import net.minecraft.client.gui.screen.WinGameScreen;
 import net.minecraft.client.gui.screen.WorkingScreen;
+import net.minecraft.client.gui.screen.WorldLoadProgressScreen;
 import net.minecraft.client.gui.screen.WorldSelectionScreen;
 import net.minecraft.client.gui.screen.inventory.AnvilScreen;
 import net.minecraft.client.gui.screen.inventory.BeaconScreen;
@@ -99,15 +132,48 @@ public class InvMove {
         if(!Config.getBoolSafe(Config.GENERAL.enabled, true)) return false;
 
         if(screen.isPauseScreen() && Minecraft.getInstance().isSingleplayer() && !Minecraft.getInstance().getIntegratedServer().getPublic()) return false;
-        if(screen instanceof WorkingScreen) return false;
-        if(screen instanceof DirtMessageScreen) return false;
-        if(screen instanceof WorldSelectionScreen) return false;
-        if(screen instanceof ModListScreen) return false;
-        if(screen instanceof IngameMenuScreen) return false;
-        if(screen instanceof OptionsScreen) return false;
-        if(screen instanceof SettingsScreen) return false;
 
+        if(screen instanceof AddServerScreen) return false;
+        if(screen instanceof AlertScreen) return false;
+        if(screen instanceof ConfirmBackupScreen) return false;
+        if(screen instanceof ConfirmScreen) return false;
+        if(screen instanceof ConnectingScreen) return false;
+        if(screen instanceof CreateBuffetWorldScreen) return false;
+        if(screen instanceof CreateFlatWorldScreen) return false;
+        if(screen instanceof CreateWorldScreen) return false;
+        if(screen instanceof DeathScreen) return false;
+        if(screen instanceof DemoScreen) return false;
+        if(screen instanceof DirtMessageScreen) return false;
+        if(screen instanceof DisconnectedScreen) return false;
+        if(screen instanceof DownloadTerrainScreen) return false;
+        if(screen instanceof ErrorScreen) return false;
+        if(screen instanceof FlatPresetsScreen) return false;
+        if(screen instanceof IngameMenuScreen) return false;
+        if(screen instanceof MainMenuScreen) return false;
+        if(screen instanceof MemoryErrorScreen) return false;
+        if(screen instanceof ModListScreen) return false;
+        if(screen instanceof MultiplayerScreen) return false;
+        if(screen instanceof MultiplayerWarningScreen) return false;
+        if(screen instanceof OptimizeWorldScreen) return false;
+        if(screen instanceof OptionsScreen) return false;
+        if(screen instanceof ServerListScreen) return false;
+        if(screen instanceof SettingsScreen) return false;
+        if(screen instanceof ShareToLanScreen) return false;
+        if(screen instanceof StatsScreen) return false;
+        if(screen instanceof WinGameScreen) return false;
+        if(screen instanceof WorkingScreen) return false;
+        if(screen instanceof WorldLoadProgressScreen) return false;
+        if(screen instanceof WorldSelectionScreen) return false;
+
+        if(screen instanceof AdvancementsScreen) return false; // config?
+        if(screen instanceof ChatScreen) return false;
+        if(screen instanceof CommandBlockScreen) return false;
+        if(screen instanceof EditBookScreen) return false;
+        if(screen instanceof EditMinecartCommandBlockScreen) return false;
         if(screen instanceof EditSignScreen) return false;
+        if(screen instanceof EditStructureScreen) return false;
+        if(screen instanceof EditWorldScreen) return false;
+        if(screen instanceof JigsawScreen) return false;
 
         if(Config.getBoolSafe(Config.GENERAL.textFieldDisablesMovement, true)) {
             // don't allow movement when focused on an active textfield
@@ -155,6 +221,7 @@ public class InvMove {
         if(screen instanceof GrindstoneScreen)       return Config.getBoolSafe(Config.UI_MOVEMENT.grindstone, true);
         if(screen instanceof StonecutterScreen)      return Config.getBoolSafe(Config.UI_MOVEMENT.stonecutter, true);
         if(screen instanceof MerchantScreen)         return Config.getBoolSafe(Config.UI_MOVEMENT.villager, true);
+        if(screen instanceof ReadBookScreen)         return Config.getBoolSafe(Config.UI_MOVEMENT.book, true);
 
         Optional<Boolean> compatMove = Compatibility.shouldAllowMovement(screen);
         if(compatMove.isPresent()) return compatMove.get();
@@ -267,20 +334,47 @@ public class InvMove {
 
         if(screen == null) return false;
         if(screen.isPauseScreen() && Minecraft.getInstance().isSingleplayer() && !Minecraft.getInstance().getIntegratedServer().getPublic()) return false;
-        if(screen instanceof WorkingScreen) return false;
-        if(screen instanceof DirtMessageScreen) return false;
-        if(screen instanceof WorldSelectionScreen) return false;
-        if(screen instanceof ModListScreen) return false;
-        if(screen instanceof IngameMenuScreen) return false;
-        if(screen instanceof OptionsScreen) return false;
-        if(screen instanceof SettingsScreen) return false;
-        if(screen instanceof CreateWorldScreen) return false;
+
+        if(screen instanceof AddServerScreen) return false;
+        if(screen instanceof AlertScreen) return false;
+        if(screen instanceof ConfirmBackupScreen) return false;
         if(screen instanceof ConfirmScreen) return false;
-
-        if(screen instanceof EditSignScreen) return false;
-
+        if(screen instanceof ConnectingScreen) return false;
+        if(screen instanceof CreateBuffetWorldScreen) return false;
+        if(screen instanceof CreateFlatWorldScreen) return false;
+        if(screen instanceof CreateWorldScreen) return false;
+        if(screen instanceof DeathScreen) return false;
+        if(screen instanceof DemoScreen) return false;
+        if(screen instanceof DirtMessageScreen) return false;
+        if(screen instanceof DisconnectedScreen) return false;
+        if(screen instanceof DownloadTerrainScreen) return false;
+        if(screen instanceof ErrorScreen) return false;
+        if(screen instanceof FlatPresetsScreen) return false;
+        if(screen instanceof IngameMenuScreen) return false;
         if(screen instanceof MainMenuScreen) return false;
+        if(screen instanceof MemoryErrorScreen) return false;
+        if(screen instanceof ModListScreen) return false;
+        if(screen instanceof MultiplayerScreen) return false;
+        if(screen instanceof MultiplayerWarningScreen) return false;
+        if(screen instanceof OptimizeWorldScreen) return false;
+        if(screen instanceof OptionsScreen) return false;
+        if(screen instanceof ServerListScreen) return false;
+        if(screen instanceof SettingsScreen) return false;
+        if(screen instanceof ShareToLanScreen) return false;
+        if(screen instanceof StatsScreen) return false;
+        if(screen instanceof WinGameScreen) return false;
+        if(screen instanceof WorkingScreen) return false;
+        if(screen instanceof WorldLoadProgressScreen) return false;
+        if(screen instanceof WorldSelectionScreen) return false;
+
+        if(screen instanceof AdvancementsScreen) return false; // config?
         if(screen instanceof ChatScreen) return false;
+        if(screen instanceof CommandBlockScreen) return false;
+        if(screen instanceof EditMinecartCommandBlockScreen) return false;
+        if(screen instanceof EditSignScreen) return false;
+        if(screen instanceof EditStructureScreen) return false;
+        if(screen instanceof EditWorldScreen) return false;
+        if(screen instanceof JigsawScreen) return false;
 
         if(screen instanceof InventoryScreen)           return !Config.getBoolSafe(Config.UI_BACKGROUND.inventory, false);
         if(screen instanceof CreativeScreen)            return !Config.getBoolSafe(Config.UI_BACKGROUND.creative, false);
@@ -301,6 +395,8 @@ public class InvMove {
         if(screen instanceof GrindstoneScreen)          return !Config.getBoolSafe(Config.UI_BACKGROUND.grindstone, false);
         if(screen instanceof StonecutterScreen)         return !Config.getBoolSafe(Config.UI_BACKGROUND.stonecutter, false);
         if(screen instanceof MerchantScreen)            return !Config.getBoolSafe(Config.UI_BACKGROUND.villager, false);
+        if(screen instanceof ReadBookScreen)            return !Config.getBoolSafe(Config.UI_BACKGROUND.book, false);
+        if(screen instanceof EditBookScreen)            return !Config.getBoolSafe(Config.UI_BACKGROUND.book, false);
 
 
         Optional<Boolean> compatBack = Compatibility.shouldDisableBackground(screen);

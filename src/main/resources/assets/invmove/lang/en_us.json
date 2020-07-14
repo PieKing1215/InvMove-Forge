@@ -43,6 +43,7 @@
 "config.invmove.type.grindstone": "Grindstone",
 "config.invmove.type.stonecutter": "Stonecutter",
 "config.invmove.type.villager": "Villager",
+"config.invmove.type.book": "Book",
 
 "key.invmove.category.types.unrecognized": "Unrecognized UI Types",
   "tooltip.config.invmove.unrecognized_desc": "Unrecognized GUIs show up here once they have been interacted with."
