@@ -18,16 +18,17 @@ Made after [I couldn't find an existing mod for this](https://redd.it/egwe8w).
 
 Requires [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config-forge) so the config screen works.
 
-## Config
+## Config (In-game)
 <details>
   <summary>Click to expand.</summary>
   
 ![](demo/where_config.png)
 <img src="demo/config_screen.png" alt="alt text" width="657" height="528">
-### InvMove has an ingame config menu which can be accessed from the Forge mod list.<br>
+### InvMove has an in-game config menu which can be accessed from the Forge mod list.<br>
 In the config menu, you can find several options:<br>
 #### General:
 - Enable: Enable the entire mod
+- Debug Display: Enables a debug overlay that can help debug compatibility problems.
 #### UI Movement:
 - Move In Inventories: Enable movement in inventories
 - Allow Sneaking: Allow sneaking in inventories (disabled by default because it's distracting when shift-clicking)
@@ -91,11 +92,11 @@ Do not download this mod from anywhere other than the InvMove GitHub page or the
 This mod may not be reposted to any other third-party websites.<br>
 [#StopModReposts](https://stopmodreposts.org)
 
-Tested on Forge 31.2.0 with MC 1.15.2, on both singleplayer and multiplayer.
+Tested on Forge 31.2.31 with MC 1.15.2 and on Forge 28.2.23 on 1.14.4, on both singleplayer and multiplayer.
 
 The mod is licensed under the [GNU General Public License v3.0](LICENSE.md)
 
 ## Upcoming
 More mod compatibilities, bug fixes, and code cleanup will come as v0.4.X.<br>
 Once it's stable and has a good amount of compatibilities, it'll become v1.0.0.<br>
-Backports for 1.12-1.14 are being worked on.
+Backport for 1.12 is being worked on.
