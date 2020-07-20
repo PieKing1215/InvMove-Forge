@@ -26,9 +26,8 @@ repositories {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'maven-publish'
 
-version = '1.14.4-0.4.3'
+version = '1.14.4-0.4.4'
 group = 'me.pieking1215.invmove' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-
 archivesBaseName = 'InvMove'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
