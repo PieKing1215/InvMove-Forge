@@ -115,7 +115,7 @@ public class InvMove {
         if(screen == null) return false;
 
         if(!Config.GENERAL.enabled) return false;
-        if(!Config.GENERAL.enabled) return false;
+        if(!Config.UI_MOVEMENT.moveInInventories) return false;
 
         if(screen.doesGuiPauseGame() && Minecraft.getMinecraft().isSingleplayer() && !Minecraft.getMinecraft().getIntegratedServer().getPublic()) return false;
 
