@@ -129,7 +129,7 @@ public class InvMove {
         if(screen == null) return false;
 
         if(!Config.getBoolSafe(Config.GENERAL.enabled, true)) return false;
-        if(!Config.getBoolSafe(Config.GENERAL.enabled, true)) return false;
+        if(!Config.getBoolSafe(Config.GENERAL.moveInInventories, true)) return false;
 
         if(screen.isPauseScreen() && Minecraft.getInstance().isSingleplayer() && !Minecraft.getInstance().getIntegratedServer().getPublic()) return false;
 
