@@ -26,7 +26,7 @@ repositories {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'maven-publish'
 
-version = '1.15.2-0.4.3'
+version = '1.15.2-0.4.4'
 group = 'me.pieking1215.invmove'
 archivesBaseName = 'InvMove'
 
