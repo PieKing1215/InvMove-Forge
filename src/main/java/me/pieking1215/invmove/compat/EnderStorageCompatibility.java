@@ -1,7 +1,7 @@
 package me.pieking1215.invmove.compat;
 
 import codechicken.enderstorage.client.gui.GuiEnderItemStorage;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.GuiScreen;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -22,7 +22,7 @@ public class EnderStorageCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldAllowMovement(Screen screen) {
+    public Optional<Boolean> shouldAllowMovement(GuiScreen screen) {
 
         if(screen instanceof GuiEnderItemStorage) return Optional.of(EnderStorage_movement.get());
 
@@ -30,7 +30,7 @@ public class EnderStorageCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldDisableBackground(Screen screen) {
+    public Optional<Boolean> shouldDisableBackground(GuiScreen screen) {
 
         if(screen instanceof GuiEnderItemStorage) return Optional.of(EnderStorage_background_disable.get());
 

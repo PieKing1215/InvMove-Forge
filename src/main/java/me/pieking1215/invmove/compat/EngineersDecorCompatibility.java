@@ -1,14 +1,6 @@
 package me.pieking1215.invmove.compat;
 
-import net.minecraft.client.gui.screen.Screen;
-import wile.engineersdecor.blocks.EdCraftingTable;
-import wile.engineersdecor.blocks.EdDropper;
-import wile.engineersdecor.blocks.EdElectricalFurnace;
-import wile.engineersdecor.blocks.EdFurnace;
-import wile.engineersdecor.blocks.EdHopper;
-import wile.engineersdecor.blocks.EdLabeledCrate;
-import wile.engineersdecor.blocks.EdPlacer;
-import wile.engineersdecor.blocks.EdWasteIncinerator;
+import net.minecraft.client.gui.GuiScreen;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -58,31 +50,31 @@ public class EngineersDecorCompatibility extends ModCompatibility {
     }
     
     @Override
-    public Optional<Boolean> shouldAllowMovement(Screen screen) {
+    public Optional<Boolean> shouldAllowMovement(GuiScreen screen) {
 
-        if(screen instanceof EdCraftingTable.CraftingTableGui)         return Optional.of(CraftingTableGui_movement.get());
-        if(screen instanceof EdDropper.DropperGui)                     return Optional.of(DropperGui_movement.get());
-        if(screen instanceof EdElectricalFurnace.ElectricalFurnaceGui) return Optional.of(ElectricalFurnaceGui_movement.get());
-        if(screen instanceof EdFurnace.FurnaceGui)                     return Optional.of(FurnaceGui_movement.get());
-        if(screen instanceof EdHopper.HopperGui)                       return Optional.of(HopperGui_movement.get());
-        if(screen instanceof EdLabeledCrate.LabeledCrateGui)           return Optional.of(LabeledCrateGui_movement.get());
-        if(screen instanceof EdPlacer.PlacerGui)                       return Optional.of(PlacerGui_movement.get());
-        if(screen instanceof EdWasteIncinerator.WasteIncineratorGui)   return Optional.of(WasteIncineratorGui_movement.get());
+//        if(screen instanceof EdCraftingTable.CraftingTableGui)         return Optional.of(CraftingTableGui_movement.get());
+//        if(screen instanceof EdDropper.DropperGui)                     return Optional.of(DropperGui_movement.get());
+//        if(screen instanceof EdElectricalFurnace.ElectricalFurnaceGui) return Optional.of(ElectricalFurnaceGui_movement.get());
+//        if(screen instanceof EdFurnace.FurnaceGui)                     return Optional.of(FurnaceGui_movement.get());
+//        if(screen instanceof EdHopper.HopperGui)                       return Optional.of(HopperGui_movement.get());
+//        if(screen instanceof EdLabeledCrate.LabeledCrateGui)           return Optional.of(LabeledCrateGui_movement.get());
+//        if(screen instanceof EdPlacer.PlacerGui)                       return Optional.of(PlacerGui_movement.get());
+//        if(screen instanceof EdWasteIncinerator.WasteIncineratorGui)   return Optional.of(WasteIncineratorGui_movement.get());
 
         return Optional.empty();
     }
 
     @Override
-    public Optional<Boolean> shouldDisableBackground(Screen screen) {
+    public Optional<Boolean> shouldDisableBackground(GuiScreen screen) {
 
-        if(screen instanceof EdCraftingTable.CraftingTableGui)         return Optional.of(CraftingTableGui_background_disable.get());
-        if(screen instanceof EdDropper.DropperGui)                     return Optional.of(DropperGui_background_disable.get());
-        if(screen instanceof EdElectricalFurnace.ElectricalFurnaceGui) return Optional.of(ElectricalFurnaceGui_background_disable.get());
-        if(screen instanceof EdFurnace.FurnaceGui)                     return Optional.of(FurnaceGui_background_disable.get());
-        if(screen instanceof EdHopper.HopperGui)                       return Optional.of(HopperGui_background_disable.get());
-        if(screen instanceof EdLabeledCrate.LabeledCrateGui)           return Optional.of(LabeledCrateGui_background_disable.get());
-        if(screen instanceof EdPlacer.PlacerGui)                       return Optional.of(PlacerGui_background_disable.get());
-        if(screen instanceof EdWasteIncinerator.WasteIncineratorGui)   return Optional.of(WasteIncineratorGui_background_disable.get());
+//        if(screen instanceof EdCraftingTable.CraftingTableGui)         return Optional.of(CraftingTableGui_background_disable.get());
+//        if(screen instanceof EdDropper.DropperGui)                     return Optional.of(DropperGui_background_disable.get());
+//        if(screen instanceof EdElectricalFurnace.ElectricalFurnaceGui) return Optional.of(ElectricalFurnaceGui_background_disable.get());
+//        if(screen instanceof EdFurnace.FurnaceGui)                     return Optional.of(FurnaceGui_background_disable.get());
+//        if(screen instanceof EdHopper.HopperGui)                       return Optional.of(HopperGui_background_disable.get());
+//        if(screen instanceof EdLabeledCrate.LabeledCrateGui)           return Optional.of(LabeledCrateGui_background_disable.get());
+//        if(screen instanceof EdPlacer.PlacerGui)                       return Optional.of(PlacerGui_background_disable.get());
+//        if(screen instanceof EdWasteIncinerator.WasteIncineratorGui)   return Optional.of(WasteIncineratorGui_background_disable.get());
 
         return Optional.empty();
     }

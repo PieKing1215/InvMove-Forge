@@ -1,12 +1,12 @@
 package me.pieking1215.invmove.compat;
 
-import net.blay09.mods.cookingforblockheads.client.gui.screen.CounterScreen;
-import net.blay09.mods.cookingforblockheads.client.gui.screen.FridgeScreen;
-import net.blay09.mods.cookingforblockheads.client.gui.screen.FruitBasketScreen;
-import net.blay09.mods.cookingforblockheads.client.gui.screen.OvenScreen;
-import net.blay09.mods.cookingforblockheads.client.gui.screen.RecipeBookScreen;
-import net.blay09.mods.cookingforblockheads.client.gui.screen.SpiceRackScreen;
-import net.minecraft.client.gui.screen.Screen;
+import net.blay09.mods.cookingforblockheads.client.gui.GuiCounter;
+import net.blay09.mods.cookingforblockheads.client.gui.GuiFridge;
+import net.blay09.mods.cookingforblockheads.client.gui.GuiFruitBasket;
+import net.blay09.mods.cookingforblockheads.client.gui.GuiOven;
+import net.blay09.mods.cookingforblockheads.client.gui.GuiRecipeBook;
+import net.blay09.mods.cookingforblockheads.client.gui.GuiSpiceRack;
+import net.minecraft.client.gui.GuiScreen;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -48,27 +48,27 @@ public class CookingForBlockheadsCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldAllowMovement(Screen screen) {
+    public Optional<Boolean> shouldAllowMovement(GuiScreen screen) {
 
-        if(screen instanceof CounterScreen)     return Optional.of(Counter_movement.get());
-        if(screen instanceof FridgeScreen)      return Optional.of(Fridge_movement.get());
-        if(screen instanceof FruitBasketScreen) return Optional.of(FruitBasket_movement.get());
-        if(screen instanceof OvenScreen)        return Optional.of(Oven_movement.get());
-        if(screen instanceof RecipeBookScreen)  return Optional.of(RecipeBook_movement.get());
-        if(screen instanceof SpiceRackScreen)   return Optional.of(SpiceRack_movement.get());
+        if(screen instanceof GuiCounter)     return Optional.of(Counter_movement.get());
+        if(screen instanceof GuiFridge)      return Optional.of(Fridge_movement.get());
+        if(screen instanceof GuiFruitBasket) return Optional.of(FruitBasket_movement.get());
+        if(screen instanceof GuiOven)        return Optional.of(Oven_movement.get());
+        if(screen instanceof GuiRecipeBook)  return Optional.of(RecipeBook_movement.get());
+        if(screen instanceof GuiSpiceRack)   return Optional.of(SpiceRack_movement.get());
 
         return Optional.empty();
     }
 
     @Override
-    public Optional<Boolean> shouldDisableBackground(Screen screen) {
+    public Optional<Boolean> shouldDisableBackground(GuiScreen screen) {
 
-        if(screen instanceof CounterScreen)     return Optional.of(Counter_background_disable.get());
-        if(screen instanceof FridgeScreen)      return Optional.of(Fridge_background_disable.get());
-        if(screen instanceof FruitBasketScreen) return Optional.of(FruitBasket_background_disable.get());
-        if(screen instanceof OvenScreen)        return Optional.of(Oven_background_disable.get());
-        if(screen instanceof RecipeBookScreen)  return Optional.of(RecipeBook_background_disable.get());
-        if(screen instanceof SpiceRackScreen)   return Optional.of(SpiceRack_background_disable.get());
+        if(screen instanceof GuiCounter)     return Optional.of(Counter_background_disable.get());
+        if(screen instanceof GuiFridge)      return Optional.of(Fridge_background_disable.get());
+        if(screen instanceof GuiFruitBasket) return Optional.of(FruitBasket_background_disable.get());
+        if(screen instanceof GuiOven)        return Optional.of(Oven_background_disable.get());
+        if(screen instanceof GuiRecipeBook)  return Optional.of(RecipeBook_background_disable.get());
+        if(screen instanceof GuiSpiceRack)   return Optional.of(SpiceRack_background_disable.get());
 
         return Optional.empty();
     }

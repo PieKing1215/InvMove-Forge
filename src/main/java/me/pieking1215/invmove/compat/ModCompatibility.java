@@ -2,12 +2,7 @@ package me.pieking1215.invmove.compat;
 
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonWriter;
-import me.pieking1215.invmove.Config;
-import me.shedaniel.forge.clothconfig2.api.ConfigEntryBuilder;
-import me.shedaniel.forge.clothconfig2.impl.builders.BooleanToggleBuilder;
-import me.shedaniel.forge.clothconfig2.impl.builders.SubCategoryBuilder;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.util.Tuple;
+import net.minecraft.client.gui.GuiScreen;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,28 +37,28 @@ public abstract class ModCompatibility {
 
     }
 
-    abstract Optional<Boolean> shouldAllowMovement(Screen screen);
-    abstract Optional<Boolean> shouldDisableBackground(Screen screen);
+    abstract Optional<Boolean> shouldAllowMovement(GuiScreen screen);
+    abstract Optional<Boolean> shouldDisableBackground(GuiScreen screen);
 
-    public boolean setupClothMovement(SubCategoryBuilder compatCat, ConfigEntryBuilder eb) {
-        if(movementOptions.isEmpty()) return false;
-        for(BoolOption opt : movementOptions){
-            BooleanToggleBuilder tb = eb.startBooleanToggle(opt.displayName, opt.bool.get()).setDefaultValue(opt.defaultState).setSaveConsumer(b -> opt.bool.set(b)).setYesNoTextSupplier(Config.movement_yesNoText);
-            if(opt.tooltip != null) tb.setTooltip(opt.tooltip.split("\n"));
-            compatCat.add(tb.build());
-        }
-        return true;
-    }
-
-    public boolean setupClothBackground(SubCategoryBuilder compatCat, ConfigEntryBuilder eb) {
-        if(backgroundOptions.isEmpty()) return false;
-        for(BoolOption opt : backgroundOptions){
-            BooleanToggleBuilder tb = eb.startBooleanToggle(opt.displayName, opt.bool.get()).setDefaultValue(opt.defaultState).setSaveConsumer(b -> opt.bool.set(b)).setYesNoTextSupplier(Config.background_yesNoText);
-            if(opt.tooltip != null) tb.setTooltip(opt.tooltip.split("\n"));
-            compatCat.add(tb.build());
-        }
-        return true;
-    }
+//    public boolean setupClothMovement(SubCategoryBuilder compatCat, ConfigEntryBuilder eb) {
+//        if(movementOptions.isEmpty()) return false;
+//        for(BoolOption opt : movementOptions){
+//            BooleanToggleBuilder tb = eb.startBooleanToggle(opt.displayName, opt.bool.get()).setDefaultValue(opt.defaultState).setSaveConsumer(b -> opt.bool.set(b)).setYesNoTextSupplier(Config.movement_yesNoText);
+//            if(opt.tooltip != null) tb.setTooltip(opt.tooltip.split("\n"));
+//            compatCat.add(tb.build());
+//        }
+//        return true;
+//    }
+//
+//    public boolean setupClothBackground(SubCategoryBuilder compatCat, ConfigEntryBuilder eb) {
+//        if(backgroundOptions.isEmpty()) return false;
+//        for(BoolOption opt : backgroundOptions){
+//            BooleanToggleBuilder tb = eb.startBooleanToggle(opt.displayName, opt.bool.get()).setDefaultValue(opt.defaultState).setSaveConsumer(b -> opt.bool.set(b)).setYesNoTextSupplier(Config.background_yesNoText);
+//            if(opt.tooltip != null) tb.setTooltip(opt.tooltip.split("\n"));
+//            compatCat.add(tb.build());
+//        }
+//        return true;
+//    }
 
     public void loadConfig(JsonObject obj) {
 

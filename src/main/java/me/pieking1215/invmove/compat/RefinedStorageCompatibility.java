@@ -1,32 +1,28 @@
 package me.pieking1215.invmove.compat;
 
-import com.refinedmods.refinedstorage.screen.ConstructorScreen;
-import com.refinedmods.refinedstorage.screen.ControllerScreen;
-import com.refinedmods.refinedstorage.screen.CrafterManagerScreen;
-import com.refinedmods.refinedstorage.screen.CrafterScreen;
-import com.refinedmods.refinedstorage.screen.CraftingMonitorScreen;
-import com.refinedmods.refinedstorage.screen.DestructorScreen;
-import com.refinedmods.refinedstorage.screen.DetectorScreen;
-import com.refinedmods.refinedstorage.screen.DiskDriveScreen;
-import com.refinedmods.refinedstorage.screen.DiskManipulatorScreen;
-import com.refinedmods.refinedstorage.screen.ExporterScreen;
-import com.refinedmods.refinedstorage.screen.ExternalStorageScreen;
-import com.refinedmods.refinedstorage.screen.FilterScreen;
-import com.refinedmods.refinedstorage.screen.FluidAmountScreen;
-import com.refinedmods.refinedstorage.screen.FluidInterfaceScreen;
-import com.refinedmods.refinedstorage.screen.FluidStorageBlockScreen;
-import com.refinedmods.refinedstorage.screen.ImporterScreen;
-import com.refinedmods.refinedstorage.screen.InterfaceScreen;
-import com.refinedmods.refinedstorage.screen.ItemAmountScreen;
-import com.refinedmods.refinedstorage.screen.NetworkTransmitterScreen;
-import com.refinedmods.refinedstorage.screen.PriorityScreen;
-import com.refinedmods.refinedstorage.screen.RelayScreen;
-import com.refinedmods.refinedstorage.screen.SecurityManagerScreen;
-import com.refinedmods.refinedstorage.screen.StorageBlockScreen;
-import com.refinedmods.refinedstorage.screen.StorageMonitorScreen;
-import com.refinedmods.refinedstorage.screen.WirelessTransmitterScreen;
-import com.refinedmods.refinedstorage.screen.grid.GridScreen;
-import net.minecraft.client.gui.screen.Screen;
+import com.raoulvdberge.refinedstorage.gui.GuiConstructor;
+import com.raoulvdberge.refinedstorage.gui.GuiController;
+import com.raoulvdberge.refinedstorage.gui.GuiCrafter;
+import com.raoulvdberge.refinedstorage.gui.GuiCrafterManager;
+import com.raoulvdberge.refinedstorage.gui.GuiCraftingMonitor;
+import com.raoulvdberge.refinedstorage.gui.GuiDestructor;
+import com.raoulvdberge.refinedstorage.gui.GuiDetector;
+import com.raoulvdberge.refinedstorage.gui.GuiDiskManipulator;
+import com.raoulvdberge.refinedstorage.gui.GuiExporter;
+import com.raoulvdberge.refinedstorage.gui.GuiFilter;
+import com.raoulvdberge.refinedstorage.gui.GuiFluidAmount;
+import com.raoulvdberge.refinedstorage.gui.GuiFluidInterface;
+import com.raoulvdberge.refinedstorage.gui.GuiImporter;
+import com.raoulvdberge.refinedstorage.gui.GuiInterface;
+import com.raoulvdberge.refinedstorage.gui.GuiNetworkTransmitter;
+import com.raoulvdberge.refinedstorage.gui.GuiPriority;
+import com.raoulvdberge.refinedstorage.gui.GuiRelay;
+import com.raoulvdberge.refinedstorage.gui.GuiSecurityManager;
+import com.raoulvdberge.refinedstorage.gui.GuiStorage;
+import com.raoulvdberge.refinedstorage.gui.GuiStorageMonitor;
+import com.raoulvdberge.refinedstorage.gui.GuiWirelessTransmitter;
+import com.raoulvdberge.refinedstorage.gui.grid.GuiGrid;
+import net.minecraft.client.gui.GuiScreen;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -148,67 +144,67 @@ public class RefinedStorageCompatibility extends ModCompatibility {
     }
     
     @Override
-    public Optional<Boolean> shouldAllowMovement(Screen screen) {
+    public Optional<Boolean> shouldAllowMovement(GuiScreen screen) {
 
-        if(screen instanceof ConstructorScreen)         return Optional.of(ConstructorScreen_movement.get());
-        if(screen instanceof ControllerScreen)          return Optional.of(ControllerScreen_movement.get());
-        if(screen instanceof CrafterManagerScreen)      return Optional.of(CrafterManagerScreen_movement.get());
-        if(screen instanceof CrafterScreen)             return Optional.of(CrafterScreen_movement.get());
-        if(screen instanceof CraftingMonitorScreen)     return Optional.of(CraftingMonitorScreen_movement.get());
-        if(screen instanceof GridScreen)                return Optional.of(GridScreen_movement.get());
-        if(screen instanceof DestructorScreen)          return Optional.of(DestructorScreen_movement.get());
-        if(screen instanceof DetectorScreen)            return Optional.of(DetectorScreen_movement.get());
-        if(screen instanceof DiskDriveScreen)           return Optional.of(DiskDriveScreen_movement.get());
-        if(screen instanceof DiskManipulatorScreen)     return Optional.of(DiskManipulatorScreen_movement.get());
-        if(screen instanceof ExporterScreen)            return Optional.of(ExporterScreen_movement.get());
-        if(screen instanceof ExternalStorageScreen)     return Optional.of(ExternalStorageScreen_movement.get());
-        if(screen instanceof FilterScreen)              return Optional.of(FilterScreen_movement.get());
-        if(screen instanceof FluidAmountScreen)         return Optional.of(FluidAmountScreen_movement.get());
-        if(screen instanceof FluidInterfaceScreen)      return Optional.of(FluidInterfaceScreen_movement.get());
-        if(screen instanceof FluidStorageBlockScreen)   return Optional.of(FluidStorageBlockScreen_movement.get());
-        if(screen instanceof ImporterScreen)            return Optional.of(ImporterScreen_movement.get());
-        if(screen instanceof InterfaceScreen)           return Optional.of(InterfaceScreen_movement.get());
-        if(screen instanceof ItemAmountScreen)          return Optional.of(ItemAmountScreen_movement.get());
-        if(screen instanceof NetworkTransmitterScreen)  return Optional.of(NetworkTransmitterScreen_movement.get());
-        if(screen instanceof PriorityScreen)            return Optional.of(PriorityScreen_movement.get());
-        if(screen instanceof RelayScreen)               return Optional.of(RelayScreen_movement.get());
-        if(screen instanceof SecurityManagerScreen)     return Optional.of(SecurityManagerScreen_movement.get());
-        if(screen instanceof StorageBlockScreen)        return Optional.of(StorageBlockScreen_movement.get());
-        if(screen instanceof StorageMonitorScreen)      return Optional.of(StorageMonitorScreen_movement.get());
-        if(screen instanceof WirelessTransmitterScreen) return Optional.of(WirelessTransmitterScreen_movement.get());
+        if(screen instanceof GuiConstructor)         return Optional.of(ConstructorScreen_movement.get());
+        if(screen instanceof GuiController)          return Optional.of(ControllerScreen_movement.get());
+        if(screen instanceof GuiCrafterManager)      return Optional.of(CrafterManagerScreen_movement.get());
+        if(screen instanceof GuiCrafter)             return Optional.of(CrafterScreen_movement.get());
+        if(screen instanceof GuiCraftingMonitor)     return Optional.of(CraftingMonitorScreen_movement.get());
+        if(screen instanceof GuiGrid)                return Optional.of(GridScreen_movement.get());
+        if(screen instanceof GuiDestructor)          return Optional.of(DestructorScreen_movement.get());
+        if(screen instanceof GuiDetector)            return Optional.of(DetectorScreen_movement.get());
+        //if(screen instanceof DiskDriveScreen)           return Optional.of(DiskDriveScreen_movement.get());
+        if(screen instanceof GuiDiskManipulator)     return Optional.of(DiskManipulatorScreen_movement.get());
+        if(screen instanceof GuiExporter)            return Optional.of(ExporterScreen_movement.get());
+        //if(screen instanceof ExternalStorageScreen)     return Optional.of(ExternalStorageScreen_movement.get());
+        if(screen instanceof GuiFilter)              return Optional.of(FilterScreen_movement.get());
+        if(screen instanceof GuiFluidAmount)         return Optional.of(FluidAmountScreen_movement.get());
+        if(screen instanceof GuiFluidInterface)      return Optional.of(FluidInterfaceScreen_movement.get());
+        //if(screen instanceof FluidStorageBlockScreen)   return Optional.of(FluidStorageBlockScreen_movement.get());
+        if(screen instanceof GuiImporter)            return Optional.of(ImporterScreen_movement.get());
+        if(screen instanceof GuiInterface)           return Optional.of(InterfaceScreen_movement.get());
+        //if(screen instanceof ItemAmountScreen)          return Optional.of(ItemAmountScreen_movement.get());
+        if(screen instanceof GuiNetworkTransmitter)  return Optional.of(NetworkTransmitterScreen_movement.get());
+        if(screen instanceof GuiPriority)            return Optional.of(PriorityScreen_movement.get());
+        if(screen instanceof GuiRelay)               return Optional.of(RelayScreen_movement.get());
+        if(screen instanceof GuiSecurityManager)     return Optional.of(SecurityManagerScreen_movement.get());
+        if(screen instanceof GuiStorage)        return Optional.of(StorageBlockScreen_movement.get());
+        if(screen instanceof GuiStorageMonitor)      return Optional.of(StorageMonitorScreen_movement.get());
+        if(screen instanceof GuiWirelessTransmitter) return Optional.of(WirelessTransmitterScreen_movement.get());
 
         return Optional.empty();
     }
 
     @Override
-    public Optional<Boolean> shouldDisableBackground(Screen screen) {
+    public Optional<Boolean> shouldDisableBackground(GuiScreen screen) {
 
-        if(screen instanceof ConstructorScreen)         return Optional.of(ConstructorScreen_background_disable.get());
-        if(screen instanceof ControllerScreen)          return Optional.of(ControllerScreen_background_disable.get());
-        if(screen instanceof CrafterManagerScreen)      return Optional.of(CrafterManagerScreen_background_disable.get());
-        if(screen instanceof CrafterScreen)             return Optional.of(CrafterScreen_background_disable.get());
-        if(screen instanceof CraftingMonitorScreen)     return Optional.of(CraftingMonitorScreen_background_disable.get());
-        if(screen instanceof GridScreen)                return Optional.of(GridScreen_background_disable.get());
-        if(screen instanceof DestructorScreen)          return Optional.of(DestructorScreen_background_disable.get());
-        if(screen instanceof DetectorScreen)            return Optional.of(DetectorScreen_background_disable.get());
-        if(screen instanceof DiskDriveScreen)           return Optional.of(DiskDriveScreen_background_disable.get());
-        if(screen instanceof DiskManipulatorScreen)     return Optional.of(DiskManipulatorScreen_background_disable.get());
-        if(screen instanceof ExporterScreen)            return Optional.of(ExporterScreen_background_disable.get());
-        if(screen instanceof ExternalStorageScreen)     return Optional.of(ExternalStorageScreen_background_disable.get());
-        if(screen instanceof FilterScreen)              return Optional.of(FilterScreen_background_disable.get());
-        if(screen instanceof FluidAmountScreen)         return Optional.of(FluidAmountScreen_background_disable.get());
-        if(screen instanceof FluidInterfaceScreen)      return Optional.of(FluidInterfaceScreen_background_disable.get());
-        if(screen instanceof FluidStorageBlockScreen)   return Optional.of(FluidStorageBlockScreen_background_disable.get());
-        if(screen instanceof ImporterScreen)            return Optional.of(ImporterScreen_background_disable.get());
-        if(screen instanceof InterfaceScreen)           return Optional.of(InterfaceScreen_background_disable.get());
-        if(screen instanceof ItemAmountScreen)          return Optional.of(ItemAmountScreen_background_disable.get());
-        if(screen instanceof NetworkTransmitterScreen)  return Optional.of(NetworkTransmitterScreen_background_disable.get());
-        if(screen instanceof PriorityScreen)            return Optional.of(PriorityScreen_background_disable.get());
-        if(screen instanceof RelayScreen)               return Optional.of(RelayScreen_background_disable.get());
-        if(screen instanceof SecurityManagerScreen)     return Optional.of(SecurityManagerScreen_background_disable.get());
-        if(screen instanceof StorageBlockScreen)        return Optional.of(StorageBlockScreen_background_disable.get());
-        if(screen instanceof StorageMonitorScreen)      return Optional.of(StorageMonitorScreen_background_disable.get());
-        if(screen instanceof WirelessTransmitterScreen) return Optional.of(WirelessTransmitterScreen_background_disable.get());
+        if(screen instanceof GuiConstructor)         return Optional.of(ConstructorScreen_background_disable.get());
+        if(screen instanceof GuiController)          return Optional.of(ControllerScreen_background_disable.get());
+        if(screen instanceof GuiCrafterManager)      return Optional.of(CrafterManagerScreen_background_disable.get());
+        if(screen instanceof GuiCrafter)             return Optional.of(CrafterScreen_background_disable.get());
+        if(screen instanceof GuiCraftingMonitor)     return Optional.of(CraftingMonitorScreen_background_disable.get());
+        if(screen instanceof GuiGrid)                return Optional.of(GridScreen_background_disable.get());
+        if(screen instanceof GuiDestructor)          return Optional.of(DestructorScreen_background_disable.get());
+        if(screen instanceof GuiDetector)            return Optional.of(DetectorScreen_background_disable.get());
+        //if(screen instanceof DiskDriveScreen)           return Optional.of(DiskDriveScreen_background_disable.get());
+        if(screen instanceof GuiDiskManipulator)     return Optional.of(DiskManipulatorScreen_background_disable.get());
+        if(screen instanceof GuiExporter)            return Optional.of(ExporterScreen_background_disable.get());
+        //if(screen instanceof ExternalStorageScreen)     return Optional.of(ExternalStorageScreen_background_disable.get());
+        if(screen instanceof GuiFilter)              return Optional.of(FilterScreen_background_disable.get());
+        if(screen instanceof GuiFluidAmount)         return Optional.of(FluidAmountScreen_background_disable.get());
+        if(screen instanceof GuiFluidInterface)      return Optional.of(FluidInterfaceScreen_background_disable.get());
+        //if(screen instanceof FluidStorageBlockScreen)   return Optional.of(FluidStorageBlockScreen_background_disable.get());
+        if(screen instanceof GuiImporter)            return Optional.of(ImporterScreen_background_disable.get());
+        if(screen instanceof GuiInterface)           return Optional.of(InterfaceScreen_background_disable.get());
+        //if(screen instanceof ItemAmountScreen)          return Optional.of(ItemAmountScreen_background_disable.get());
+        if(screen instanceof GuiNetworkTransmitter)  return Optional.of(NetworkTransmitterScreen_background_disable.get());
+        if(screen instanceof GuiPriority)            return Optional.of(PriorityScreen_background_disable.get());
+        if(screen instanceof GuiRelay)               return Optional.of(RelayScreen_background_disable.get());
+        if(screen instanceof GuiSecurityManager)     return Optional.of(SecurityManagerScreen_background_disable.get());
+        if(screen instanceof GuiStorage)        return Optional.of(StorageBlockScreen_background_disable.get());
+        if(screen instanceof GuiStorageMonitor)      return Optional.of(StorageMonitorScreen_background_disable.get());
+        if(screen instanceof GuiWirelessTransmitter) return Optional.of(WirelessTransmitterScreen_background_disable.get());
 
         return Optional.empty();
     }

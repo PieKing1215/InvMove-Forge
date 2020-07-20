@@ -1,11 +1,6 @@
 package me.pieking1215.invmove.compat;
 
 import mekanism.client.gui.GuiBoilerStats;
-import mekanism.client.gui.GuiChemicalCrystallizer;
-import mekanism.client.gui.GuiChemicalDissolutionChamber;
-import mekanism.client.gui.GuiChemicalInfuser;
-import mekanism.client.gui.GuiChemicalOxidizer;
-import mekanism.client.gui.GuiChemicalWasher;
 import mekanism.client.gui.GuiCombiner;
 import mekanism.client.gui.GuiDictionary;
 import mekanism.client.gui.GuiDigitalMiner;
@@ -30,9 +25,7 @@ import mekanism.client.gui.GuiMatrixStats;
 import mekanism.client.gui.GuiMetallurgicInfuser;
 import mekanism.client.gui.GuiOredictionificator;
 import mekanism.client.gui.GuiPRC;
-import mekanism.client.gui.GuiPersonalChestItem;
-import mekanism.client.gui.GuiPersonalChestTile;
-import mekanism.client.gui.GuiPortableTeleporter;
+import mekanism.client.gui.GuiPersonalChest;
 import mekanism.client.gui.GuiPrecisionSawmill;
 import mekanism.client.gui.GuiQuantumEntangloporter;
 import mekanism.client.gui.GuiResistiveHeater;
@@ -47,10 +40,15 @@ import mekanism.client.gui.GuiThermalEvaporationController;
 import mekanism.client.gui.GuiThermoelectricBoiler;
 import mekanism.client.gui.GuiTransporterConfig;
 import mekanism.client.gui.GuiUpgradeManagement;
+import mekanism.client.gui.chemical.GuiChemicalCrystallizer;
+import mekanism.client.gui.chemical.GuiChemicalDissolutionChamber;
+import mekanism.client.gui.chemical.GuiChemicalInfuser;
+import mekanism.client.gui.chemical.GuiChemicalOxidizer;
+import mekanism.client.gui.chemical.GuiChemicalWasher;
 import mekanism.client.gui.filter.GuiFilter;
 import mekanism.client.gui.robit.GuiRobit;
 import mekanism.client.gui.robit.GuiRobitMain;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.GuiScreen;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -259,7 +257,7 @@ public class MekanismCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldAllowMovement(Screen screen) {
+    public Optional<Boolean> shouldAllowMovement(GuiScreen screen) {
 
         if (screen instanceof GuiFilter) return Optional.of(Filters_movement.get());
         if (screen instanceof GuiRobit) return Optional.of(Robit_movement.get());
@@ -293,9 +291,9 @@ public class MekanismCompatibility extends ModCompatibility {
         if (screen instanceof GuiMatrixStats) return Optional.of(MatrixStats_movement.get());
         if (screen instanceof GuiMetallurgicInfuser) return Optional.of(MetallurgicInfuser_movement.get());
         if (screen instanceof GuiOredictionificator) return Optional.of(Oredictionificator_movement.get());
-        if (screen instanceof GuiPersonalChestItem) return Optional.of(PersonalChest_movement.get());
-        if (screen instanceof GuiPersonalChestTile) return Optional.of(PersonalChest_movement.get());
-        if (screen instanceof GuiPortableTeleporter) return Optional.of(PortableTeleporter_movement.get());
+        if (screen instanceof GuiPersonalChest) return Optional.of(PersonalChest_movement.get());
+        //if (screen instanceof GuiPersonalChestTile) return Optional.of(PersonalChest_movement.get());
+        //if (screen instanceof GuiPortableTeleporter) return Optional.of(PortableTeleporter_movement.get());
         if (screen instanceof GuiPRC) return Optional.of(PressurizedReactionChamber_movement.get());
         if (screen instanceof GuiPrecisionSawmill) return Optional.of(PrecisionSawmill_movement.get());
         if (screen instanceof GuiQuantumEntangloporter) return Optional.of(QuantumEntangloporter_movement.get());
@@ -316,7 +314,7 @@ public class MekanismCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldDisableBackground(Screen screen) {
+    public Optional<Boolean> shouldDisableBackground(GuiScreen screen) {
 
         if (screen instanceof GuiFilter) return Optional.of(Filters_background_disable.get());
         if (screen instanceof GuiRobit) return Optional.of(Robit_background_disable.get());
@@ -350,9 +348,9 @@ public class MekanismCompatibility extends ModCompatibility {
         if (screen instanceof GuiMatrixStats) return Optional.of(MatrixStats_background_disable.get());
         if (screen instanceof GuiMetallurgicInfuser) return Optional.of(MetallurgicInfuser_background_disable.get());
         if (screen instanceof GuiOredictionificator) return Optional.of(Oredictionificator_background_disable.get());
-        if (screen instanceof GuiPersonalChestItem) return Optional.of(PersonalChest_background_disable.get());
-        if (screen instanceof GuiPersonalChestTile) return Optional.of(PersonalChest_background_disable.get());
-        if (screen instanceof GuiPortableTeleporter) return Optional.of(PortableTeleporter_background_disable.get());
+        if (screen instanceof GuiPersonalChest) return Optional.of(PersonalChest_background_disable.get());
+        //if (screen instanceof GuiPersonalChestTile) return Optional.of(PersonalChest_background_disable.get());
+        //if (screen instanceof GuiPortableTeleporter) return Optional.of(PortableTeleporter_background_disable.get());
         if (screen instanceof GuiPRC) return Optional.of(PressurizedReactionChamber_background_disable.get());
         if (screen instanceof GuiPrecisionSawmill) return Optional.of(PrecisionSawmill_background_disable.get());
         if (screen instanceof GuiQuantumEntangloporter) return Optional.of(QuantumEntangloporter_background_disable.get());

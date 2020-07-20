@@ -1,6 +1,6 @@
 package me.pieking1215.invmove.compat;
 
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.GuiScreen;
 import vazkii.botania.client.gui.bag.GuiFlowerBag;
 import vazkii.botania.client.gui.box.GuiBaubleBox;
 
@@ -28,7 +28,7 @@ public class BotaniaCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldAllowMovement(Screen screen) {
+    public Optional<Boolean> shouldAllowMovement(GuiScreen screen) {
 
         if(screen instanceof GuiFlowerBag) return Optional.of(FlowerBag_movement.get());
         if(screen instanceof GuiBaubleBox) return Optional.of(BaubleBox_movement.get());
@@ -37,7 +37,7 @@ public class BotaniaCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldDisableBackground(Screen screen) {
+    public Optional<Boolean> shouldDisableBackground(GuiScreen screen) {
 
         if(screen instanceof GuiFlowerBag) return Optional.of(FlowerBag_background_disable.get());
         if(screen instanceof GuiBaubleBox) return Optional.of(BaubleBox_background_disable.get());

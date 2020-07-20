@@ -4,7 +4,7 @@ import dan200.computercraft.client.gui.GuiComputer;
 import dan200.computercraft.client.gui.GuiDiskDrive;
 import dan200.computercraft.client.gui.GuiPrinter;
 import dan200.computercraft.client.gui.GuiTurtle;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.GuiScreen;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -40,7 +40,7 @@ public class CCTweakedCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldAllowMovement(Screen screen) {
+    public Optional<Boolean> shouldAllowMovement(GuiScreen screen) {
 
         if(screen instanceof GuiComputer)  return Optional.of(GuiComputer_movement.get());
         if(screen instanceof GuiTurtle)    return Optional.of(GuiTurtle_movement.get());
@@ -51,7 +51,7 @@ public class CCTweakedCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldDisableBackground(Screen screen) {
+    public Optional<Boolean> shouldDisableBackground(GuiScreen screen) {
 
         if(screen instanceof GuiComputer)  return Optional.of(GuiComputer_background_disable.get());
         if(screen instanceof GuiTurtle)    return Optional.of(GuiTurtle_background_disable.get());

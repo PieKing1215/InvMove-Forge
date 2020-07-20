@@ -1,6 +1,6 @@
 package me.pieking1215.invmove.compat;
 
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.GuiScreen;
 import vazkii.patchouli.client.book.gui.GuiBook;
 
 import java.util.Arrays;
@@ -23,7 +23,7 @@ public class PatchouliCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldAllowMovement(Screen screen) {
+    public Optional<Boolean> shouldAllowMovement(GuiScreen screen) {
 
         if(screen instanceof GuiBook) return Optional.of(GuiBook_movement.get());
 
@@ -31,7 +31,7 @@ public class PatchouliCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldDisableBackground(Screen screen) {
+    public Optional<Boolean> shouldDisableBackground(GuiScreen screen) {
 
         if(screen instanceof GuiBook) return Optional.of(GuiBook_background_disable.get());
 

@@ -3,7 +3,7 @@ package me.pieking1215.invmove.compat;
 import me.pieking1215.invmove.Config;
 import mezz.jei.Internal;
 import mezz.jei.gui.recipes.RecipesGui;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.GuiScreen;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -27,9 +27,9 @@ public class JEICompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldAllowMovement(Screen screen) {
+    public Optional<Boolean> shouldAllowMovement(GuiScreen screen) {
 
-        if(!SPECIAL_OverlayFocus_movement.get() && Config.getBoolSafe(Config.GENERAL.textFieldDisablesMovement, true) && Internal.getRuntime().getIngredientListOverlay().hasKeyboardFocus()) return Optional.of(false);
+        if(!SPECIAL_OverlayFocus_movement.get() && Config.UI_MOVEMENT.textFieldDisablesMovement && Internal.getRuntime().getIngredientListOverlay().hasKeyboardFocus()) return Optional.of(false);
 
         if(screen instanceof RecipesGui) return Optional.of(RecipesGui_movement.get());
 
@@ -37,7 +37,7 @@ public class JEICompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldDisableBackground(Screen screen) {
+    public Optional<Boolean> shouldDisableBackground(GuiScreen screen) {
 
         if(screen instanceof RecipesGui) return Optional.of(RecipesGui_background_disable.get());
 

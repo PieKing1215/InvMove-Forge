@@ -1,8 +1,8 @@
 package me.pieking1215.invmove.compat;
 
-import net.blay09.mods.waystones.client.gui.screen.WaystoneSelectionScreen;
-import net.blay09.mods.waystones.client.gui.screen.WaystoneSettingsScreen;
-import net.minecraft.client.gui.screen.Screen;
+import net.blay09.mods.waystones.client.gui.GuiEditWaystone;
+import net.blay09.mods.waystones.client.gui.GuiWaystoneList;
+import net.minecraft.client.gui.GuiScreen;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -27,19 +27,19 @@ public class WaystonesCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldAllowMovement(Screen screen) {
+    public Optional<Boolean> shouldAllowMovement(GuiScreen screen) {
 
-        if (screen instanceof WaystoneSelectionScreen) return Optional.of(Selection_movement.get());
-        if (screen instanceof WaystoneSettingsScreen) return Optional.of(Settings_movement.get());
+        if (screen instanceof GuiWaystoneList) return Optional.of(Selection_movement.get());
+        if (screen instanceof GuiEditWaystone) return Optional.of(Settings_movement.get());
 
         return Optional.empty();
     }
 
     @Override
-    public Optional<Boolean> shouldDisableBackground(Screen screen) {
+    public Optional<Boolean> shouldDisableBackground(GuiScreen screen) {
 
-        if (screen instanceof WaystoneSelectionScreen) return Optional.of(Selection_background_disable.get());
-        if (screen instanceof WaystoneSettingsScreen) return Optional.of(Settings_background_disable.get());
+        if (screen instanceof GuiWaystoneList) return Optional.of(Selection_background_disable.get());
+        if (screen instanceof GuiEditWaystone) return Optional.of(Settings_background_disable.get());
 
         return Optional.empty();
     }

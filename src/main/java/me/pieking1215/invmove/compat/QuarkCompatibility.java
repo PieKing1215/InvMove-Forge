@@ -1,9 +1,9 @@
 package me.pieking1215.invmove.compat;
 
 import me.pieking1215.invmove.Config;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.TextFieldWidget;
-import vazkii.quark.client.module.ChestSearchingModule;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiTextField;
+import vazkii.quark.client.feature.ChestSearchBar;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -25,21 +25,21 @@ public class QuarkCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldAllowMovement(Screen screen) {
+    public Optional<Boolean> shouldAllowMovement(GuiScreen screen) {
 
-        if(!SPECIAL_ChestSearchFocus_movement.get() && Config.getBoolSafe(Config.GENERAL.textFieldDisablesMovement, true)) {
+        if(!SPECIAL_ChestSearchFocus_movement.get() && Config.UI_MOVEMENT.textFieldDisablesMovement) {
             if (ChestSearchingModule_searchBar == null) {
-                Field[] fs = ChestSearchingModule.class.getDeclaredFields();
+                Field[] fs = ChestSearchBar.class.getDeclaredFields();
                 for (Field f : fs) {
-                    if (f.getType() == TextFieldWidget.class) {
+                    if (f.getType() == GuiTextField.class) {
                         ChestSearchingModule_searchBar = f;
                         ChestSearchingModule_searchBar.setAccessible(true);
                     }
                 }
             } else {
                 try {
-                    TextFieldWidget tw = (TextFieldWidget) ChestSearchingModule_searchBar.get(null);
-                    if (tw != null && tw.canWrite()) return Optional.of(false);
+                    GuiTextField tw = (GuiTextField) ChestSearchingModule_searchBar.get(null);
+                    if (tw != null && tw.isFocused()) return Optional.of(false); //TODO isEnabled
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
@@ -50,7 +50,7 @@ public class QuarkCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldDisableBackground(Screen screen) {
+    public Optional<Boolean> shouldDisableBackground(GuiScreen screen) {
         return Optional.empty();
     }
 }

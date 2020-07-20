@@ -1,8 +1,7 @@
 package me.pieking1215.invmove.compat;
 
 import com.buuz135.industrial.gui.conveyor.GuiConveyor;
-import com.hrznstudio.titanium.client.screen.container.BasicAddonScreen;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.GuiScreen;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -27,18 +26,18 @@ public class IndustrialForegoingCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldAllowMovement(Screen screen) {
+    public Optional<Boolean> shouldAllowMovement(GuiScreen screen) {
 
-        if (screen instanceof BasicAddonScreen) return Optional.of(Machine_movement.get());
+        //if (screen instanceof BasicAddonScreen) return Optional.of(Machine_movement.get());
         if (screen instanceof GuiConveyor) return Optional.of(Conveyor_movement.get());
 
         return Optional.empty();
     }
 
     @Override
-    public Optional<Boolean> shouldDisableBackground(Screen screen) {
+    public Optional<Boolean> shouldDisableBackground(GuiScreen screen) {
 
-        if (screen instanceof BasicAddonScreen) return Optional.of(Machine_background_disable.get());
+        //if (screen instanceof BasicAddonScreen) return Optional.of(Machine_background_disable.get());
         if (screen instanceof GuiConveyor) return Optional.of(Conveyor_background_disable.get());
 
         return Optional.empty();

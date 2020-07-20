@@ -1,11 +1,9 @@
 package me.pieking1215.invmove.compat;
 
-import com.mrcrayfish.furniture.client.gui.screen.DoorMatScreen;
-import com.mrcrayfish.furniture.client.gui.screen.MailBoxSettingsScreen;
-import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
-import com.mrcrayfish.furniture.client.gui.screen.inventory.MailBoxScreen;
-import com.mrcrayfish.furniture.client.gui.screen.inventory.PostBoxScreen;
-import net.minecraft.client.gui.screen.Screen;
+import com.mrcrayfish.furniture.gui.GuiCrate;
+import com.mrcrayfish.furniture.gui.GuiDoorMat;
+import com.mrcrayfish.furniture.gui.GuiMailBox;
+import net.minecraft.client.gui.GuiScreen;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -43,23 +41,23 @@ public class CrayfishFurnitureCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldAllowMovement(Screen screen) {
-        if(screen instanceof CrateScreen)           return Optional.of(CrateScreen_movement.get());
-        if(screen instanceof MailBoxScreen)         return Optional.of(MailBoxScreen_movement.get());
-        if(screen instanceof MailBoxSettingsScreen) return Optional.of(MailBoxSettingsScreen_movement.get());
-        if(screen instanceof PostBoxScreen)         return Optional.of(PostBoxScreen_movement.get());
-        if(screen instanceof DoorMatScreen)         return Optional.of(DoorMatScreen_movement.get());
+    public Optional<Boolean> shouldAllowMovement(GuiScreen screen) {
+        if(screen instanceof GuiCrate)           return Optional.of(CrateScreen_movement.get());
+        if(screen instanceof GuiMailBox)         return Optional.of(MailBoxScreen_movement.get());
+        //if(screen instanceof MailBoxSettingsScreen) return Optional.of(MailBoxSettingsScreen_movement.get());
+        //if(screen instanceof PostBoxScreen)         return Optional.of(PostBoxScreen_movement.get());
+        if(screen instanceof GuiDoorMat)         return Optional.of(DoorMatScreen_movement.get());
         return Optional.empty();
     }
 
     @Override
-    public Optional<Boolean> shouldDisableBackground(Screen screen) {
+    public Optional<Boolean> shouldDisableBackground(GuiScreen screen) {
 
-        if(screen instanceof CrateScreen)           return Optional.of(CrateScreen_background_disable.get());
-        if(screen instanceof MailBoxScreen)         return Optional.of(MailBoxScreen_background_disable.get());
-        if(screen instanceof MailBoxSettingsScreen) return Optional.of(MailBoxSettingsScreen_background_disable.get());
-        if(screen instanceof PostBoxScreen)         return Optional.of(PostBoxScreen_background_disable.get());
-        if(screen instanceof DoorMatScreen)         return Optional.of(DoorMatScreen_background_disable.get());
+        if(screen instanceof GuiCrate)           return Optional.of(CrateScreen_background_disable.get());
+        if(screen instanceof GuiMailBox)         return Optional.of(MailBoxScreen_background_disable.get());
+        //if(screen instanceof MailBoxSettingsScreen) return Optional.of(MailBoxSettingsScreen_background_disable.get());
+        //if(screen instanceof PostBoxScreen)         return Optional.of(PostBoxScreen_background_disable.get());
+        if(screen instanceof GuiDoorMat)         return Optional.of(DoorMatScreen_background_disable.get());
 
         return Optional.empty();
     }

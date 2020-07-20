@@ -1,89 +1,70 @@
 package me.pieking1215.invmove;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import me.pieking1215.invmove.compat.Compatibility;
+//import me.pieking1215.invmove.compat.Compatibility;
+
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.advancements.AdvancementsScreen;
+import net.minecraft.client.gui.GuiChat;
+import net.minecraft.client.gui.GuiCommandBlock;
+import net.minecraft.client.gui.GuiCreateFlatWorld;
+import net.minecraft.client.gui.GuiCreateWorld;
+import net.minecraft.client.gui.GuiDisconnected;
+import net.minecraft.client.gui.GuiDownloadTerrain;
+import net.minecraft.client.gui.GuiEnchantment;
+import net.minecraft.client.gui.GuiErrorScreen;
+import net.minecraft.client.gui.GuiFlatPresets;
+import net.minecraft.client.gui.GuiGameOver;
+import net.minecraft.client.gui.GuiHopper;
+import net.minecraft.client.gui.GuiIngameMenu;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiMemoryErrorScreen;
+import net.minecraft.client.gui.GuiMerchant;
+import net.minecraft.client.gui.GuiMultiplayer;
+import net.minecraft.client.gui.GuiOptions;
+import net.minecraft.client.gui.GuiRepair;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiScreenAddServer;
+import net.minecraft.client.gui.GuiScreenBook;
+import net.minecraft.client.gui.GuiScreenDemo;
+import net.minecraft.client.gui.GuiScreenServerList;
+import net.minecraft.client.gui.GuiScreenWorking;
+import net.minecraft.client.gui.GuiShareToLan;
+import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.client.gui.GuiVideoSettings;
+import net.minecraft.client.gui.GuiWinGame;
+import net.minecraft.client.gui.GuiWorldEdit;
+import net.minecraft.client.gui.GuiWorldSelection;
+import net.minecraft.client.gui.GuiYesNo;
+import net.minecraft.client.gui.achievement.GuiStats;
+import net.minecraft.client.gui.advancements.GuiScreenAdvancements;
+import net.minecraft.client.gui.inventory.GuiBeacon;
+import net.minecraft.client.gui.inventory.GuiBrewingStand;
+import net.minecraft.client.gui.inventory.GuiChest;
+import net.minecraft.client.gui.inventory.GuiContainerCreative;
+import net.minecraft.client.gui.inventory.GuiCrafting;
+import net.minecraft.client.gui.inventory.GuiDispenser;
+import net.minecraft.client.gui.inventory.GuiEditCommandBlockMinecart;
+import net.minecraft.client.gui.inventory.GuiEditSign;
+import net.minecraft.client.gui.inventory.GuiEditStructure;
+import net.minecraft.client.gui.inventory.GuiFurnace;
+import net.minecraft.client.gui.inventory.GuiInventory;
+import net.minecraft.client.gui.inventory.GuiShulkerBox;
+import net.minecraft.client.gui.recipebook.GuiRecipeBook;
 import net.minecraft.client.gui.recipebook.IRecipeShownListener;
-import net.minecraft.client.gui.recipebook.RecipeBookGui;
-import net.minecraft.client.gui.screen.AddServerScreen;
-import net.minecraft.client.gui.screen.AlertScreen;
-import net.minecraft.client.gui.screen.ChatScreen;
-import net.minecraft.client.gui.screen.CommandBlockScreen;
-import net.minecraft.client.gui.screen.ConfirmBackupScreen;
-import net.minecraft.client.gui.screen.ConfirmOpenLinkScreen;
-import net.minecraft.client.gui.screen.ConfirmScreen;
-import net.minecraft.client.gui.screen.ConnectingScreen;
-import net.minecraft.client.gui.screen.CreateBuffetWorldScreen;
-import net.minecraft.client.gui.screen.CreateFlatWorldScreen;
-import net.minecraft.client.gui.screen.CreateWorldScreen;
-import net.minecraft.client.gui.screen.CustomizeSkinScreen;
-import net.minecraft.client.gui.screen.DeathScreen;
-import net.minecraft.client.gui.screen.DemoScreen;
-import net.minecraft.client.gui.screen.DirtMessageScreen;
-import net.minecraft.client.gui.screen.DisconnectedScreen;
-import net.minecraft.client.gui.screen.DownloadTerrainScreen;
-import net.minecraft.client.gui.screen.EditBookScreen;
-import net.minecraft.client.gui.screen.EditMinecartCommandBlockScreen;
-import net.minecraft.client.gui.screen.EditSignScreen;
-import net.minecraft.client.gui.screen.EditStructureScreen;
-import net.minecraft.client.gui.screen.EditWorldScreen;
-import net.minecraft.client.gui.screen.EnchantmentScreen;
-import net.minecraft.client.gui.screen.ErrorScreen;
-import net.minecraft.client.gui.screen.FlatPresetsScreen;
-import net.minecraft.client.gui.screen.GrindstoneScreen;
-import net.minecraft.client.gui.screen.HopperScreen;
-import net.minecraft.client.gui.screen.IngameMenuScreen;
-import net.minecraft.client.gui.screen.JigsawScreen;
-import net.minecraft.client.gui.screen.LoomScreen;
-import net.minecraft.client.gui.screen.MainMenuScreen;
-import net.minecraft.client.gui.screen.MemoryErrorScreen;
-import net.minecraft.client.gui.screen.MultiplayerScreen;
-import net.minecraft.client.gui.screen.MultiplayerWarningScreen;
-import net.minecraft.client.gui.screen.OptimizeWorldScreen;
-import net.minecraft.client.gui.screen.OptionsScreen;
-import net.minecraft.client.gui.screen.ReadBookScreen;
-import net.minecraft.client.gui.screen.ResourcePacksScreen;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.ServerListScreen;
-import net.minecraft.client.gui.screen.SettingsScreen;
-import net.minecraft.client.gui.screen.ShareToLanScreen;
-import net.minecraft.client.gui.screen.SleepInMultiplayerScreen;
-import net.minecraft.client.gui.screen.StatsScreen;
-import net.minecraft.client.gui.screen.WinGameScreen;
-import net.minecraft.client.gui.screen.WorkingScreen;
-import net.minecraft.client.gui.screen.WorldLoadProgressScreen;
-import net.minecraft.client.gui.screen.WorldSelectionScreen;
-import net.minecraft.client.gui.screen.inventory.AnvilScreen;
-import net.minecraft.client.gui.screen.inventory.BeaconScreen;
-import net.minecraft.client.gui.screen.inventory.BlastFurnaceScreen;
-import net.minecraft.client.gui.screen.inventory.BrewingStandScreen;
-import net.minecraft.client.gui.screen.inventory.CartographyTableScreen;
-import net.minecraft.client.gui.screen.inventory.ChestScreen;
-import net.minecraft.client.gui.screen.inventory.CraftingScreen;
-import net.minecraft.client.gui.screen.inventory.CreativeScreen;
-import net.minecraft.client.gui.screen.inventory.DispenserScreen;
-import net.minecraft.client.gui.screen.inventory.FurnaceScreen;
-import net.minecraft.client.gui.screen.inventory.InventoryScreen;
-import net.minecraft.client.gui.screen.inventory.MerchantScreen;
-import net.minecraft.client.gui.screen.inventory.ShulkerBoxScreen;
-import net.minecraft.client.gui.screen.inventory.SmokerScreen;
-import net.minecraft.client.gui.screen.inventory.StonecutterScreen;
-import net.minecraft.client.gui.widget.TextFieldWidget;
+import net.minecraft.client.multiplayer.GuiConnecting;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.MovementInput;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.InputUpdateEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.client.gui.screen.ModListScreen;
+import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.fml.client.GuiModList;
+import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -93,89 +74,94 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-@Mod("invmove")
+@Mod(modid = "invmove",
+        name = "InvMove",
+        version = "0.4.3",
+        acceptedMinecraftVersions = "[1.12.2]",
+        dependencies = "required-after:forge@[14.23.5.2816,);",
+        useMetadata = true,
+        canBeDeactivated=true)
 public class InvMove {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public InvMove() {
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-            MinecraftForge.EVENT_BUS.register(this);
-            Compatibility.loadCompatibility();
-            ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.spec);
-            Config.registerClothConfig();
-        });
+    @SidedProxy(clientSide = "me.pieking1215.invmove.ProxyCommonClient", serverSide = "me.pieking1215.invmove.ProxyCommon")
+    private static ProxyCommon proxy;
+
+    @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        proxy.init(this);
     }
 
     @SubscribeEvent
     public void onInputUpdate(InputUpdateEvent event){
-        if(allowMovementInScreen(Minecraft.getInstance().currentScreen)){
+        if(allowMovementInScreen(Minecraft.getMinecraft().currentScreen)){
 
             // tick keybinds (since opening the ui unpresses all keys)
             KeyBinding.updateKeyBindState();
 
             // this is needed for compatibility with ItemPhysic
-            Minecraft.getInstance().gameSettings.keyBindDrop.setPressed(false);
+            KeyBinding.setKeyBindState(Minecraft.getMinecraft().gameSettings.keyBindDrop.getKeyCode(), false);
 
             // tick movement
-            manualTickMovement(event.getMovementInput(), Minecraft.getInstance().player.func_228354_I_(), Minecraft.getInstance().player.isSpectator());
+            manualTickMovement(event.getMovementInput(), Minecraft.getMinecraft().player.isSneaking() || Minecraft.getMinecraft().player.isInWater(), Minecraft.getMinecraft().player.isSpectator());
 
             // set sprinting using raw keybind data
-            Minecraft.getInstance().player.setSprinting(rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSprint));
+            Minecraft.getMinecraft().player.setSprinting(rawIsKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSprint));
 
         }
     }
 
-    private boolean allowMovementInScreen(Screen screen) {
+    private boolean allowMovementInScreen(GuiScreen screen) {
         if(screen == null) return false;
 
-        if(!Config.getBoolSafe(Config.GENERAL.enabled, true)) return false;
-        if(!Config.getBoolSafe(Config.GENERAL.enabled, true)) return false;
+        if(!Config.GENERAL.enabled) return false;
+        if(!Config.GENERAL.enabled) return false;
 
-        if(screen.isPauseScreen() && Minecraft.getInstance().isSingleplayer() && !Minecraft.getInstance().getIntegratedServer().getPublic()) return false;
+        if(screen.doesGuiPauseGame() && Minecraft.getMinecraft().isSingleplayer() && !Minecraft.getMinecraft().getIntegratedServer().getPublic()) return false;
 
-        if(screen instanceof AddServerScreen) return false;
-        if(screen instanceof AlertScreen) return false;
-        if(screen instanceof ConfirmBackupScreen) return false;
-        if(screen instanceof ConfirmScreen) return false;
-        if(screen instanceof ConnectingScreen) return false;
-        if(screen instanceof CreateBuffetWorldScreen) return false;
-        if(screen instanceof CreateFlatWorldScreen) return false;
-        if(screen instanceof CreateWorldScreen) return false;
-        if(screen instanceof DeathScreen) return false;
-        if(screen instanceof DemoScreen) return false;
-        if(screen instanceof DirtMessageScreen) return false;
-        if(screen instanceof DisconnectedScreen) return false;
-        if(screen instanceof DownloadTerrainScreen) return false;
-        if(screen instanceof ErrorScreen) return false;
-        if(screen instanceof FlatPresetsScreen) return false;
-        if(screen instanceof IngameMenuScreen) return false;
-        if(screen instanceof MainMenuScreen) return false;
-        if(screen instanceof MemoryErrorScreen) return false;
-        if(screen instanceof ModListScreen) return false;
-        if(screen instanceof MultiplayerScreen) return false;
-        if(screen instanceof MultiplayerWarningScreen) return false;
-        if(screen instanceof OptimizeWorldScreen) return false;
-        if(screen instanceof OptionsScreen) return false;
-        if(screen instanceof ServerListScreen) return false;
-        if(screen instanceof SettingsScreen) return false;
-        if(screen instanceof ShareToLanScreen) return false;
-        if(screen instanceof StatsScreen) return false;
-        if(screen instanceof WinGameScreen) return false;
-        if(screen instanceof WorkingScreen) return false;
-        if(screen instanceof WorldLoadProgressScreen) return false;
-        if(screen instanceof WorldSelectionScreen) return false;
+        if(screen instanceof GuiScreenAddServer) return false;
+        //if(screen instanceof AlertScreen) return false;
+        //if(screen instanceof ConfirmBackupScreen) return false;
+        if(screen instanceof GuiYesNo) return false;
+        if(screen instanceof GuiConnecting) return false;
+        //if(screen instanceof CreateBuffetWorldScreen) return false;
+        if(screen instanceof GuiCreateFlatWorld) return false;
+        if(screen instanceof GuiCreateWorld) return false;
+        if(screen instanceof GuiGameOver) return false;
+        if(screen instanceof GuiScreenDemo) return false;
+        //if(screen instanceof DirtMessageScreen) return false;
+        if(screen instanceof GuiDisconnected) return false;
+        if(screen instanceof GuiDownloadTerrain) return false;
+        if(screen instanceof GuiErrorScreen) return false;
+        if(screen instanceof GuiFlatPresets) return false;
+        if(screen instanceof GuiIngameMenu) return false;
+        if(screen instanceof GuiMainMenu) return false;
+        if(screen instanceof GuiMemoryErrorScreen) return false;
+        if(screen instanceof GuiModList) return false;
+        if(screen instanceof GuiMultiplayer) return false;
+        //if(screen instanceof MultiplayerWarningScreen) return false;
+        //if(screen instanceof OptimizeWorldScreen) return false;
+        if(screen instanceof GuiOptions) return false;
+        if(screen instanceof GuiScreenServerList) return false;
+        if(screen instanceof GuiVideoSettings) return false;
+        if(screen instanceof GuiShareToLan) return false;
+        if(screen instanceof GuiStats) return false;
+        if(screen instanceof GuiWinGame) return false;
+        if(screen instanceof GuiScreenWorking) return false;
+        //if(screen instanceof WorldLoadProgressScreen) return false;
+        if(screen instanceof GuiWorldSelection) return false;
 
-        if(screen instanceof AdvancementsScreen) return false; // config?
-        if(screen instanceof ChatScreen) return false;
-        if(screen instanceof CommandBlockScreen) return false;
-        if(screen instanceof EditBookScreen) return false;
-        if(screen instanceof EditMinecartCommandBlockScreen) return false;
-        if(screen instanceof EditSignScreen) return false;
-        if(screen instanceof EditStructureScreen) return false;
-        if(screen instanceof EditWorldScreen) return false;
-        if(screen instanceof JigsawScreen) return false;
+        if(screen instanceof GuiScreenAdvancements) return false; // config?
+        if(screen instanceof GuiChat) return false;
+        if(screen instanceof GuiCommandBlock) return false;
+        if(screen instanceof GuiScreenBook) return false;
+        if(screen instanceof GuiEditCommandBlockMinecart) return false;
+        if(screen instanceof GuiEditSign) return false;
+        if(screen instanceof GuiEditStructure) return false;
+        if(screen instanceof GuiWorldEdit) return false;
+        //if(screen instanceof JigsawScreen) return false;
 
-        if(Config.getBoolSafe(Config.GENERAL.textFieldDisablesMovement, true)) {
+        if(Config.UI_MOVEMENT.textFieldDisablesMovement) {
             // don't allow movement when focused on an active textfield
 
             // search all fields and superclass fields for a TextFieldWidget
@@ -184,9 +170,9 @@ public class InvMove {
 
                 for (Field f : fs) {
                     f.setAccessible(true);
-                    if (TextFieldWidget.class.isAssignableFrom(f.getType())) {
-                        TextFieldWidget tfw = (TextFieldWidget) f.get(screen);
-                        if (tfw != null && tfw.canWrite()) return false;
+                    if (GuiTextField.class.isAssignableFrom(f.getType())) {
+                        GuiTextField tfw = (GuiTextField) f.get(screen);
+                        if (tfw != null && tfw.isFocused()) return false; //TODO isEnabled
                     }
                 }
             } catch (Exception e) {
@@ -195,41 +181,34 @@ public class InvMove {
 
             if (screen instanceof IRecipeShownListener) {
                 try {
-                    TextFieldWidget searchBar = ObfuscationReflectionHelper.getPrivateValue(RecipeBookGui.class, ((IRecipeShownListener) screen).getRecipeGui(), "field_193962_q"); //searchField
-                    if (searchBar.canWrite()) return false;
+                    GuiTextField searchBar = ObfuscationReflectionHelper.getPrivateValue(GuiRecipeBook.class, ((IRecipeShownListener) screen).func_194310_f(), "field_193962_q"); //searchBar
+                    if(searchBar.isFocused()) return false; //TODO isEnabled
                 } catch (Exception e) {
                 }
             }
         }
 
         Optional<Boolean> returnAndIgnoreUnrecognized = Optional.empty();
-        if(screen instanceof InventoryScreen)        returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.inventory, true));
-        if(screen instanceof CreativeScreen)         returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.creative, true));
-        if(screen instanceof CraftingScreen)         returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.crafting, true));
-        if(screen instanceof ChestScreen)            returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.chest, true));
-        if(screen instanceof ShulkerBoxScreen)       returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.shulker, true));
-        if(screen instanceof DispenserScreen)        returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.dispenser, true));
-        if(screen instanceof HopperScreen)           returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.hopper, true));
-        if(screen instanceof EnchantmentScreen)      returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.enchantment, true));
-        if(screen instanceof AnvilScreen)            returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.anvil, true));
-        if(screen instanceof BeaconScreen)           returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.beacon, true));
-        if(screen instanceof BrewingStandScreen)     returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.brewing, true));
-        if(screen instanceof FurnaceScreen)          returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.furnace, true));
-        if(screen instanceof BlastFurnaceScreen)     returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.blastFurnace, true));
-        if(screen instanceof SmokerScreen)           returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.smoker, true));
-        if(screen instanceof LoomScreen)             returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.loom, true));
-        if(screen instanceof CartographyTableScreen) returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.cartography, true));
-        if(screen instanceof GrindstoneScreen)       returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.grindstone, true));
-        if(screen instanceof StonecutterScreen)      returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.stonecutter, true));
-        if(screen instanceof MerchantScreen)         returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.villager, true));
-        if(screen instanceof ReadBookScreen)         returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.book, true));
+        if(screen instanceof GuiInventory)        returnAndIgnoreUnrecognized = Optional.of(Config.UI_MOVEMENT.VANILLA.inventory);
+        if(screen instanceof GuiContainerCreative)         returnAndIgnoreUnrecognized = Optional.of(Config.UI_MOVEMENT.VANILLA.creative);
+        if(screen instanceof GuiCrafting)         returnAndIgnoreUnrecognized = Optional.of(Config.UI_MOVEMENT.VANILLA.crafting);
+        if(screen instanceof GuiChest)            returnAndIgnoreUnrecognized = Optional.of(Config.UI_MOVEMENT.VANILLA.chest);
+        if(screen instanceof GuiShulkerBox)       returnAndIgnoreUnrecognized = Optional.of(Config.UI_MOVEMENT.VANILLA.shulker);
+        if(screen instanceof GuiDispenser)        returnAndIgnoreUnrecognized = Optional.of(Config.UI_MOVEMENT.VANILLA.dispenser);
+        if(screen instanceof GuiHopper)           returnAndIgnoreUnrecognized = Optional.of(Config.UI_MOVEMENT.VANILLA.hopper);
+        if(screen instanceof GuiEnchantment)      returnAndIgnoreUnrecognized = Optional.of(Config.UI_MOVEMENT.VANILLA.enchantment);
+        if(screen instanceof GuiRepair)            returnAndIgnoreUnrecognized = Optional.of(Config.UI_MOVEMENT.VANILLA.anvil);
+        if(screen instanceof GuiBeacon)           returnAndIgnoreUnrecognized = Optional.of(Config.UI_MOVEMENT.VANILLA.beacon);
+        if(screen instanceof GuiBrewingStand)     returnAndIgnoreUnrecognized = Optional.of(Config.UI_MOVEMENT.VANILLA.brewing);
+        if(screen instanceof GuiFurnace)          returnAndIgnoreUnrecognized = Optional.of(Config.UI_MOVEMENT.VANILLA.furnace);
+        if(screen instanceof GuiMerchant)         returnAndIgnoreUnrecognized = Optional.of(Config.UI_MOVEMENT.VANILLA.villager);
 
-        Optional<Boolean> compatMove = Compatibility.shouldAllowMovement(screen);
-        if(compatMove.isPresent()) return compatMove.get();
+        //Optional<Boolean> compatMove = Compatibility.shouldAllowMovement(screen);
+        //if(compatMove.isPresent()) return compatMove.get();
 
         if(returnAndIgnoreUnrecognized.isPresent()) return returnAndIgnoreUnrecognized.get();
 
-        Class<? extends Screen> scr = screen.getClass();
+        Class<? extends GuiScreen> scr = screen.getClass();
         if(Config.UI_MOVEMENT.seenScreens.containsKey(scr.getName())){
             return Config.UI_MOVEMENT.seenScreens.get(scr.getName());
         }else{
@@ -253,15 +232,15 @@ public class InvMove {
      * Clone of MovementInputFromOptions.tick but uses raw keybind data
      */
     public void manualTickMovement(MovementInput input, boolean slow, boolean noDampening) {
-        input.forwardKeyDown = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindForward);
-        input.backKeyDown = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindBack);
-        input.leftKeyDown = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindLeft);
-        input.rightKeyDown = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindRight);
+        input.forwardKeyDown = rawIsKeyDown(Minecraft.getMinecraft().gameSettings.keyBindForward);
+        input.backKeyDown = rawIsKeyDown(Minecraft.getMinecraft().gameSettings.keyBindBack);
+        input.leftKeyDown = rawIsKeyDown(Minecraft.getMinecraft().gameSettings.keyBindLeft);
+        input.rightKeyDown = rawIsKeyDown(Minecraft.getMinecraft().gameSettings.keyBindRight);
         input.moveForward = input.forwardKeyDown == input.backKeyDown ? 0.0F : (float)(input.forwardKeyDown ? 1 : -1);
         input.moveStrafe = input.leftKeyDown == input.rightKeyDown ? 0.0F : (float)(input.leftKeyDown ? 1 : -1);
-        input.jump = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindJump) && Config.getBoolSafe(Config.GENERAL.jumpInInventories, true);
-        input.sneaking = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSneak) && Config.getBoolSafe(Config.GENERAL.sneakInInventories, false);
-        if (!noDampening && (input.sneaking || slow)) {
+        input.jump = rawIsKeyDown(Minecraft.getMinecraft().gameSettings.keyBindJump) && Config.UI_MOVEMENT.jumpInInventories;
+        input.sneak = rawIsKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak) && Config.UI_MOVEMENT.sneakInInventories;
+        if (!noDampening && (input.sneak || slow)) {
             input.moveStrafe = (float)((double)input.moveStrafe * 0.3D);
             input.moveForward = (float)((double)input.moveForward * 0.3D);
         }
@@ -290,26 +269,26 @@ public class InvMove {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onGUIDraw(GuiScreenEvent.DrawScreenEvent.Pre event){
-        Screen screen = event.getGui();
+        GuiScreen screen = event.getGui();
 
         if(shouldDisableScreenBackground(screen)) {
             // "disable" rendering
-            RenderSystem.translatef(10000, 10000, 0);
+            GlStateManager.translate(10000, 10000, 0);
         }
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onGUIDrawPost(GuiScreenEvent.DrawScreenEvent.Post event){
-        if(Config.getBoolSafe(Config.GENERAL.debugDisplay, false)) {
-            Screen screen = event.getGui();
+        if(Config.GENERAL.debugDisplay) {
+            GuiScreen screen = event.getGui();
 
             int i = 0;
             Class cl = screen.getClass();
             while (cl.getSuperclass() != null) {
                 double scale = 1;
-                RenderSystem.scaled(scale, scale, 1);
-                Minecraft.getInstance().fontRenderer.drawStringWithShadow(cl.getName(), 4, 4 + 10 * i, 0xffffffff);
-                RenderSystem.scaled(1 / scale, 1 / scale, 1);
+                GlStateManager.scale(scale, scale, 1);
+                Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(cl.getName(), 4, 4 + 10 * i, 0xffffffff);
+                GlStateManager.scale(1 / scale, 1 / scale, 1);
 
                 i++;
                 cl = cl.getSuperclass();
@@ -319,97 +298,93 @@ public class InvMove {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onGUIBackgroundDraw(GuiScreenEvent.BackgroundDrawnEvent event){
-        Screen screen = event.getGui();
+        GuiScreen screen = event.getGui();
 
         if(shouldDisableScreenBackground(screen)) {
             // "reenable" rendering
-            RenderSystem.translatef(-10000, -10000, 0);
+            GlStateManager.translate(-10000, -10000, 0);
         }
     }
 
-    private boolean shouldDisableScreenBackground(Screen screen) {
+    private boolean shouldDisableScreenBackground(GuiScreen screen) {
 
-        if(!Config.getBoolSafe(Config.GENERAL.enabled, true)) return false;
+        if(!Config.GENERAL.enabled) return false;
 
-        if(!Config.hasFinalizedConfig) Config.doneLoading();
+        //if(!Config.hasFinalizedConfig) Config.doneLoading();
 
-        if(!Config.getBoolSafe(Config.GENERAL.uiBackground, true)) return false;
+        if(!Config.UI_BACKGROUND.uiBackground) return false;
 
         if(screen == null) return false;
-        if(screen.isPauseScreen() && Minecraft.getInstance().isSingleplayer() && !Minecraft.getInstance().getIntegratedServer().getPublic()) return false;
+        if(screen.doesGuiPauseGame() && Minecraft.getMinecraft().isSingleplayer() && !Minecraft.getMinecraft().getIntegratedServer().getPublic()) return false;
 
-        if(screen instanceof AddServerScreen) return false;
-        if(screen instanceof AlertScreen) return false;
-        if(screen instanceof ConfirmBackupScreen) return false;
-        if(screen instanceof ConfirmScreen) return false;
-        if(screen instanceof ConnectingScreen) return false;
-        if(screen instanceof CreateBuffetWorldScreen) return false;
-        if(screen instanceof CreateFlatWorldScreen) return false;
-        if(screen instanceof CreateWorldScreen) return false;
-        if(screen instanceof DeathScreen) return false;
-        if(screen instanceof DemoScreen) return false;
-        if(screen instanceof DirtMessageScreen) return false;
-        if(screen instanceof DisconnectedScreen) return false;
-        if(screen instanceof DownloadTerrainScreen) return false;
-        if(screen instanceof ErrorScreen) return false;
-        if(screen instanceof FlatPresetsScreen) return false;
-        if(screen instanceof IngameMenuScreen) return false;
-        if(screen instanceof MainMenuScreen) return false;
-        if(screen instanceof MemoryErrorScreen) return false;
-        if(screen instanceof ModListScreen) return false;
-        if(screen instanceof MultiplayerScreen) return false;
-        if(screen instanceof MultiplayerWarningScreen) return false;
-        if(screen instanceof OptimizeWorldScreen) return false;
-        if(screen instanceof OptionsScreen) return false;
-        if(screen instanceof ServerListScreen) return false;
-        if(screen instanceof SettingsScreen) return false;
-        if(screen instanceof ShareToLanScreen) return false;
-        if(screen instanceof StatsScreen) return false;
-        if(screen instanceof WinGameScreen) return false;
-        if(screen instanceof WorkingScreen) return false;
-        if(screen instanceof WorldLoadProgressScreen) return false;
-        if(screen instanceof WorldSelectionScreen) return false;
+        if(screen instanceof GuiScreenAddServer) return false;
+        //if(screen instanceof AlertScreen) return false;
+        //if(screen instanceof ConfirmBackupScreen) return false;
+        if(screen instanceof GuiYesNo) return false;
+        if(screen instanceof GuiConnecting) return false;
+        //if(screen instanceof CreateBuffetWorldScreen) return false;
+        if(screen instanceof GuiCreateFlatWorld) return false;
+        if(screen instanceof GuiCreateWorld) return false;
+        if(screen instanceof GuiGameOver) return false;
+        if(screen instanceof GuiScreenDemo) return false;
+        //if(screen instanceof DirtMessageScreen) return false;
+        if(screen instanceof GuiDisconnected) return false;
+        if(screen instanceof GuiDownloadTerrain) return false;
+        if(screen instanceof GuiErrorScreen) return false;
+        if(screen instanceof GuiFlatPresets) return false;
+        if(screen instanceof GuiIngameMenu) return false;
+        if(screen instanceof GuiMainMenu) return false;
+        if(screen instanceof GuiMemoryErrorScreen) return false;
+        if(screen instanceof GuiModList) return false;
+        if(screen instanceof GuiConfig) return false;
+        if(screen instanceof GuiMultiplayer) return false;
+        //if(screen instanceof MultiplayerWarningScreen) return false;
+        //if(screen instanceof OptimizeWorldScreen) return false;
+        if(screen instanceof GuiOptions) return false;
+        if(screen instanceof GuiScreenServerList) return false;
+        if(screen instanceof GuiVideoSettings) return false;
+        if(screen instanceof GuiShareToLan) return false;
+        if(screen instanceof GuiStats) return false;
+        if(screen instanceof GuiWinGame) return false;
+        if(screen instanceof GuiScreenWorking) return false;
+        //if(screen instanceof WorldLoadProgressScreen) return false;
+        if(screen instanceof GuiWorldSelection) return false;
 
-        if(screen instanceof AdvancementsScreen) return false; // config?
-        if(screen instanceof ChatScreen) return false;
-        if(screen instanceof CommandBlockScreen) return false;
-        if(screen instanceof EditMinecartCommandBlockScreen) return false;
-        if(screen instanceof EditSignScreen) return false;
-        if(screen instanceof EditStructureScreen) return false;
-        if(screen instanceof EditWorldScreen) return false;
-        if(screen instanceof JigsawScreen) return false;
+        if(screen instanceof GuiScreenAdvancements) return false; // config?
+        if(screen instanceof GuiChat) return false;
+        if(screen instanceof GuiCommandBlock) return false;
+        if(screen instanceof GuiEditCommandBlockMinecart) return false;
+        if(screen instanceof GuiEditSign) return false;
+        if(screen instanceof GuiEditStructure) return false;
+        if(screen instanceof GuiWorldEdit) return false;
+        //if(screen instanceof JigsawScreen) return false;
 
-        if(screen instanceof InventoryScreen)           return !Config.getBoolSafe(Config.UI_BACKGROUND.inventory, false);
-        if(screen instanceof CreativeScreen)            return !Config.getBoolSafe(Config.UI_BACKGROUND.creative, false);
-        if(screen instanceof CraftingScreen)            return !Config.getBoolSafe(Config.UI_BACKGROUND.crafting, false);
-        if(screen instanceof ChestScreen)               return !Config.getBoolSafe(Config.UI_BACKGROUND.chest, false);
-        if(screen instanceof ShulkerBoxScreen)          return !Config.getBoolSafe(Config.UI_BACKGROUND.shulker, false);
-        if(screen instanceof DispenserScreen)           return !Config.getBoolSafe(Config.UI_BACKGROUND.dispenser, false);
-        if(screen instanceof HopperScreen)              return !Config.getBoolSafe(Config.UI_BACKGROUND.hopper, false);
-        if(screen instanceof EnchantmentScreen)         return !Config.getBoolSafe(Config.UI_BACKGROUND.enchantment, false);
-        if(screen instanceof AnvilScreen)               return !Config.getBoolSafe(Config.UI_BACKGROUND.anvil, false);
-        if(screen instanceof BeaconScreen)              return !Config.getBoolSafe(Config.UI_BACKGROUND.beacon, false);
-        if(screen instanceof BrewingStandScreen)        return !Config.getBoolSafe(Config.UI_BACKGROUND.brewing, false);
-        if(screen instanceof FurnaceScreen)             return !Config.getBoolSafe(Config.UI_BACKGROUND.furnace, false);
-        if(screen instanceof BlastFurnaceScreen)        return !Config.getBoolSafe(Config.UI_BACKGROUND.blastFurnace, false);
-        if(screen instanceof SmokerScreen)              return !Config.getBoolSafe(Config.UI_BACKGROUND.smoker, false);
-        if(screen instanceof LoomScreen)                return !Config.getBoolSafe(Config.UI_BACKGROUND.loom, false);
-        if(screen instanceof CartographyTableScreen)    return !Config.getBoolSafe(Config.UI_BACKGROUND.cartography, false);
-        if(screen instanceof GrindstoneScreen)          return !Config.getBoolSafe(Config.UI_BACKGROUND.grindstone, false);
-        if(screen instanceof StonecutterScreen)         return !Config.getBoolSafe(Config.UI_BACKGROUND.stonecutter, false);
-        if(screen instanceof MerchantScreen)            return !Config.getBoolSafe(Config.UI_BACKGROUND.villager, false);
-        if(screen instanceof ReadBookScreen)            return !Config.getBoolSafe(Config.UI_BACKGROUND.book, false);
-        if(screen instanceof EditBookScreen)            return !Config.getBoolSafe(Config.UI_BACKGROUND.book, false);
+        if(screen instanceof GuiInventory)         return !Config.UI_BACKGROUND.VANILLA.inventory;
+        if(screen instanceof GuiContainerCreative) return !Config.UI_BACKGROUND.VANILLA.creative;
+        if(screen instanceof GuiCrafting)          return !Config.UI_BACKGROUND.VANILLA.crafting;
+        if(screen instanceof GuiChest)             return !Config.UI_BACKGROUND.VANILLA.chest;
+        if(screen instanceof GuiShulkerBox)        return !Config.UI_BACKGROUND.VANILLA.shulker;
+        if(screen instanceof GuiDispenser)         return !Config.UI_BACKGROUND.VANILLA.dispenser;
+        if(screen instanceof GuiHopper)            return !Config.UI_BACKGROUND.VANILLA.hopper;
+        if(screen instanceof GuiEnchantment)       return !Config.UI_BACKGROUND.VANILLA.enchantment;
+        if(screen instanceof GuiRepair)            return !Config.UI_BACKGROUND.VANILLA.anvil;
+        if(screen instanceof GuiBeacon)            return !Config.UI_BACKGROUND.VANILLA.beacon;
+        if(screen instanceof GuiBrewingStand)      return !Config.UI_BACKGROUND.VANILLA.brewing;
+        if(screen instanceof GuiFurnace)           return !Config.UI_BACKGROUND.VANILLA.furnace;
+        if(screen instanceof GuiMerchant)          return !Config.UI_BACKGROUND.VANILLA.villager;
+        if(screen instanceof GuiScreenBook)        return false;
+        //if(screen instanceof EditBookScreen)     return !Config.UI_BACKGROUND.book;
 
 
-        Optional<Boolean> compatBack = Compatibility.shouldDisableBackground(screen);
-        if(compatBack.isPresent()) return compatBack.get();
+        //Optional<Boolean> compatBack = Compatibility.shouldDisableBackground(screen);
+        //if(compatBack.isPresent()) return compatBack.get();
 
-        Class<? extends Screen> scr = screen.getClass();
+        Class<? extends GuiScreen> scr = screen.getClass();
         if(Config.UI_BACKGROUND.seenScreens.containsKey(scr.getName())){
             return !Config.UI_BACKGROUND.seenScreens.get(scr.getName());
         }else{
             Config.UI_BACKGROUND.seenScreens.put(scr.getName(), true);
+            ConfigManager.sync("invmove", net.minecraftforge.common.config.Config.Type.INSTANCE);
         }
 
         return false;

@@ -1,8 +1,8 @@
 package me.pieking1215.invmove.compat;
 
-import net.minecraft.client.gui.screen.Screen;
-import svenhjol.charm.decoration.inventory.BookshelfChestScreen;
-import svenhjol.charm.decoration.inventory.CrateScreen;
+import net.minecraft.client.gui.GuiScreen;
+import svenhjol.charm.crafting.gui.GuiContainerBookshelfChest;
+import svenhjol.charm.crafting.gui.GuiContainerCrate;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -27,19 +27,19 @@ public class CharmCompatibility extends ModCompatibility {
     }
 
     @Override
-    public Optional<Boolean> shouldAllowMovement(Screen screen) {
+    public Optional<Boolean> shouldAllowMovement(GuiScreen screen) {
 
-        if(screen instanceof BookshelfChestScreen) return Optional.of(BookshelfChestScreen_movement.get());
-        if(screen instanceof CrateScreen)          return Optional.of(CrateScreen_movement.get());
+        if(screen instanceof GuiContainerBookshelfChest) return Optional.of(BookshelfChestScreen_movement.get());
+        if(screen instanceof GuiContainerCrate)          return Optional.of(CrateScreen_movement.get());
 
         return Optional.empty();
     }
 
     @Override
-    public Optional<Boolean> shouldDisableBackground(Screen screen) {
+    public Optional<Boolean> shouldDisableBackground(GuiScreen screen) {
 
-        if(screen instanceof BookshelfChestScreen) return Optional.of(BookshelfChestScreen_background_disable.get());
-        if(screen instanceof CrateScreen)          return Optional.of(CrateScreen_background_disable.get());
+        if(screen instanceof GuiContainerBookshelfChest) return Optional.of(BookshelfChestScreen_background_disable.get());
+        if(screen instanceof GuiContainerCrate)          return Optional.of(CrateScreen_background_disable.get());
 
         return Optional.empty();
     }
