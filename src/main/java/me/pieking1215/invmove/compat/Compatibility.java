@@ -38,6 +38,7 @@ public class Compatibility {
         compatMods.put("mekanism"            , "me.pieking1215.invmove.compat.MekanismCompatibility");
         compatMods.put("waystones"           , "me.pieking1215.invmove.compat.WaystonesCompatibility");
         compatMods.put("industrialforegoing" , "me.pieking1215.invmove.compat.IndustrialForegoingCompatibility");
+        compatMods.put("locks"               , "me.pieking1215.invmove.compat.LocksCompatibility");
 
         for (String s : compatMods.keySet()){
             if(Loader.isModLoaded(s)){
