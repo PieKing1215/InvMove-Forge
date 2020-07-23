@@ -59,14 +59,14 @@ If there's a mod you want to be added, also please start a ticket in the [issue 
 *(The initial list of supported mods was arbitrarily chosen from a mod pack I'm playing.)*
 *(More are being added mostly by going through curseforge sorted by popularity)*
 
-InvMove explicitly supports the following mods (as of version 0.4.2):
+InvMove explicitly supports the following mods (as of version 0.4.4):
 - [Botania](https://www.curseforge.com/minecraft/mc-mods/botania)
 - [CC: Tweaked](https://www.curseforge.com/minecraft/mc-mods/cc-tweaked)
 - [Charm](https://www.curseforge.com/minecraft/mc-mods/charm)
 - [Cooking for Blockheads](https://www.curseforge.com/minecraft/mc-mods/cooking-for-blockheads)
-- [Create](https://www.curseforge.com/minecraft/mc-mods/create)
-- [Curios API](https://www.curseforge.com/minecraft/mc-mods/curios)
-- [EmbellishCraft](https://www.curseforge.com/minecraft/mc-mods/embellishcraft)
+- [Create](https://www.curseforge.com/minecraft/mc-mods/create) (1.14+)
+- [Curios API](https://www.curseforge.com/minecraft/mc-mods/curios) (1.14+)
+- [EmbellishCraft](https://www.curseforge.com/minecraft/mc-mods/embellishcraft) (1.14+)
 - [Ender Storage 1.8.+](https://www.curseforge.com/minecraft/mc-mods/ender-storage-1-8)
 - [Engineer's Decor](https://www.curseforge.com/minecraft/mc-mods/engineers-decor)
 - [Immersive Engineering](https://www.curseforge.com/minecraft/mc-mods/immersive-engineering)
@@ -74,10 +74,11 @@ InvMove explicitly supports the following mods (as of version 0.4.2):
 - [Iron Chests](https://www.curseforge.com/minecraft/mc-mods/iron-chests)
 - [ItemPhysic Full](https://www.curseforge.com/minecraft/mc-mods/itemphysic)
 - [Just Enough Items (JEI)](https://www.curseforge.com/minecraft/mc-mods/jei)
+- [Locks](https://www.curseforge.com/minecraft/mc-mods/locks) (1.14+)
 - [Mekanism](https://www.curseforge.com/minecraft/mc-mods/mekanism)
-- [Mekanism Generators](https://www.curseforge.com/minecraft/mc-mods/mekanism-generators)
-- [MrCrayfish's Furniture Mod](https://www.curseforge.com/minecraft/mc-mods/mrcrayfish-furniture-mod)
-- [Music Maker Mod](https://www.curseforge.com/minecraft/mc-mods/music-maker-mod)
+- [Mekanism Generators](https://www.curseforge.com/minecraft/mc-mods/mekanism-generators) (1.14+)
+- [MrCrayfish's Furniture Mod](https://www.curseforge.com/minecraft/mc-mods/mrcrayfish-furniture-mod) (1.14+)
+- [Music Maker Mod](https://www.curseforge.com/minecraft/mc-mods/music-maker-mod) (1.14+)
 - [Optifine](https://www.optifine.net/)
 - [Patchouli](https://www.curseforge.com/minecraft/mc-mods/patchouli)
 - [Quark](https://www.curseforge.com/minecraft/mc-mods/quark)
@@ -93,7 +94,11 @@ Do not download this mod from anywhere other than the InvMove GitHub page or the
 This mod may not be reposted to any other third-party websites.<br>
 [#StopModReposts](https://stopmodreposts.org)
 
-Tested on Forge 31.2.31 with MC 1.15.2 and on Forge 28.2.23 on 1.14.4, on both singleplayer and multiplayer.
+Tested on 
+Forge 31.2.31 for MC 1.15.2,
+Forge 28.2.23 for MC 1.14.4, 
+
+on both singleplayer and multiplayer.
 
 The mod is licensed under the [GNU General Public License v3.0](LICENSE.md)
 
