@@ -88,7 +88,7 @@ import java.util.Optional;
 
 @Mod(modid = "invmove",
         name = "InvMove",
-        version = "0.4.3",
+        version = "0.4.4",
         acceptedMinecraftVersions = "[1.12.2]",
         dependencies = "required-after:forge@[14.23.5.2816,);",
         useMetadata = true,
