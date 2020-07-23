@@ -195,8 +195,8 @@ dependencies {
 
     // Locks
     // www.curseforge.com/minecraft/mc-mods/locks
-    //runtimeOnly fg.deobf("curse.maven:locks:3012847")
-    compileOnly fg.deobf("curse.maven:locks:3012847")
+    //runtimeOnly fg.deobf("curse.maven:locks:3012846")
+    compileOnly fg.deobf("curse.maven:locks:3012846")
 
     // utility / testing
 
