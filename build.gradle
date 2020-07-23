@@ -193,6 +193,11 @@ dependencies {
     //runtimeOnly fg.deobf("curse.maven:waystones:2872947")
     compileOnly fg.deobf("curse.maven:waystones:2872947")
 
+    // Locks
+    // www.curseforge.com/minecraft/mc-mods/locks
+    //runtimeOnly fg.deobf("curse.maven:locks:3012847")
+    compileOnly fg.deobf("curse.maven:locks:3012847")
+
     // utility / testing
 
     // GameMenuModOption
