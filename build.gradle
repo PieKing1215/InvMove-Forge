@@ -35,7 +35,7 @@ sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = co
 minecraft {
     mappings channel: 'snapshot', version: '20171003-1.12'
 
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    //accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
         client {
@@ -144,6 +144,11 @@ dependencies {
     // www.curseforge.com/minecraft/mc-mods/codechicken-lib-1-8
     //runtimeOnly fg.deobf("curse.maven:codechicken-lib-1-8:2779848")
     //compileOnly fg.deobf("curse.maven:codechicken-lib-1-8:2779848")
+
+    // Baubles
+    // www.curseforge.com/minecraft/mc-mods/baubles
+    //runtimeOnly fg.deobf("curse.maven:baubles:2518667")
+    //compileOnly fg.deobf("curse.maven:baubles:2518667")
 
     // Botania
     // www.curseforge.com/minecraft/mc-mods/botania
