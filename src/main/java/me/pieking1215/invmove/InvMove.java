@@ -2,6 +2,7 @@ package me.pieking1215.invmove;
 
 //import me.pieking1215.invmove.compat.Compatibility;
 
+import me.pieking1215.invmove.compat.Compatibility;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiCommandBlock;
@@ -54,23 +55,34 @@ import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.MovementInput;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.InputUpdateEvent;
+import net.minecraftforge.common.config.ConfigCategory;
+import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.GuiModList;
+import net.minecraftforge.fml.client.config.DummyConfigElement;
 import net.minecraftforge.fml.client.config.GuiConfig;
+import net.minecraftforge.fml.client.config.IConfigElement;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.libraries.ModList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,6 +102,92 @@ public class InvMove {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         proxy.init(this);
+    }
+
+    @SubscribeEvent
+    public void onGUIOpen(GuiOpenEvent event){
+        // test if invmove config gui
+        if(event.getGui() instanceof GuiConfig){
+            GuiConfig config = (GuiConfig) event.getGui();
+            if(config.modID.equals("invmove")) {
+                // if it's the root of the config
+                if(!(Minecraft.getMinecraft().currentScreen instanceof GuiConfig)){
+                    // sort the categories
+                    HashMap<String, Integer> categorySorting = new HashMap<String, Integer>(){{
+                        int n = 0;
+                        put("general", n++);
+                        put("ui_movement", n++);
+                        put("ui_background", n++);
+                    }};
+                    config.configElements.sort((e1, e2) -> {
+                        if(!e1.isProperty() && !e2.isProperty()){
+                            if(categorySorting.containsKey(e1.getName()) && categorySorting.containsKey(e2.getName())){
+                                return Integer.compare(categorySorting.get(e1.getName()), categorySorting.get(e2.getName()));
+                            }
+                        }
+                        return 0;
+                    });
+
+                    // add modcompats to categories
+                    Optional<IConfigElement> movementIElem = config.configElements.stream().filter(e -> {
+                        return !e.isProperty() && e.getName().equals("ui_movement");
+                    }).findFirst();
+
+                    if(movementIElem.isPresent()){
+                        DummyConfigElement.DummyCategoryElement movementElem = (DummyConfigElement.DummyCategoryElement) movementIElem.get();
+
+                        List<IConfigElement> movementCat = ObfuscationReflectionHelper.getPrivateValue(DummyConfigElement.class, movementElem, "childElements");
+
+                        Compatibility.getCompatibilities().forEach((modid, compat) -> {
+                            movementCat.add(new ConfigElement(compat.movementCategory));
+                        });
+                    }
+
+                    Optional<IConfigElement> backgroundIElem = config.configElements.stream().filter(e -> {
+                        return !e.isProperty() && e.getName().equals("ui_background");
+                    }).findFirst();
+
+                    if(backgroundIElem.isPresent()){
+                        DummyConfigElement.DummyCategoryElement backgroundElem = (DummyConfigElement.DummyCategoryElement) backgroundIElem.get();
+
+                        List<IConfigElement> backgroundCat = ObfuscationReflectionHelper.getPrivateValue(DummyConfigElement.class, backgroundElem, "childElements");
+
+                        Compatibility.getCompatibilities().forEach((modid, compat) -> {
+                            backgroundCat.add(new ConfigElement(compat.backgroundCategory));
+                        });
+                    }
+                }else{
+                    HashMap<String, Integer> propertySorting = new HashMap<String, Integer>(){{
+                        int n = 0;
+                        put("enabled", n++);
+                        put("debugDisplay", n++);
+                        put("moveInInventories", n++);
+                        put("jumpInInventories", n++);
+                        put("sneakInInventories", n++);
+                        put("textFieldDisablesMovement", n++);
+                    }};
+
+                    // sort the categories
+                    config.configElements.sort((e1, e2) -> {
+                        // properties should go before categories
+                        if(e1.isProperty() && !e2.isProperty()) return -1;
+                        if(!e1.isProperty() && e2.isProperty()) return 1;
+
+                        // unrecognized should be at the bottom of the categories
+                        if(!e1.isProperty() && e1.getName().equals("seenscreens")) return 1;
+                        if(!e2.isProperty() && e2.getName().equals("seenscreens")) return -1;
+
+                        if(e1.isProperty() && e2.isProperty()){
+                            System.out.println(e1.getName() + "|" + e2.getName());
+                            if(propertySorting.containsKey(e1.getName()) && propertySorting.containsKey(e2.getName())){
+                                return Integer.compare(propertySorting.get(e1.getName()), propertySorting.get(e2.getName()));
+                            }
+                        }
+                        return 0;
+                    });
+                }
+            }
+        }
     }
 
     @SubscribeEvent
@@ -203,8 +301,8 @@ public class InvMove {
         if(screen instanceof GuiFurnace)          returnAndIgnoreUnrecognized = Optional.of(Config.UI_MOVEMENT.VANILLA.furnace);
         if(screen instanceof GuiMerchant)         returnAndIgnoreUnrecognized = Optional.of(Config.UI_MOVEMENT.VANILLA.villager);
 
-        //Optional<Boolean> compatMove = Compatibility.shouldAllowMovement(screen);
-        //if(compatMove.isPresent()) return compatMove.get();
+        Optional<Boolean> compatMove = Compatibility.shouldAllowMovement(screen);
+        if(compatMove.isPresent()) return compatMove.get();
 
         if(returnAndIgnoreUnrecognized.isPresent()) return returnAndIgnoreUnrecognized.get();
 
@@ -376,8 +474,8 @@ public class InvMove {
         //if(screen instanceof EditBookScreen)     return !Config.UI_BACKGROUND.book;
 
 
-        //Optional<Boolean> compatBack = Compatibility.shouldDisableBackground(screen);
-        //if(compatBack.isPresent()) return compatBack.get();
+        Optional<Boolean> compatBack = Compatibility.shouldDisableBackground(screen);
+        if(compatBack.isPresent()) return compatBack.get();
 
         Class<? extends GuiScreen> scr = screen.getClass();
         if(Config.UI_BACKGROUND.seenScreens.containsKey(scr.getName())){

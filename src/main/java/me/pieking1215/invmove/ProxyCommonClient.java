@@ -10,5 +10,7 @@ public class ProxyCommonClient extends ProxyCommon {
 
         MinecraftForge.EVENT_BUS.register(invMove);
         Compatibility.loadCompatibility();
+        Config.doneLoading();
+        Compatibility.setupConfigScreen();
     }
 }

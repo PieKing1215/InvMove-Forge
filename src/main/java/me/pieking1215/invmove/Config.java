@@ -4,7 +4,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import me.pieking1215.invmove.compat.Compatibility;
+import me.pieking1215.invmove.compat.ModCompatibility;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.config.ConfigManager;
@@ -14,8 +16,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.function.Function;
 
 @net.minecraftforge.common.config.Config(modid = "invmove", category = "")
@@ -33,8 +38,6 @@ public class Config {
     @net.minecraftforge.common.config.Config.Ignore
     public static boolean hasFinalizedConfig = false;
     @net.minecraftforge.common.config.Config.Ignore
-    public static File unknownScreensConfig;
-    @net.minecraftforge.common.config.Config.Ignore
     public static HashMap<String, File> modCompatConfigs;
 
     @net.minecraftforge.common.config.Config.Ignore
@@ -46,37 +49,11 @@ public class Config {
     public static void doneLoading() {
         hasFinalizedConfig = true;
 
-        try {
-
-
-            File dotMinecraft = Minecraft.getMinecraft().mcDataDir;
-            File f = new File(dotMinecraft, "config/invMove/unknown_screens.json");
-            f.getParentFile().mkdirs();
-            if(!f.exists()) f.createNewFile();
-            unknownScreensConfig = f;
-
-            JsonReader jr = new JsonReader(new FileReader(f));
-            JsonElement jp = new JsonParser().parse(jr);
-            if(jp.isJsonObject()) {
-                JsonObject obj = jp.getAsJsonObject();
-                obj.entrySet().forEach(e -> {
-                    if(e.getKey().endsWith("_background")){
-                        UI_BACKGROUND.seenScreens.put(e.getKey().substring(0, e.getKey().length() - "_background".length()), e.getValue().getAsBoolean());
-                    }else if(e.getKey().endsWith("_movement")){
-                        UI_MOVEMENT.seenScreens.put(e.getKey().substring(0, e.getKey().length() - "_movement".length()), e.getValue().getAsBoolean());
-                    }
-                });
-            }
-            jr.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         modCompatConfigs = new HashMap<>();
         File dotMinecraft = Minecraft.getMinecraft().mcDataDir;
         for(String modid : Compatibility.getCompatibilities().keySet()){
             try {
-                File f = new File(dotMinecraft, "config/invMove/" + modid + ".json");
+                File f = new File(dotMinecraft, "config/invMove_1_12/" + modid + ".json");
                 f.getParentFile().mkdirs();
                 if(!f.exists()) f.createNewFile();
                 modCompatConfigs.put(modid, f);
@@ -155,7 +132,6 @@ public class Config {
 
         @net.minecraftforge.common.config.Config.LangKey("key.invmove.category.types.unrecognized")
         public HashMap<String, Boolean> seenScreens = new HashMap<>();
-
     }
 
     public static class UIMovement {
@@ -226,6 +202,27 @@ public class Config {
     {
         if (event.getModID().equals("invmove")) {
             ConfigManager.sync("invmove", net.minecraftforge.common.config.Config.Type.INSTANCE);
+
+
+            for(String modid : modCompatConfigs.keySet()){
+                ModCompatibility compat;
+                File f;
+                if((f = modCompatConfigs.get(modid)) != null && (compat = Compatibility.getCompatibilities().get(modid)) != null){
+                    try {
+                        f.getParentFile().mkdirs();
+                        if (!f.exists()) f.createNewFile();
+                        JsonWriter jw = new JsonWriter(new FileWriter(f));
+                        jw.setIndent("  ");
+                        jw.beginObject();
+                        compat.saveConfig(jw);
+                        jw.endObject();
+                        jw.close();
+                    }catch(IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+
         }
     }
 

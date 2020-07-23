@@ -49,3 +49,4 @@ config.invmove.type.book=Book
 
 key.invmove.category.types.unrecognized=Unrecognized UI Types
 config.invmove.unrecognized_desc.tooltip=Unrecognized GUIs show up here once they have been interacted with.
+key.invmove.category.types.modcompats=Mod Compatibilities

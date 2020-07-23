@@ -1,7 +1,9 @@
 package me.pieking1215.invmove.compat;
 
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ModContainer;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -40,13 +42,25 @@ public class Compatibility {
         for (String s : compatMods.keySet()){
             if(Loader.isModLoaded(s)){
                 try {
-                    compats.put(s, Class.forName(compatMods.get(s)).asSubclass(ModCompatibility.class).newInstance());
+                    ModCompatibility comp = Class.forName(compatMods.get(s)).asSubclass(ModCompatibility.class).newInstance();
+                    compats.put(s, comp);
                 } catch (InstantiationException | ClassNotFoundException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
             }
         }
 
+    }
+
+    public static void setupConfigScreen(){
+        getCompatibilities().forEach((modid, compat) -> {
+            ModContainer modInfo = Loader.instance().getModList().stream().filter(con -> con.getModId().equals(modid)).findFirst().get();
+
+            ConfigCategory categoryM = new ConfigCategory(modInfo.getName());
+            compat.setupConfigMovement(categoryM);
+            ConfigCategory categoryB = new ConfigCategory(modInfo.getName());
+            compat.setupConfigBackground(categoryB);
+        });
     }
 
     public static Optional<Boolean> shouldAllowMovement(GuiScreen screen) {
