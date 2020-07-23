@@ -85,7 +85,7 @@ dependencies {
 
     // Just Enough Items (JEI)
     // www.curseforge.com/minecraft/mc-mods/jei
-    runtimeOnly fg.deobf("curse.maven:jei:2985527")
+    //runtimeOnly fg.deobf("curse.maven:jei:2985527")
     compileOnly fg.deobf("curse.maven:jei:2985527")
 
     // Immersive Engineering
@@ -140,12 +140,12 @@ dependencies {
 
     // AutoRegLib
     // www.curseforge.com/minecraft/mc-mods/autoreglib
-    runtimeOnly fg.deobf("curse.maven:autoreglib:2821794")
+    //runtimeOnly fg.deobf("curse.maven:autoreglib:2821794")
     compileOnly fg.deobf("curse.maven:autoreglib:2821794")
 
     // Quark
     // www.curseforge.com/minecraft/mc-mods/quark
-    runtimeOnly fg.deobf("curse.maven:quark:2889792")
+    //runtimeOnly fg.deobf("curse.maven:quark:2889792")
     compileOnly fg.deobf("curse.maven:quark:2889792")
 
     // Iron Chests
