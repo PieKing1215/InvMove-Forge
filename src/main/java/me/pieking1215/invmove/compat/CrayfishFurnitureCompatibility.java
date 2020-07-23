@@ -27,15 +27,15 @@ public class CrayfishFurnitureCompatibility extends ModCompatibility {
         movementOptions = Arrays.asList(
                 new BoolOption("Crate", "CrateScreen_movement", CrateScreen_movement, true),
                 new BoolOption("Mail Box", "MailBoxScreen_movement", MailBoxScreen_movement, true),
-                new BoolOption("Mail Box Settings", "MailBoxSettingsScreen_movement", MailBoxSettingsScreen_movement, true),
-                new BoolOption("Post Box", "PostBoxScreen_movement", PostBoxScreen_movement, true),
+                //new BoolOption("Mail Box Settings", "MailBoxSettingsScreen_movement", MailBoxSettingsScreen_movement, true),
+                //new BoolOption("Post Box", "PostBoxScreen_movement", PostBoxScreen_movement, true),
                 new BoolOption("Door Mat", "DoorMatScreen_movement", DoorMatScreen_movement, true)
         );
         backgroundOptions = Arrays.asList(
                 new BoolOption("Crate", "CrateScreen_background_disable", CrateScreen_background_disable, true),
                 new BoolOption("Mail Box", "MailBoxScreen_background_disable", MailBoxScreen_background_disable, true),
-                new BoolOption("Mail Box Settings", "MailBoxSettingsScreen_background_disable", MailBoxSettingsScreen_background_disable, true),
-                new BoolOption("Post Box", "PostBoxScreen_background_disable", PostBoxScreen_background_disable, true),
+                //new BoolOption("Mail Box Settings", "MailBoxSettingsScreen_background_disable", MailBoxSettingsScreen_background_disable, true),
+                //new BoolOption("Post Box", "PostBoxScreen_background_disable", PostBoxScreen_background_disable, true),
                 new BoolOption("Door Mat", "DoorMatScreen_background_disable", DoorMatScreen_background_disable, true)
         );
     }

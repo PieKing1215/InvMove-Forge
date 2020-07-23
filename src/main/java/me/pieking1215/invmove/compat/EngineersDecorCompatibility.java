@@ -52,14 +52,15 @@ public class EngineersDecorCompatibility extends ModCompatibility {
     @Override
     public Optional<Boolean> shouldAllowMovement(GuiScreen screen) {
 
-//        if(screen instanceof EdCraftingTable.CraftingTableGui)         return Optional.of(CraftingTableGui_movement.get());
-//        if(screen instanceof EdDropper.DropperGui)                     return Optional.of(DropperGui_movement.get());
-//        if(screen instanceof EdElectricalFurnace.ElectricalFurnaceGui) return Optional.of(ElectricalFurnaceGui_movement.get());
-//        if(screen instanceof EdFurnace.FurnaceGui)                     return Optional.of(FurnaceGui_movement.get());
-//        if(screen instanceof EdHopper.HopperGui)                       return Optional.of(HopperGui_movement.get());
-//        if(screen instanceof EdLabeledCrate.LabeledCrateGui)           return Optional.of(LabeledCrateGui_movement.get());
-//        if(screen instanceof EdPlacer.PlacerGui)                       return Optional.of(PlacerGui_movement.get());
-//        if(screen instanceof EdWasteIncinerator.WasteIncineratorGui)   return Optional.of(WasteIncineratorGui_movement.get());
+        // the BGuis are all private classes so it's easier to do this
+        if(screen.getClass().getName().equals("wile.engineersdecor.blocks.BlockDecorCraftingTable$BGui"))     return Optional.of(CraftingTableGui_movement.get());
+        if(screen.getClass().getName().equals("wile.engineersdecor.blocks.BlockDecorDropper$BGui"))           return Optional.of(DropperGui_movement.get());
+        if(screen.getClass().getName().equals("wile.engineersdecor.blocks.BlockDecorFurnaceElectrical$BGui")) return Optional.of(ElectricalFurnaceGui_movement.get());
+        if(screen.getClass().getName().equals("wile.engineersdecor.blocks.BlockDecorFurnace$BGui"))           return Optional.of(FurnaceGui_movement.get());
+        if(screen.getClass().getName().equals("wile.engineersdecor.blocks.BlockDecorHopper$BGui"))            return Optional.of(HopperGui_movement.get());
+        if(screen.getClass().getName().equals("wile.engineersdecor.blocks.BlockDecorLabeledCrate$BGui"))      return Optional.of(LabeledCrateGui_movement.get());
+        if(screen.getClass().getName().equals("wile.engineersdecor.blocks.BlockDecorPlacer$BGui"))            return Optional.of(PlacerGui_movement.get());
+        if(screen.getClass().getName().equals("wile.engineersdecor.blocks.BlockDecorWasteIncinerator$BGui"))  return Optional.of(WasteIncineratorGui_movement.get());
 
         return Optional.empty();
     }
@@ -67,14 +68,15 @@ public class EngineersDecorCompatibility extends ModCompatibility {
     @Override
     public Optional<Boolean> shouldDisableBackground(GuiScreen screen) {
 
-//        if(screen instanceof EdCraftingTable.CraftingTableGui)         return Optional.of(CraftingTableGui_background_disable.get());
-//        if(screen instanceof EdDropper.DropperGui)                     return Optional.of(DropperGui_background_disable.get());
-//        if(screen instanceof EdElectricalFurnace.ElectricalFurnaceGui) return Optional.of(ElectricalFurnaceGui_background_disable.get());
-//        if(screen instanceof EdFurnace.FurnaceGui)                     return Optional.of(FurnaceGui_background_disable.get());
-//        if(screen instanceof EdHopper.HopperGui)                       return Optional.of(HopperGui_background_disable.get());
-//        if(screen instanceof EdLabeledCrate.LabeledCrateGui)           return Optional.of(LabeledCrateGui_background_disable.get());
-//        if(screen instanceof EdPlacer.PlacerGui)                       return Optional.of(PlacerGui_background_disable.get());
-//        if(screen instanceof EdWasteIncinerator.WasteIncineratorGui)   return Optional.of(WasteIncineratorGui_background_disable.get());
+        // the BGuis are all private classes so it's easier to do this
+        if(screen.getClass().getName().equals("wile.engineersdecor.blocks.BlockDecorCraftingTable$BGui"))     return Optional.of(CraftingTableGui_background_disable.get());
+        if(screen.getClass().getName().equals("wile.engineersdecor.blocks.BlockDecorDropper$BGui"))           return Optional.of(DropperGui_background_disable.get());
+        if(screen.getClass().getName().equals("wile.engineersdecor.blocks.BlockDecorFurnaceElectrical$BGui")) return Optional.of(ElectricalFurnaceGui_background_disable.get());
+        if(screen.getClass().getName().equals("wile.engineersdecor.blocks.BlockDecorFurnace$BGui"))           return Optional.of(FurnaceGui_background_disable.get());
+        if(screen.getClass().getName().equals("wile.engineersdecor.blocks.BlockDecorHopper$BGui"))            return Optional.of(HopperGui_background_disable.get());
+        if(screen.getClass().getName().equals("wile.engineersdecor.blocks.BlockDecorLabeledCrate$BGui"))      return Optional.of(LabeledCrateGui_background_disable.get());
+        if(screen.getClass().getName().equals("wile.engineersdecor.blocks.BlockDecorPlacer$BGui"))            return Optional.of(PlacerGui_background_disable.get());
+        if(screen.getClass().getName().equals("wile.engineersdecor.blocks.BlockDecorWasteIncinerator$BGui"))  return Optional.of(WasteIncineratorGui_background_disable.get());
 
         return Optional.empty();
     }

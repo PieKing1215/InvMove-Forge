@@ -1,5 +1,6 @@
 package me.pieking1215.invmove.compat;
 
+import com.raoulvdberge.refinedstorage.gui.GuiAmount;
 import com.raoulvdberge.refinedstorage.gui.GuiConstructor;
 import com.raoulvdberge.refinedstorage.gui.GuiController;
 import com.raoulvdberge.refinedstorage.gui.GuiCrafter;
@@ -94,14 +95,14 @@ public class RefinedStorageCompatibility extends ModCompatibility {
                 new BoolOption("Grid", "GridScreen_movement", GridScreen_movement, true),
                 new BoolOption("Destructor", "DestructorScreen_movement", DestructorScreen_movement, true),
                 new BoolOption("Detector", "DetectorScreen_movement", DetectorScreen_movement, true),
-                new BoolOption("Disk Drive", "DiskDriveScreen_movement", DiskDriveScreen_movement, true),
+                //new BoolOption("Disk Drive", "DiskDriveScreen_movement", DiskDriveScreen_movement, true),
                 new BoolOption("Disk Manipulator", "DiskManipulatorScreen_movement", DiskManipulatorScreen_movement, true),
                 new BoolOption("Exporter", "ExporterScreen_movement", ExporterScreen_movement, true),
-                new BoolOption("External Storage", "ExternalStorageScreen_movement", ExternalStorageScreen_movement, true),
+                //new BoolOption("External Storage", "ExternalStorageScreen_movement", ExternalStorageScreen_movement, true),
                 new BoolOption("Filter", "FilterScreen_movement", FilterScreen_movement, true),
                 new BoolOption("Fluid Amount GUI", "FluidAmountScreen_movement", FluidAmountScreen_movement, true),
                 new BoolOption("Fluid Interface", "FluidInterfaceScreen_movement", FluidInterfaceScreen_movement, true),
-                new BoolOption("Fluid Storage Block", "FluidStorageBlockScreen_movement", FluidStorageBlockScreen_movement, true),
+                //new BoolOption("Fluid Storage Block", "FluidStorageBlockScreen_movement", FluidStorageBlockScreen_movement, true),
                 new BoolOption("Importer", "ImporterScreen_movement", ImporterScreen_movement, true),
                 new BoolOption("Interface", "InterfaceScreen_movement", InterfaceScreen_movement, true),
                 new BoolOption("Item Amount GUI", "ItemAmountScreen_movement", ItemAmountScreen_movement, true),
@@ -122,14 +123,14 @@ public class RefinedStorageCompatibility extends ModCompatibility {
                 new BoolOption("Grid", "GridScreen_background_disable", GridScreen_background_disable, true),
                 new BoolOption("Destructor", "DestructorScreen_background_disable", DestructorScreen_background_disable, true),
                 new BoolOption("Detector", "DetectorScreen_background_disable", DetectorScreen_background_disable, true),
-                new BoolOption("Disk Drive", "DiskDriveScreen_background_disable", DiskDriveScreen_background_disable, true),
+                //new BoolOption("Disk Drive", "DiskDriveScreen_background_disable", DiskDriveScreen_background_disable, true),
                 new BoolOption("Disk Manipulator", "DiskManipulatorScreen_background_disable", DiskManipulatorScreen_background_disable, true),
                 new BoolOption("Exporter", "ExporterScreen_background_disable", ExporterScreen_background_disable, true),
-                new BoolOption("External Storage", "ExternalStorageScreen_background_disable", ExternalStorageScreen_background_disable, true),
+                //new BoolOption("External Storage", "ExternalStorageScreen_background_disable", ExternalStorageScreen_background_disable, true),
                 new BoolOption("Filter", "FilterScreen_background_disable", FilterScreen_background_disable, true),
                 new BoolOption("Fluid Amount GUI", "FluidAmountScreen_background_disable", FluidAmountScreen_background_disable, true),
                 new BoolOption("Fluid Interface", "FluidInterfaceScreen_background_disable", FluidInterfaceScreen_background_disable, true),
-                new BoolOption("Fluid Storage Block", "FluidStorageBlockScreen_background_disable", FluidStorageBlockScreen_background_disable, true),
+                //new BoolOption("Fluid Storage Block", "FluidStorageBlockScreen_background_disable", FluidStorageBlockScreen_background_disable, true),
                 new BoolOption("Importer", "ImporterScreen_background_disable", ImporterScreen_background_disable, true),
                 new BoolOption("Interface", "InterfaceScreen_background_disable", InterfaceScreen_background_disable, true),
                 new BoolOption("Item Amount GUI", "ItemAmountScreen_background_disable", ItemAmountScreen_background_disable, true),
@@ -164,12 +165,12 @@ public class RefinedStorageCompatibility extends ModCompatibility {
         //if(screen instanceof FluidStorageBlockScreen)   return Optional.of(FluidStorageBlockScreen_movement.get());
         if(screen instanceof GuiImporter)            return Optional.of(ImporterScreen_movement.get());
         if(screen instanceof GuiInterface)           return Optional.of(InterfaceScreen_movement.get());
-        //if(screen instanceof ItemAmountScreen)          return Optional.of(ItemAmountScreen_movement.get());
+        if(screen instanceof GuiAmount)              return Optional.of(ItemAmountScreen_movement.get());
         if(screen instanceof GuiNetworkTransmitter)  return Optional.of(NetworkTransmitterScreen_movement.get());
         if(screen instanceof GuiPriority)            return Optional.of(PriorityScreen_movement.get());
         if(screen instanceof GuiRelay)               return Optional.of(RelayScreen_movement.get());
         if(screen instanceof GuiSecurityManager)     return Optional.of(SecurityManagerScreen_movement.get());
-        if(screen instanceof GuiStorage)        return Optional.of(StorageBlockScreen_movement.get());
+        if(screen instanceof GuiStorage)             return Optional.of(StorageBlockScreen_movement.get());
         if(screen instanceof GuiStorageMonitor)      return Optional.of(StorageMonitorScreen_movement.get());
         if(screen instanceof GuiWirelessTransmitter) return Optional.of(WirelessTransmitterScreen_movement.get());
 
@@ -197,12 +198,12 @@ public class RefinedStorageCompatibility extends ModCompatibility {
         //if(screen instanceof FluidStorageBlockScreen)   return Optional.of(FluidStorageBlockScreen_background_disable.get());
         if(screen instanceof GuiImporter)            return Optional.of(ImporterScreen_background_disable.get());
         if(screen instanceof GuiInterface)           return Optional.of(InterfaceScreen_background_disable.get());
-        //if(screen instanceof ItemAmountScreen)          return Optional.of(ItemAmountScreen_background_disable.get());
+        if(screen instanceof GuiAmount)              return Optional.of(ItemAmountScreen_background_disable.get());
         if(screen instanceof GuiNetworkTransmitter)  return Optional.of(NetworkTransmitterScreen_background_disable.get());
         if(screen instanceof GuiPriority)            return Optional.of(PriorityScreen_background_disable.get());
         if(screen instanceof GuiRelay)               return Optional.of(RelayScreen_background_disable.get());
         if(screen instanceof GuiSecurityManager)     return Optional.of(SecurityManagerScreen_background_disable.get());
-        if(screen instanceof GuiStorage)        return Optional.of(StorageBlockScreen_background_disable.get());
+        if(screen instanceof GuiStorage)             return Optional.of(StorageBlockScreen_background_disable.get());
         if(screen instanceof GuiStorageMonitor)      return Optional.of(StorageMonitorScreen_background_disable.get());
         if(screen instanceof GuiWirelessTransmitter) return Optional.of(WirelessTransmitterScreen_background_disable.get());
 

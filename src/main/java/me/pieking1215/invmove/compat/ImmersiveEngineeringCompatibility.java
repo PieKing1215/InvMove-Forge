@@ -4,6 +4,7 @@ import blusunrize.immersiveengineering.client.gui.GuiAlloySmelter;
 import blusunrize.immersiveengineering.client.gui.GuiArcFurnace;
 import blusunrize.immersiveengineering.client.gui.GuiAssembler;
 import blusunrize.immersiveengineering.client.gui.GuiAutoWorkbench;
+import blusunrize.immersiveengineering.client.gui.GuiBelljar;
 import blusunrize.immersiveengineering.client.gui.GuiBlastFurnace;
 import blusunrize.immersiveengineering.client.gui.GuiCokeOven;
 import blusunrize.immersiveengineering.client.gui.GuiCrate;
@@ -81,15 +82,15 @@ public class ImmersiveEngineeringCompatibility extends ModCompatibility {
     
     public ImmersiveEngineeringCompatibility(){
         movementOptions = Arrays.asList(
-                new BoolOption("Crafting Table", "CraftingTableScreen_movement", CraftingTableScreen_movement, true),
+                //new BoolOption("Crafting Table", "CraftingTableScreen_movement", CraftingTableScreen_movement, true),
                 new BoolOption("Alloy Smelter", "AlloySmelterScreen_movement", AlloySmelterScreen_movement, true),
                 new BoolOption("Arc Furnace", "ArcFurnaceScreen_movement", ArcFurnaceScreen_movement, true),
                 new BoolOption("Assembler", "AssemblerScreen_movement", AssemblerScreen_movement, true),
                 new BoolOption("Auto Workbench", "AutoWorkbenchScreen_movement", AutoWorkbenchScreen_movement, true),
                 new BoolOption("Blast Furnace", "BlastFurnaceScreen_movement", BlastFurnaceScreen_movement, true),
-                new BoolOption("Gun Turret", "GunTurretScreen_movement", GunTurretScreen_movement, true),
-                new BoolOption("Chem Turret", "ChemTurretScreen_movement", ChemTurretScreen_movement, true),
-                new BoolOption("Cloche", "ClocheScreen_movement", ClocheScreen_movement, true),
+                new BoolOption("Turret", "GunTurretScreen_movement", GunTurretScreen_movement, true),
+                //new BoolOption("Chem Turret", "ChemTurretScreen_movement", ChemTurretScreen_movement, true),
+                new BoolOption("Garden Cloche", "ClocheScreen_movement", ClocheScreen_movement, true),
                 new BoolOption("Coke Oven", "CokeOvenScreen_movement", CokeOvenScreen_movement, true),
                 new BoolOption("Crate", "CrateScreen_movement", CrateScreen_movement, true),
                 new BoolOption("Fermenter", "FermenterScreen_movement", FermenterScreen_movement, true),
@@ -98,8 +99,8 @@ public class ImmersiveEngineeringCompatibility extends ModCompatibility {
                 new BoolOption("Maintenance Kit", "MaintenanceKitScreen_movement", MaintenanceKitScreen_movement, true),
                 new BoolOption("Mixer", "MixerScreen_movement", MixerScreen_movement, true),
                 new BoolOption("Mod Workbench", "ModWorkbenchScreen_movement", ModWorkbenchScreen_movement, true),
-                new BoolOption("Redstone Connector", "RedstoneConnectorScreen_movement", RedstoneConnectorScreen_movement, true),
-                new BoolOption("Redstone Probe", "RedstoneProbeScreen_movement", RedstoneProbeScreen_movement, true),
+                //new BoolOption("Redstone Connector", "RedstoneConnectorScreen_movement", RedstoneConnectorScreen_movement, true),
+                //new BoolOption("Redstone Probe", "RedstoneProbeScreen_movement", RedstoneProbeScreen_movement, true),
                 new BoolOption("Refinery", "RefineryScreen_movement", RefineryScreen_movement, true),
                 new BoolOption("Revolver", "RevolverScreen_movement", RevolverScreen_movement, true),
                 new BoolOption("Sorter", "SorterScreen_movement", SorterScreen_movement, true),
@@ -108,15 +109,15 @@ public class ImmersiveEngineeringCompatibility extends ModCompatibility {
                 new BoolOption("Toolbox", "ToolboxScreen_movement", ToolboxScreen_movement, true)
         );
         backgroundOptions = Arrays.asList(
-                new BoolOption("Crafting Table", "CraftingTableScreen_background_disable", CraftingTableScreen_background_disable, true),
+                //new BoolOption("Crafting Table", "CraftingTableScreen_background_disable", CraftingTableScreen_background_disable, true),
                 new BoolOption("Alloy Smelter", "AlloySmelterScreen_background_disable", AlloySmelterScreen_background_disable, true),
                 new BoolOption("Arc Furnace", "ArcFurnaceScreen_background_disable", ArcFurnaceScreen_background_disable, true),
                 new BoolOption("Assembler", "AssemblerScreen_background_disable", AssemblerScreen_background_disable, true),
                 new BoolOption("Auto Workbench", "AutoWorkbenchScreen_background_disable", AutoWorkbenchScreen_background_disable, true),
                 new BoolOption("Blast Furnace", "BlastFurnaceScreen_background_disable", BlastFurnaceScreen_background_disable, true),
-                new BoolOption("Gun Turret", "GunTurretScreen_background_disable", GunTurretScreen_background_disable, true),
-                new BoolOption("Chem Turret", "ChemTurretScreen_background_disable", ChemTurretScreen_background_disable, true),
-                new BoolOption("Cloche", "ClocheScreen_background_disable", ClocheScreen_background_disable, true),
+                new BoolOption("Turret", "GunTurretScreen_background_disable", GunTurretScreen_background_disable, true),
+                //new BoolOption("Chem Turret", "ChemTurretScreen_background_disable", ChemTurretScreen_background_disable, true),
+                new BoolOption("Garden Cloche", "ClocheScreen_background_disable", ClocheScreen_background_disable, true),
                 new BoolOption("Coke Oven", "CokeOvenScreen_background_disable", CokeOvenScreen_background_disable, true),
                 new BoolOption("Crate", "CrateScreen_background_disable", CrateScreen_background_disable, true),
                 new BoolOption("Fermenter", "FermenterScreen_background_disable", FermenterScreen_background_disable, true),
@@ -125,8 +126,8 @@ public class ImmersiveEngineeringCompatibility extends ModCompatibility {
                 new BoolOption("Maintenance Kit", "MaintenanceKitScreen_background_disable", MaintenanceKitScreen_background_disable, true),
                 new BoolOption("Mixer", "MixerScreen_background_disable", MixerScreen_background_disable, true),
                 new BoolOption("Mod Workbench", "ModWorkbenchScreen_background_disable", ModWorkbenchScreen_background_disable, true),
-                new BoolOption("Redstone Connector", "RedstoneConnectorScreen_background_disable", RedstoneConnectorScreen_background_disable, true),
-                new BoolOption("Redstone Probe", "RedstoneProbeScreen_background_disable", RedstoneProbeScreen_background_disable, true),
+                //new BoolOption("Redstone Connector", "RedstoneConnectorScreen_background_disable", RedstoneConnectorScreen_background_disable, true),
+                //new BoolOption("Redstone Probe", "RedstoneProbeScreen_background_disable", RedstoneProbeScreen_background_disable, true),
                 new BoolOption("Refinery", "RefineryScreen_background_disable", RefineryScreen_background_disable, true),
                 new BoolOption("Revolver", "RevolverScreen_background_disable", RevolverScreen_background_disable, true),
                 new BoolOption("Sorter", "SorterScreen_background_disable", SorterScreen_background_disable, true),
@@ -145,7 +146,7 @@ public class ImmersiveEngineeringCompatibility extends ModCompatibility {
         if(screen instanceof GuiAutoWorkbench) return Optional.of(AutoWorkbenchScreen_movement.get());
         if(screen instanceof GuiBlastFurnace) return Optional.of(BlastFurnaceScreen_movement.get());
         //if(screen instanceof ChemTurretScreen) return Optional.of(ChemTurretScreen_movement.get());
-        //if(screen instanceof ClocheScreen) return Optional.of(ClocheScreen_movement.get());
+        if(screen instanceof GuiBelljar) return Optional.of(ClocheScreen_movement.get());
         if(screen instanceof GuiCokeOven) return Optional.of(CokeOvenScreen_movement.get());
         //if(screen instanceof CraftingTableScreen) return Optional.of(CraftingTableScreen_movement.get());
         if(screen instanceof GuiCrate) return Optional.of(CrateScreen_movement.get());
@@ -177,7 +178,7 @@ public class ImmersiveEngineeringCompatibility extends ModCompatibility {
         if(screen instanceof GuiAutoWorkbench) return Optional.of(AutoWorkbenchScreen_background_disable.get());
         if(screen instanceof GuiBlastFurnace) return Optional.of(BlastFurnaceScreen_background_disable.get());
         //if(screen instanceof ChemTurretScreen) return Optional.of(ChemTurretScreen_background_disable.get());
-        //if(screen instanceof ClocheScreen) return Optional.of(ClocheScreen_background_disable.get());
+        if(screen instanceof GuiBelljar) return Optional.of(ClocheScreen_background_disable.get());
         if(screen instanceof GuiCokeOven) return Optional.of(CokeOvenScreen_background_disable.get());
         //if(screen instanceof CraftingTableScreen) return Optional.of(CraftingTableScreen_background_disable.get());
         if(screen instanceof GuiCrate) return Optional.of(CrateScreen_background_disable.get());
