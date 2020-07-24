@@ -132,7 +132,7 @@ public class InvMove {
         }
     }
 
-    private boolean allowMovementInScreen(Screen screen) {
+    public static boolean allowMovementInScreen(Screen screen) {
         if(screen == null) return false;
 
         if(!Config.getBoolSafe(Config.GENERAL.enabled, true)) return false;
@@ -256,7 +256,7 @@ public class InvMove {
         return true;
     }
 
-    public Field[] getDeclaredFieldsSuper(Class aClass) {
+    public static Field[] getDeclaredFieldsSuper(Class aClass) {
         List<Field> fs = new ArrayList<>();
 
         do{
@@ -269,7 +269,7 @@ public class InvMove {
     /**
      * Clone of MovementInputFromOptions.tick but uses raw keybind data
      */
-    public void manualTickMovement(MovementInput input, boolean slow, boolean noDampening) {
+    public static void manualTickMovement(MovementInput input, boolean slow, boolean noDampening) {
         input.forwardKeyDown = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindForward);
         input.backKeyDown = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindBack);
         input.leftKeyDown = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindLeft);
@@ -287,7 +287,7 @@ public class InvMove {
     /**
      * Returns KeyBinding.pressed, which is normally a private field
      */
-    public boolean rawIsKeyDown(KeyBinding key){
+    public static boolean rawIsKeyDown(KeyBinding key){
         try{
             return ObfuscationReflectionHelper.getPrivateValue(KeyBinding.class, key, "field_74513_e"); // pressed
         }catch(Exception e){
@@ -344,7 +344,7 @@ public class InvMove {
         }
     }
 
-    private boolean shouldDisableScreenBackground(Screen screen) {
+    public static boolean shouldDisableScreenBackground(Screen screen) {
 
         if(!Config.getBoolSafe(Config.GENERAL.enabled, true)) return false;
 
