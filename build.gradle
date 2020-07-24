@@ -185,6 +185,11 @@ dependencies {
     //runtimeOnly fg.deobf("curse.maven:waystones:2859589")
     compileOnly fg.deobf("curse.maven:waystones:2859589")
 
+    // FreeCamera
+    // www.curseforge.com/minecraft/mc-mods/freecamera
+    //runtimeOnly fg.deobf("curse.maven:freecamera:2602256")
+    //compileOnly fg.deobf("curse.maven:freecamera:2602256")
+    
     // utility / testing
 
 }

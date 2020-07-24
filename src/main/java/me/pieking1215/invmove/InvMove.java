@@ -1,7 +1,5 @@
 package me.pieking1215.invmove;
 
-//import me.pieking1215.invmove.compat.Compatibility;
-
 import me.pieking1215.invmove.compat.Compatibility;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
@@ -58,30 +56,24 @@ import net.minecraft.util.MovementInput;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.InputUpdateEvent;
-import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.ConfigManager;
-import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.GuiModList;
 import net.minecraftforge.fml.client.config.DummyConfigElement;
 import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.fml.client.config.IConfigElement;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.libraries.ModList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -209,7 +201,7 @@ public class InvMove {
         }
     }
 
-    private boolean allowMovementInScreen(GuiScreen screen) {
+    public static boolean allowMovementInScreen(GuiScreen screen) {
         if(screen == null) return false;
 
         if(!Config.GENERAL.enabled) return false;
@@ -316,7 +308,7 @@ public class InvMove {
         return true;
     }
 
-    public Field[] getDeclaredFieldsSuper(Class aClass) {
+    public static Field[] getDeclaredFieldsSuper(Class aClass) {
         List<Field> fs = new ArrayList<>();
 
         do{
