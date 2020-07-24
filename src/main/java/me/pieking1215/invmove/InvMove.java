@@ -321,7 +321,7 @@ public class InvMove {
     /**
      * Clone of MovementInputFromOptions.tick but uses raw keybind data
      */
-    public void manualTickMovement(MovementInput input, boolean slow, boolean noDampening) {
+    public static void manualTickMovement(MovementInput input, boolean slow, boolean noDampening) {
         input.forwardKeyDown = rawIsKeyDown(Minecraft.getMinecraft().gameSettings.keyBindForward);
         input.backKeyDown = rawIsKeyDown(Minecraft.getMinecraft().gameSettings.keyBindBack);
         input.leftKeyDown = rawIsKeyDown(Minecraft.getMinecraft().gameSettings.keyBindLeft);
@@ -339,7 +339,7 @@ public class InvMove {
     /**
      * Returns KeyBinding.pressed, which is normally a private field
      */
-    public boolean rawIsKeyDown(KeyBinding key){
+    public static boolean rawIsKeyDown(KeyBinding key){
         try{
             return ObfuscationReflectionHelper.getPrivateValue(KeyBinding.class, key, "field_74513_e"); // pressed
         }catch(Exception e){
@@ -396,7 +396,7 @@ public class InvMove {
         }
     }
 
-    private boolean shouldDisableScreenBackground(GuiScreen screen) {
+    public static boolean shouldDisableScreenBackground(GuiScreen screen) {
 
         if(!Config.GENERAL.enabled) return false;
 
