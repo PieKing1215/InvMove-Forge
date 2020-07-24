@@ -71,6 +71,7 @@ InvMove explicitly supports the following mods (as of version 0.4.4):
 - [EmbellishCraft](https://www.curseforge.com/minecraft/mc-mods/embellishcraft) (1.14+)
 - [Ender Storage 1.8.+](https://www.curseforge.com/minecraft/mc-mods/ender-storage-1-8)
 - [Engineer's Decor](https://www.curseforge.com/minecraft/mc-mods/engineers-decor)
+- [FreeCamera](https://www.curseforge.com/minecraft/mc-mods/freecamera) (1.12)
 - [Immersive Engineering](https://www.curseforge.com/minecraft/mc-mods/immersive-engineering)
 - [Industrial Foregoing](https://www.curseforge.com/minecraft/mc-mods/industrial-foregoing)
 - [Iron Chests](https://www.curseforge.com/minecraft/mc-mods/iron-chests)
