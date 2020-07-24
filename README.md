@@ -46,7 +46,7 @@ In the config menu, you can find several options:<br>
   <summary>Click to expand.</summary>
   
 ![](demo/mod_demo.gif)
-### As of version 0.4.0, InvMove has actual mod support.<br>
+### As of version 0.4.0+, InvMove has actual mod support.<br>
 
 InvMove has specific support for certain mods, but any GUIs from unrecognized mods are added into the config dynamically and can be manually enabled.<br>
 Unrecognized GUIs will only appear in the config once they have been opened/seen in-game.
@@ -97,12 +97,11 @@ This mod may not be reposted to any other third-party websites.<br>
 Tested on 
 Forge 31.2.31 for MC 1.15.2,
 Forge 28.2.23 for MC 1.14.4, 
-
+Forge 14.23.5.2854 for MC 1.12.2,
 on both singleplayer and multiplayer.
 
 The mod is licensed under the [GNU General Public License v3.0](LICENSE.md)
 
 ## Upcoming
 More mod compatibilities, bug fixes, and code cleanup will come as v0.4.X.<br>
-Once it's stable and has a good amount of compatibilities, it'll become v1.0.0.<br>
-Backport for 1.12 is being worked on.
+Once it's stable and has a good amount of compatibilities, it'll become v1.0.0.
