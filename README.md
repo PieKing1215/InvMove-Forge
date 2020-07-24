@@ -96,10 +96,10 @@ Do not download this mod from anywhere other than the InvMove GitHub page or the
 This mod may not be reposted to any other third-party websites.<br>
 [#StopModReposts](https://stopmodreposts.org)
 
-Tested on 
-Forge 31.2.31 for MC 1.15.2,
-Forge 28.2.23 for MC 1.14.4, 
-Forge 14.23.5.2854 for MC 1.12.2,
+Tested on<br>
+Forge 31.2.31 for MC 1.15.2,<br>
+Forge 28.2.23 for MC 1.14.4,<br>
+Forge 14.23.5.2854 for MC 1.12.2,<br>
 on both singleplayer and multiplayer.
 
 The mod is licensed under the [GNU General Public License v3.0](LICENSE.md)
