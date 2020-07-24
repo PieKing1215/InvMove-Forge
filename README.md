@@ -16,7 +16,7 @@ Made after [I couldn't find an existing mod for this](https://redd.it/egwe8w).
 
 ### [Releases](https://github.com/PieKing1215/InvMove/releases)
 
-Requires [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config-forge) so the config screen works.
+Requires [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config-forge) (1.14+ only) so the config screen works.
 
 ## Config (In-game)
 <details>
@@ -25,7 +25,8 @@ Requires [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-confi
 ![](demo/where_config.png)
 <img src="demo/config_screen.png" alt="alt text" width="657" height="528">
 ### InvMove has an in-game config menu which can be accessed from the Forge mod list.<br>
-(also highly recommend [GameMenuModOption](https://www.curseforge.com/minecraft/mc-mods/gamemenumodoption) which adds the mod list button to the pause screen)<br>
+(for 1.14+ also highly recommend [GameMenuModOption](https://www.curseforge.com/minecraft/mc-mods/gamemenumodoption) which adds the mod list button to the pause screen)<br>
+(note the config for 1.12 looks different but has generally the same layout)<br>
 In the config menu, you can find several options:<br>
 #### General:
 - Enable: Enable the entire mod
