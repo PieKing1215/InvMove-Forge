@@ -46,7 +46,8 @@ In the config menu, you can find several options:<br>
 <details>
   <summary>Click to expand.</summary>
   
-![](demo/mod_demo.gif)
+![](demo/mod_demo.gif)<br>
+*(Note: Corail Woodcutter is no longer supported)*<br>
 ### As of version 0.4.0+, InvMove has actual mod support.<br>
 
 InvMove has specific support for certain mods, but any GUIs from unrecognized mods are added into the config dynamically and can be manually enabled.<br>
