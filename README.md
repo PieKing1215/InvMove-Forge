@@ -16,7 +16,7 @@ Made after [I couldn't find an existing mod for this](https://redd.it/egwe8w).
 
 ### [Releases](https://github.com/PieKing1215/InvMove/releases)
 
-Requires [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config-forge) so the config screen works.
+Requires [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config-forge) (1.14+ only) so the config screen works.
 
 ## Config (In-game)
 <details>
@@ -25,7 +25,8 @@ Requires [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-confi
 ![](demo/where_config.png)
 <img src="demo/config_screen.png" alt="alt text" width="657" height="528">
 ### InvMove has an in-game config menu which can be accessed from the Forge mod list.<br>
-(also highly recommend [GameMenuModOption](https://www.curseforge.com/minecraft/mc-mods/gamemenumodoption) which adds the mod list button to the pause screen)<br>
+(for 1.14+ also highly recommend [GameMenuModOption](https://www.curseforge.com/minecraft/mc-mods/gamemenumodoption) which adds the mod list button to the pause screen)<br>
+(note the config for 1.12 looks different but has generally the same layout)<br>
 In the config menu, you can find several options:<br>
 #### General:
 - Enable: Enable the entire mod
@@ -45,7 +46,8 @@ In the config menu, you can find several options:<br>
 <details>
   <summary>Click to expand.</summary>
   
-![](demo/mod_demo.gif)
+![](demo/mod_demo.gif)<br>
+*(Note: Corail Woodcutter is no longer supported)*<br>
 ### As of version 0.4.0+, InvMove has actual mod support.<br>
 
 InvMove has specific support for certain mods, but any GUIs from unrecognized mods are added into the config dynamically and can be manually enabled.<br>
@@ -94,10 +96,10 @@ Do not download this mod from anywhere other than the InvMove GitHub page or the
 This mod may not be reposted to any other third-party websites.<br>
 [#StopModReposts](https://stopmodreposts.org)
 
-Tested on 
-Forge 31.2.31 for MC 1.15.2,
-Forge 28.2.23 for MC 1.14.4, 
-Forge 14.23.5.2854 for MC 1.12.2,
+Tested on<br>
+Forge 31.2.31 for MC 1.15.2,<br>
+Forge 28.2.23 for MC 1.14.4,<br>
+Forge 14.23.5.2854 for MC 1.12.2,<br>
 on both singleplayer and multiplayer.
 
 The mod is licensed under the [GNU General Public License v3.0](LICENSE.md)

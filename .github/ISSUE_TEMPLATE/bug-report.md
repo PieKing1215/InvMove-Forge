@@ -29,9 +29,10 @@ Please DO NOT copy/paste the entire log here.
 Crashlogs can be found at .minecraft/crash-reports/
 
 **Version and Mod List**
-List the version of InvMove and the version of Forge the issue happens on:
+List the version of InvMove, the version of Forge, and the version of Minecraft the issue happens on:
 InvMove: 
 Forge: 
+Minecraft: 
 
 List any other mods being used (other than Cloth Config):
 
