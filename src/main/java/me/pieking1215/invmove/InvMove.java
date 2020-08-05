@@ -80,7 +80,7 @@ import java.util.Optional;
 
 @Mod(modid = "invmove",
         name = "InvMove",
-        version = "0.4.4",
+        version = "0.4.6",
         acceptedMinecraftVersions = "[1.12.2]",
         dependencies = "required-after:forge@[14.23.5.2816,);",
         useMetadata = true,
@@ -247,6 +247,7 @@ public class InvMove {
         if(screen instanceof GuiScreenBook) return false;
         if(screen instanceof GuiEditCommandBlockMinecart) return false;
         if(screen instanceof GuiEditSign) return false;
+        //if(screen.getTitle().equals(new TranslationTextComponent("sign.edit", new Object[0]))) return false;
         if(screen instanceof GuiEditStructure) return false;
         if(screen instanceof GuiWorldEdit) return false;
         //if(screen instanceof JigsawScreen) return false;
@@ -445,6 +446,7 @@ public class InvMove {
         if(screen instanceof GuiCommandBlock) return false;
         if(screen instanceof GuiEditCommandBlockMinecart) return false;
         if(screen instanceof GuiEditSign) return false;
+        //if(screen.getTitle().equals(new TranslationTextComponent("sign.edit", new Object[0]))) return false;
         if(screen instanceof GuiEditStructure) return false;
         if(screen instanceof GuiWorldEdit) return false;
         //if(screen instanceof JigsawScreen) return false;
