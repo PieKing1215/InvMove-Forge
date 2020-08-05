@@ -85,7 +85,7 @@ dependencies {
 
     // Just Enough Items (JEI)
     // www.curseforge.com/minecraft/mc-mods/jei
-    //runtimeOnly fg.deobf("curse.maven:jei:2988823")
+    runtimeOnly fg.deobf("curse.maven:jei:2988823")
     compileOnly fg.deobf("curse.maven:jei:2988823")
 
     // Immersive Engineering
@@ -228,6 +228,16 @@ dependencies {
     // www.curseforge.com/minecraft/mc-mods/commands4configs/files/3002158
     // for testing https://github.com/PieKing1215/InvMove/issues/2
     //runtimeOnly fg.deobf("curse.maven:commands4configs:3002158")
+
+    // Abnormals Core
+    // www.curseforge.com/minecraft/mc-mods/abnormals-core
+    // for Buzzier Bees
+    //runtimeOnly fg.deobf("curse.maven:abnormals-core:2980113")
+
+    // Buzzier Bees
+    // www.curseforge.com/minecraft/mc-mods/buzzier-bees
+    // for testing modded signs that don't extend EditSignScreen
+    //runtimeOnly fg.deobf("curse.maven:buzzier-bees:2988910")
 
 }
 
