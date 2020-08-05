@@ -3,7 +3,7 @@ loaderVersion="[31,)"
 issueTrackerURL="https://github.com/PieKing1215/InvMove/issues"
 [[mods]]
 modId="invmove"
-version="0.4.5"
+version="0.4.6"
 displayName="InvMove"
 displayURL="https://github.com/PieKing1215/InvMove"
 logoFile="logo.png"
