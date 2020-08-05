@@ -77,6 +77,7 @@ import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.realms.RealmsScreenProxy;
 import net.minecraft.util.MovementInput;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.InputUpdateEvent;
@@ -186,6 +187,8 @@ public class InvMove {
         if(screen instanceof EditBookScreen) return false;
         if(screen instanceof EditMinecartCommandBlockScreen) return false;
         if(screen instanceof EditSignScreen) return false;
+        if(screen.getTitle().equals(new TranslationTextComponent("sign.edit", new Object[0]))) return false;
+
         if(screen instanceof EditStructureScreen) return false;
         if(screen instanceof EditWorldScreen) return false;
         if(screen instanceof JigsawScreen) return false;
@@ -400,6 +403,7 @@ public class InvMove {
         if(screen instanceof CommandBlockScreen) return false;
         if(screen instanceof EditMinecartCommandBlockScreen) return false;
         if(screen instanceof EditSignScreen) return false;
+        if(screen.getTitle().equals(new TranslationTextComponent("sign.edit", new Object[0]))) return false;
         if(screen instanceof EditStructureScreen) return false;
         if(screen instanceof EditWorldScreen) return false;
         if(screen instanceof JigsawScreen) return false;
