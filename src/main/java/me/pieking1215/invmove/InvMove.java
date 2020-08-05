@@ -247,7 +247,12 @@ public class InvMove {
         if(screen instanceof GuiScreenBook) return false;
         if(screen instanceof GuiEditCommandBlockMinecart) return false;
         if(screen instanceof GuiEditSign) return false;
-        //if(screen.getTitle().equals(new TranslationTextComponent("sign.edit", new Object[0]))) return false;
+
+        // hackier way of doing a similar thing
+        // not as good as the 1.14+ way but should be good enough
+        if(screen.getClass().getSimpleName().contains("EditSign") || screen.getClass().getSimpleName().contains("SignEdit")) return false;
+        //if(screen.getTitle().equals(new TranslationTextComponent("sign.edit", new Object[0]))) return false; // 1.14+ way
+
         if(screen instanceof GuiEditStructure) return false;
         if(screen instanceof GuiWorldEdit) return false;
         //if(screen instanceof JigsawScreen) return false;
@@ -446,7 +451,12 @@ public class InvMove {
         if(screen instanceof GuiCommandBlock) return false;
         if(screen instanceof GuiEditCommandBlockMinecart) return false;
         if(screen instanceof GuiEditSign) return false;
-        //if(screen.getTitle().equals(new TranslationTextComponent("sign.edit", new Object[0]))) return false;
+
+        // hackier way of doing a similar thing
+        // not as good as the 1.14+ way but should be good enough
+        if(screen.getClass().getSimpleName().contains("EditSign") || screen.getClass().getSimpleName().contains("SignEdit")) return false;
+        //if(screen.getTitle().equals(new TranslationTextComponent("sign.edit", new Object[0]))) return false; // 1.14+ way
+
         if(screen instanceof GuiEditStructure) return false;
         if(screen instanceof GuiWorldEdit) return false;
         //if(screen instanceof JigsawScreen) return false;
