@@ -1,5 +1,6 @@
 modLoader="javafml"
-loaderVersion="[31,)"
+loaderVersion="[33,)"
+license="GPL v3.0"
 issueTrackerURL="https://github.com/PieKing1215/InvMove/issues"
 [[mods]]
 modId="invmove"
@@ -15,18 +16,18 @@ Lets you move while in inventories.'''
 [[dependencies.invmove]]
     modId="forge"
     mandatory=true
-    versionRange="[31,)"
+    versionRange="[33,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.invmove]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.15.2]"
+    versionRange="[1.16.2]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.invmove]]
-    modId="cloth-config2"
+    modId="cloth-config"
     mandatory=true
-    versionRange="[3.0,)"
+    versionRange="[4.0,)"
     ordering="NONE"
     side="CLIENT"

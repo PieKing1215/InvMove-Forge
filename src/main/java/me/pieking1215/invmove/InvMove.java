@@ -1,5 +1,6 @@
 package me.pieking1215.invmove;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.pieking1215.invmove.compat.Compatibility;
 import net.minecraft.client.Minecraft;
@@ -43,7 +44,6 @@ import net.minecraft.client.gui.screen.MultiplayerWarningScreen;
 import net.minecraft.client.gui.screen.OptimizeWorldScreen;
 import net.minecraft.client.gui.screen.OptionsScreen;
 import net.minecraft.client.gui.screen.ReadBookScreen;
-import net.minecraft.client.gui.screen.ResourcePacksScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ServerListScreen;
 import net.minecraft.client.gui.screen.SettingsScreen;
@@ -311,7 +311,7 @@ public class InvMove {
             while (cl.getSuperclass() != null) {
                 double scale = 1;
                 RenderSystem.scaled(scale, scale, 1);
-                Minecraft.getInstance().fontRenderer.drawStringWithShadow(cl.getName(), 4, 4 + 10 * i, 0xffffffff);
+                Minecraft.getInstance().fontRenderer.drawStringWithShadow(new MatrixStack(), cl.getName(), 4, 4 + 10 * i, 0xffffffff);
                 RenderSystem.scaled(1 / scale, 1 / scale, 1);
 
                 i++;

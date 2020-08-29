@@ -3,14 +3,16 @@ package me.pieking1215.invmove.compat;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonWriter;
 import me.pieking1215.invmove.Config;
-import me.shedaniel.forge.clothconfig2.api.ConfigEntryBuilder;
-import me.shedaniel.forge.clothconfig2.impl.builders.BooleanToggleBuilder;
-import me.shedaniel.forge.clothconfig2.impl.builders.SubCategoryBuilder;
+import me.shedaniel.clothconfig2.forge.api.ConfigEntryBuilder;
+import me.shedaniel.clothconfig2.forge.impl.builders.BooleanToggleBuilder;
+import me.shedaniel.clothconfig2.forge.impl.builders.SubCategoryBuilder;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.Tuple;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -48,8 +50,9 @@ public abstract class ModCompatibility {
     public boolean setupClothMovement(SubCategoryBuilder compatCat, ConfigEntryBuilder eb) {
         if(movementOptions.isEmpty()) return false;
         for(BoolOption opt : movementOptions){
-            BooleanToggleBuilder tb = eb.startBooleanToggle(opt.displayName, opt.bool.get()).setDefaultValue(opt.defaultState).setSaveConsumer(b -> opt.bool.set(b)).setYesNoTextSupplier(Config.movement_yesNoText);
-            if(opt.tooltip != null) tb.setTooltip(opt.tooltip.split("\n"));
+            BooleanToggleBuilder tb = eb.startBooleanToggle(new StringTextComponent(opt.displayName), opt.bool.get()).setDefaultValue(opt.defaultState).setSaveConsumer(b -> opt.bool.set(b)).setYesNoTextSupplier(Config.movement_yesNoText);
+            if(opt.tooltip != null) tb.setTooltip(Arrays.stream(opt.tooltip.split("\n")).map(StringTextComponent::new).toArray(StringTextComponent[]::new));
+
             compatCat.add(tb.build());
         }
         return true;
@@ -58,8 +61,8 @@ public abstract class ModCompatibility {
     public boolean setupClothBackground(SubCategoryBuilder compatCat, ConfigEntryBuilder eb) {
         if(backgroundOptions.isEmpty()) return false;
         for(BoolOption opt : backgroundOptions){
-            BooleanToggleBuilder tb = eb.startBooleanToggle(opt.displayName, opt.bool.get()).setDefaultValue(opt.defaultState).setSaveConsumer(b -> opt.bool.set(b)).setYesNoTextSupplier(Config.background_yesNoText);
-            if(opt.tooltip != null) tb.setTooltip(opt.tooltip.split("\n"));
+            BooleanToggleBuilder tb = eb.startBooleanToggle(new StringTextComponent(opt.displayName), opt.bool.get()).setDefaultValue(opt.defaultState).setSaveConsumer(b -> opt.bool.set(b)).setYesNoTextSupplier(Config.background_yesNoText);
+            if(opt.tooltip != null) tb.setTooltip(Arrays.stream(opt.tooltip.split("\n")).map(StringTextComponent::new).toArray(StringTextComponent[]::new));
             compatCat.add(tb.build());
         }
         return true;

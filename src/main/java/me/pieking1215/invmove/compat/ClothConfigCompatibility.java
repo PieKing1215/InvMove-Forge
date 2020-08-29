@@ -1,6 +1,6 @@
 package me.pieking1215.invmove.compat;
 
-import me.shedaniel.forge.clothconfig2.gui.ClothConfigScreen;
+import me.shedaniel.clothconfig2.forge.gui.ClothConfigScreen;
 import net.minecraft.client.gui.screen.Screen;
 
 import java.util.Optional;

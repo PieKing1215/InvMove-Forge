@@ -23,27 +23,27 @@ public class Compatibility {
         compatMods.put("jei"                 , "me.pieking1215.invmove.compat.JEICompatibility");
         compatMods.put("quark"               , "me.pieking1215.invmove.compat.QuarkCompatibility");
 
-        compatMods.put("cloth-config2"       , "me.pieking1215.invmove.compat.ClothConfigCompatibility");
-        compatMods.put("immersiveengineering", "me.pieking1215.invmove.compat.ImmersiveEngineeringCompatibility");
+        compatMods.put("cloth-config"        , "me.pieking1215.invmove.compat.ClothConfigCompatibility");
+        //compatMods.put("immersiveengineering", "me.pieking1215.invmove.compat.ImmersiveEngineeringCompatibility");
         compatMods.put("engineersdecor"      , "me.pieking1215.invmove.compat.EngineersDecorCompatibility");
         compatMods.put("computercraft"       , "me.pieking1215.invmove.compat.CCTweakedCompatibility");
-        compatMods.put("xercamusic"          , "me.pieking1215.invmove.compat.MusicMakerModCompatibility");
-        compatMods.put("embellishcraft"      , "me.pieking1215.invmove.compat.EmbellishCraftCompatibility");
+        //compatMods.put("xercamusic"          , "me.pieking1215.invmove.compat.MusicMakerModCompatibility");
+        //compatMods.put("embellishcraft"      , "me.pieking1215.invmove.compat.EmbellishCraftCompatibility");
         compatMods.put("refinedstorage"      , "me.pieking1215.invmove.compat.RefinedStorageCompatibility");
-        compatMods.put("cfm"                 , "me.pieking1215.invmove.compat.CrayfishFurnitureCompatibility");
-        compatMods.put("charm"               , "me.pieking1215.invmove.compat.CharmCompatibility");
-        compatMods.put("create"              , "me.pieking1215.invmove.compat.CreateCompatibility");
+        //compatMods.put("cfm"                 , "me.pieking1215.invmove.compat.CrayfishFurnitureCompatibility");
+        //compatMods.put("charm"               , "me.pieking1215.invmove.compat.CharmCompatibility");
+        //compatMods.put("create"              , "me.pieking1215.invmove.compat.CreateCompatibility");
         compatMods.put("curios"              , "me.pieking1215.invmove.compat.CuriosCompatibility");
         compatMods.put("ironchest"           , "me.pieking1215.invmove.compat.IronChestsCompatibility");
         compatMods.put("cookingforblockheads", "me.pieking1215.invmove.compat.CookingForBlockheadsCompatibility");
-        compatMods.put("patchouli"           , "me.pieking1215.invmove.compat.PatchouliCompatibility");
-        compatMods.put("botania"             , "me.pieking1215.invmove.compat.BotaniaCompatibility");
-        compatMods.put("enderstorage"        , "me.pieking1215.invmove.compat.EnderStorageCompatibility");
-        compatMods.put("mekanism"            , "me.pieking1215.invmove.compat.MekanismCompatibility");
-        compatMods.put("mekanismgenerators"  , "me.pieking1215.invmove.compat.MekanismGeneratorsCompatibility");
-        compatMods.put("waystones"           , "me.pieking1215.invmove.compat.WaystonesCompatibility");
-        compatMods.put("industrialforegoing" , "me.pieking1215.invmove.compat.IndustrialForegoingCompatibility");
-        compatMods.put("locks"               , "me.pieking1215.invmove.compat.LocksCompatibility");
+        //compatMods.put("patchouli"           , "me.pieking1215.invmove.compat.PatchouliCompatibility");
+        //compatMods.put("botania"             , "me.pieking1215.invmove.compat.BotaniaCompatibility");
+        //compatMods.put("enderstorage"        , "me.pieking1215.invmove.compat.EnderStorageCompatibility");
+        //compatMods.put("mekanism"            , "me.pieking1215.invmove.compat.MekanismCompatibility");
+        //compatMods.put("mekanismgenerators"  , "me.pieking1215.invmove.compat.MekanismGeneratorsCompatibility");
+        //compatMods.put("waystones"           , "me.pieking1215.invmove.compat.WaystonesCompatibility");
+        //compatMods.put("industrialforegoing" , "me.pieking1215.invmove.compat.IndustrialForegoingCompatibility");
+        //compatMods.put("locks"               , "me.pieking1215.invmove.compat.LocksCompatibility");
 
         for (String s : compatMods.keySet()){
             if(ModList.get().isLoaded(s)){

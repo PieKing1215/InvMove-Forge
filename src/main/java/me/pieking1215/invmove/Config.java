@@ -7,13 +7,16 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import me.pieking1215.invmove.compat.Compatibility;
 import me.pieking1215.invmove.compat.ModCompatibility;
-import me.shedaniel.forge.clothconfig2.api.ConfigBuilder;
-import me.shedaniel.forge.clothconfig2.api.ConfigCategory;
-import me.shedaniel.forge.clothconfig2.api.ConfigEntryBuilder;
-import me.shedaniel.forge.clothconfig2.impl.builders.SubCategoryBuilder;
+import me.shedaniel.clothconfig2.forge.api.ConfigBuilder;
+import me.shedaniel.clothconfig2.forge.api.ConfigCategory;
+import me.shedaniel.clothconfig2.forge.api.ConfigEntryBuilder;
+import me.shedaniel.clothconfig2.forge.impl.builders.SubCategoryBuilder;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModList;
@@ -25,6 +28,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.function.Function;
 
@@ -39,8 +43,8 @@ public class Config {
     public static File unknownScreensConfig;
     public static HashMap<String, File> modCompatConfigs;
 
-    public static Function<Boolean, String> movement_yesNoText = b -> b ? TextFormatting.GREEN + "Allow Movement" : TextFormatting.RED + "Disallow Movement";
-    public static Function<Boolean, String> background_yesNoText = b -> b ? TextFormatting.GREEN + "Hide Background" : TextFormatting.RED + "Show Background";
+    public static Function<Boolean, ITextComponent> movement_yesNoText = b -> new StringTextComponent(b ? TextFormatting.GREEN + "Allow Movement" : TextFormatting.RED + "Disallow Movement");
+    public static Function<Boolean, ITextComponent> background_yesNoText = b -> new StringTextComponent(b ? TextFormatting.GREEN + "Hide Background" : TextFormatting.RED + "Show Background");
 
     public static void doneLoading() {
         hasFinalizedConfig = true;
@@ -356,58 +360,58 @@ public class Config {
 
     public static void registerClothConfig() {
         ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.CONFIGGUIFACTORY, () -> (client, parent) -> {
-            ConfigBuilder builder = ConfigBuilder.create().setParentScreen(parent).setTitle("config.invmove.title");
+            ConfigBuilder builder = ConfigBuilder.create().setParentScreen(parent).setTitle(new TranslationTextComponent("config.invmove.title"));
             builder.setDefaultBackgroundTexture(new ResourceLocation("minecraft:textures/block/spruce_planks.png"));
             builder.transparentBackground();
 
             ConfigEntryBuilder eb = builder.getEntryBuilder();
-            ConfigCategory general = builder.getOrCreateCategory("key.invmove.category.general");
-            general.addEntry(eb.startBooleanToggle("config.invmove.enable", getBoolSafe(GENERAL.enabled, true)).setDefaultValue(true).setSaveConsumer(GENERAL.enabled::set).setTooltip(I18n.format("tooltip.config.invmove.enable").split("\n")).build());
-            general.addEntry(eb.startBooleanToggle("config.invmove.debugDisplay", getBoolSafe(GENERAL.debugDisplay, false)).setDefaultValue(false).setSaveConsumer(GENERAL.debugDisplay::set).setTooltip(I18n.format("tooltip.config.invmove.debugDisplay").split("\n")).build());
+            ConfigCategory general = builder.getOrCreateCategory(new TranslationTextComponent("key.invmove.category.general"));
+            general.addEntry(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.enable"), getBoolSafe(GENERAL.enabled, true)).setDefaultValue(true).setSaveConsumer(GENERAL.enabled::set).setTooltip(Arrays.stream(I18n.format("tooltip.config.invmove.enable").split("\n")).map(StringTextComponent::new).toArray(StringTextComponent[]::new)).build());
+            general.addEntry(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.debugDisplay"), getBoolSafe(GENERAL.debugDisplay, false)).setDefaultValue(false).setSaveConsumer(GENERAL.debugDisplay::set).setTooltip(Arrays.stream(I18n.format("tooltip.config.invmove.debugDisplay").split("\n")).map(StringTextComponent::new).toArray(StringTextComponent[]::new)).build());
 
             // movement
 
-            ConfigCategory movement = builder.getOrCreateCategory("key.invmove.category.movement");
-            movement.addEntry(eb.startBooleanToggle("config.invmove.movement.enable", getBoolSafe(GENERAL.moveInInventories, true)).setDefaultValue(true).setSaveConsumer(GENERAL.moveInInventories::set).setTooltip(I18n.format("tooltip.config.invmove.movement.enable").split("\n")).build());
-            movement.addEntry(eb.startBooleanToggle("config.invmove.movement.sneak", getBoolSafe(GENERAL.sneakInInventories, false)).setDefaultValue(false).setSaveConsumer(GENERAL.sneakInInventories::set).setTooltip(I18n.format("tooltip.config.invmove.movement.sneak").split("\n")).build());
-            movement.addEntry(eb.startBooleanToggle("config.invmove.movement.jump", getBoolSafe(GENERAL.jumpInInventories, true)).setDefaultValue(true).setSaveConsumer(GENERAL.jumpInInventories::set).setTooltip(I18n.format("tooltip.config.invmove.movement.jump").split("\n")).build());
-            movement.addEntry(eb.startBooleanToggle("config.invmove.movement.textFieldDisables", getBoolSafe(GENERAL.textFieldDisablesMovement, true)).setDefaultValue(true).setSaveConsumer(GENERAL.textFieldDisablesMovement::set).setTooltip(I18n.format("tooltip.config.invmove.movement.textFieldDisables").split("\n")).build());
+            ConfigCategory movement = builder.getOrCreateCategory(new TranslationTextComponent("key.invmove.category.movement"));
+            movement.addEntry(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.movement.enable"), getBoolSafe(GENERAL.moveInInventories, true)).setDefaultValue(true).setSaveConsumer(GENERAL.moveInInventories::set).setTooltip(Arrays.stream(I18n.format("tooltip.config.invmove.movement.enable").split("\n")).map(StringTextComponent::new).toArray(StringTextComponent[]::new)).build());
+            movement.addEntry(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.movement.sneak"), getBoolSafe(GENERAL.sneakInInventories, false)).setDefaultValue(false).setSaveConsumer(GENERAL.sneakInInventories::set).setTooltip(Arrays.stream(I18n.format("tooltip.config.invmove.movement.sneak").split("\n")).map(StringTextComponent::new).toArray(StringTextComponent[]::new)).build());
+            movement.addEntry(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.movement.jump"), getBoolSafe(GENERAL.jumpInInventories, true)).setDefaultValue(true).setSaveConsumer(GENERAL.jumpInInventories::set).setTooltip(Arrays.stream(I18n.format("tooltip.config.invmove.movement.jump").split("\n")).map(StringTextComponent::new).toArray(StringTextComponent[]::new)).build());
+            movement.addEntry(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.movement.textFieldDisables"), getBoolSafe(GENERAL.textFieldDisablesMovement, true)).setDefaultValue(true).setSaveConsumer(GENERAL.textFieldDisablesMovement::set).setTooltip(Arrays.stream(I18n.format("tooltip.config.invmove.movement.textFieldDisables").split("\n")).map(StringTextComponent::new).toArray(StringTextComponent[]::new)).build());
 
-            SubCategoryBuilder movementTypes = eb.startSubCategory("key.invmove.category.types");
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.inventory",    getBoolSafe(UI_MOVEMENT.inventory, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.inventory::set    ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.creative",     getBoolSafe(UI_MOVEMENT.creative, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.creative::set     ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.crafting",     getBoolSafe(UI_MOVEMENT.crafting, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.crafting::set     ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.chest",        getBoolSafe(UI_MOVEMENT.chest, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.chest::set        ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.shulker",      getBoolSafe(UI_MOVEMENT.shulker, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.shulker::set      ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.dispenser",    getBoolSafe(UI_MOVEMENT.dispenser, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.dispenser::set    ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.hopper",       getBoolSafe(UI_MOVEMENT.hopper, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.hopper::set       ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.enchantment",  getBoolSafe(UI_MOVEMENT.enchantment, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.enchantment::set  ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.anvil",        getBoolSafe(UI_MOVEMENT.anvil, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.anvil::set        ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.beacon",       getBoolSafe(UI_MOVEMENT.beacon, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.beacon::set       ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.brewing",      getBoolSafe(UI_MOVEMENT.brewing, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.brewing::set      ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.furnace",      getBoolSafe(UI_MOVEMENT.furnace, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.furnace::set      ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.blastFurnace", getBoolSafe(UI_MOVEMENT.blastFurnace, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.blastFurnace::set ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.smoker",       getBoolSafe(UI_MOVEMENT.smoker, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.smoker::set       ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.loom",         getBoolSafe(UI_MOVEMENT.loom, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.loom::set         ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.cartography",  getBoolSafe(UI_MOVEMENT.cartography, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.cartography::set  ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.grindstone",   getBoolSafe(UI_MOVEMENT.grindstone, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.grindstone::set   ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.stonecutter",  getBoolSafe(UI_MOVEMENT.stonecutter, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.stonecutter::set  ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.villager",     getBoolSafe(UI_MOVEMENT.villager, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.villager::set     ).setYesNoTextSupplier(movement_yesNoText).build());
-            movementTypes.add(eb.startBooleanToggle("config.invmove.type.book",         getBoolSafe(UI_MOVEMENT.book, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.book::set     ).setYesNoTextSupplier(movement_yesNoText).build());
+            SubCategoryBuilder movementTypes = eb.startSubCategory(new TranslationTextComponent("key.invmove.category.types"));
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.inventory"),    getBoolSafe(UI_MOVEMENT.inventory, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.inventory::set    ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.creative"),     getBoolSafe(UI_MOVEMENT.creative, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.creative::set     ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.crafting"),     getBoolSafe(UI_MOVEMENT.crafting, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.crafting::set     ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.chest"),        getBoolSafe(UI_MOVEMENT.chest, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.chest::set        ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.shulker"),      getBoolSafe(UI_MOVEMENT.shulker, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.shulker::set      ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.dispenser"),    getBoolSafe(UI_MOVEMENT.dispenser, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.dispenser::set    ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.hopper"),       getBoolSafe(UI_MOVEMENT.hopper, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.hopper::set       ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.enchantment"),  getBoolSafe(UI_MOVEMENT.enchantment, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.enchantment::set  ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.anvil"),        getBoolSafe(UI_MOVEMENT.anvil, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.anvil::set        ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.beacon"),       getBoolSafe(UI_MOVEMENT.beacon, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.beacon::set       ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.brewing"),      getBoolSafe(UI_MOVEMENT.brewing, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.brewing::set      ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.furnace"),      getBoolSafe(UI_MOVEMENT.furnace, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.furnace::set      ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.blastFurnace"), getBoolSafe(UI_MOVEMENT.blastFurnace, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.blastFurnace::set ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.smoker"),       getBoolSafe(UI_MOVEMENT.smoker, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.smoker::set       ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.loom"),         getBoolSafe(UI_MOVEMENT.loom, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.loom::set         ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.cartography"),  getBoolSafe(UI_MOVEMENT.cartography, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.cartography::set  ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.grindstone"),   getBoolSafe(UI_MOVEMENT.grindstone, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.grindstone::set   ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.stonecutter"),  getBoolSafe(UI_MOVEMENT.stonecutter, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.stonecutter::set  ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.villager"),     getBoolSafe(UI_MOVEMENT.villager, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.villager::set     ).setYesNoTextSupplier(movement_yesNoText).build());
+            movementTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.book"),         getBoolSafe(UI_MOVEMENT.book, true)).setDefaultValue(true).setSaveConsumer(UI_MOVEMENT.book::set     ).setYesNoTextSupplier(movement_yesNoText).build());
             movement.addEntry(movementTypes.build());
 
             for(String modid : Compatibility.getCompatibilities().keySet()){
-                SubCategoryBuilder compatCat = eb.startSubCategory(ModList.get().getModContainerById(modid).get().getModInfo().getDisplayName());
-                compatCat.setTooltip(TextFormatting.GRAY + "ModID: " + modid);
+                SubCategoryBuilder compatCat = eb.startSubCategory(new StringTextComponent(ModList.get().getModContainerById(modid).get().getModInfo().getDisplayName()));
+                compatCat.setTooltip(new StringTextComponent(TextFormatting.GRAY + "ModID: " + modid));
                 if(Compatibility.getCompatibilities().get(modid).setupClothMovement(compatCat, eb)) {
                     movement.addEntry(compatCat.build());
                 }
             }
 
-            SubCategoryBuilder movementTypesSeen = eb.startSubCategory("key.invmove.category.types.unrecognized");
-            movementTypesSeen.setTooltip(I18n.format("tooltip.config.invmove.unrecognized_desc").split("\n"));
+            SubCategoryBuilder movementTypesSeen = eb.startSubCategory(new TranslationTextComponent("key.invmove.category.types.unrecognized"));
+            movementTypesSeen.setTooltip(Arrays.stream(I18n.format("tooltip.config.invmove.unrecognized_desc").split("\n")).map(StringTextComponent::new).toArray(StringTextComponent[]::new));
             for(String scr : UI_MOVEMENT.seenScreens.keySet()){
-                movementTypesSeen.add(eb.startBooleanToggle(scr, UI_MOVEMENT.seenScreens.get(scr)).setDefaultValue(true).setSaveConsumer(b -> {
+                movementTypesSeen.add(eb.startBooleanToggle(new StringTextComponent(scr), UI_MOVEMENT.seenScreens.get(scr)).setDefaultValue(true).setSaveConsumer(b -> {
                     UI_MOVEMENT.seenScreens.put(scr, b);
                 }).setYesNoTextSupplier(movement_yesNoText).build());
             }
@@ -415,44 +419,44 @@ public class Config {
 
             // background
 
-            ConfigCategory background = builder.getOrCreateCategory("key.invmove.category.background");
-            background.addEntry(eb.startBooleanToggle("config.invmove.background.enable", getBoolSafe(GENERAL.uiBackground, true)).setDefaultValue(true).setSaveConsumer(GENERAL.uiBackground::set).setTooltip(I18n.format("tooltip.config.invmove.background.enable").split("\n")).build());
+            ConfigCategory background = builder.getOrCreateCategory(new TranslationTextComponent("key.invmove.category.background"));
+            background.addEntry(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.background.enable"), getBoolSafe(GENERAL.uiBackground, true)).setDefaultValue(true).setSaveConsumer(GENERAL.uiBackground::set).setTooltip(Arrays.stream(I18n.format("tooltip.config.invmove.background.enable").split("\n")).map(StringTextComponent::new).toArray(StringTextComponent[]::new)).build());
 
-            SubCategoryBuilder backgroundTypes = eb.startSubCategory("key.invmove.category.types");
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.inventory",    !getBoolSafe(UI_BACKGROUND.inventory, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.inventory.set(!b)    ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.creative",     !getBoolSafe(UI_BACKGROUND.creative, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.creative.set(!b)     ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.crafting",     !getBoolSafe(UI_BACKGROUND.crafting, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.crafting.set(!b)     ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.chest",        !getBoolSafe(UI_BACKGROUND.chest, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.chest.set(!b)        ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.shulker",      !getBoolSafe(UI_BACKGROUND.shulker, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.shulker.set(!b)      ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.dispenser",    !getBoolSafe(UI_BACKGROUND.dispenser, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.dispenser.set(!b)    ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.hopper",       !getBoolSafe(UI_BACKGROUND.hopper, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.hopper.set(!b)       ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.enchantment",  !getBoolSafe(UI_BACKGROUND.enchantment, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.enchantment.set(!b)  ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.anvil",        !getBoolSafe(UI_BACKGROUND.anvil, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.anvil.set(!b)        ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.beacon",       !getBoolSafe(UI_BACKGROUND.beacon, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.beacon.set(!b)       ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.brewing",      !getBoolSafe(UI_BACKGROUND.brewing, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.brewing.set(!b)      ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.furnace",      !getBoolSafe(UI_BACKGROUND.furnace, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.furnace.set(!b)      ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.blastFurnace", !getBoolSafe(UI_BACKGROUND.blastFurnace, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.blastFurnace.set(!b) ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.smoker",       !getBoolSafe(UI_BACKGROUND.smoker, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.smoker.set(!b)       ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.loom",         !getBoolSafe(UI_BACKGROUND.loom, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.loom.set(!b)         ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.cartography",  !getBoolSafe(UI_BACKGROUND.cartography, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.cartography.set(!b)  ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.grindstone",   !getBoolSafe(UI_BACKGROUND.grindstone, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.grindstone.set(!b)   ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.stonecutter",  !getBoolSafe(UI_BACKGROUND.stonecutter, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.stonecutter.set(!b)  ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.villager",     !getBoolSafe(UI_BACKGROUND.villager, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.villager.set(!b)     ).setYesNoTextSupplier(background_yesNoText).build());
-            backgroundTypes.add(eb.startBooleanToggle("config.invmove.type.book",         !getBoolSafe(UI_BACKGROUND.book, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.book.set(!b)     ).setYesNoTextSupplier(background_yesNoText).build());
+            SubCategoryBuilder backgroundTypes = eb.startSubCategory(new TranslationTextComponent("key.invmove.category.types"));
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.inventory"),    !getBoolSafe(UI_BACKGROUND.inventory, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.inventory.set(!b)    ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.creative"),     !getBoolSafe(UI_BACKGROUND.creative, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.creative.set(!b)     ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.crafting"),     !getBoolSafe(UI_BACKGROUND.crafting, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.crafting.set(!b)     ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.chest"),        !getBoolSafe(UI_BACKGROUND.chest, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.chest.set(!b)        ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.shulker"),      !getBoolSafe(UI_BACKGROUND.shulker, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.shulker.set(!b)      ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.dispenser"),    !getBoolSafe(UI_BACKGROUND.dispenser, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.dispenser.set(!b)    ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.hopper"),       !getBoolSafe(UI_BACKGROUND.hopper, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.hopper.set(!b)       ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.enchantment"),  !getBoolSafe(UI_BACKGROUND.enchantment, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.enchantment.set(!b)  ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.anvil"),        !getBoolSafe(UI_BACKGROUND.anvil, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.anvil.set(!b)        ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.beacon"),       !getBoolSafe(UI_BACKGROUND.beacon, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.beacon.set(!b)       ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.brewing"),      !getBoolSafe(UI_BACKGROUND.brewing, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.brewing.set(!b)      ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.furnace"),      !getBoolSafe(UI_BACKGROUND.furnace, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.furnace.set(!b)      ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.blastFurnace"), !getBoolSafe(UI_BACKGROUND.blastFurnace, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.blastFurnace.set(!b) ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.smoker"),       !getBoolSafe(UI_BACKGROUND.smoker, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.smoker.set(!b)       ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.loom"),         !getBoolSafe(UI_BACKGROUND.loom, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.loom.set(!b)         ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.cartography"),  !getBoolSafe(UI_BACKGROUND.cartography, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.cartography.set(!b)  ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.grindstone"),   !getBoolSafe(UI_BACKGROUND.grindstone, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.grindstone.set(!b)   ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.stonecutter"),  !getBoolSafe(UI_BACKGROUND.stonecutter, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.stonecutter.set(!b)  ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.villager"),     !getBoolSafe(UI_BACKGROUND.villager, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.villager.set(!b)     ).setYesNoTextSupplier(background_yesNoText).build());
+            backgroundTypes.add(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.type.book"),         !getBoolSafe(UI_BACKGROUND.book, false)).setDefaultValue(true).setSaveConsumer(b -> UI_BACKGROUND.book.set(!b)     ).setYesNoTextSupplier(background_yesNoText).build());
             background.addEntry(backgroundTypes.build());
 
             for(String modid : Compatibility.getCompatibilities().keySet()){
-                SubCategoryBuilder compatCat = eb.startSubCategory(ModList.get().getModContainerById(modid).get().getModInfo().getDisplayName());
-                compatCat.setTooltip(TextFormatting.GRAY + "ModID: " + modid);
+                SubCategoryBuilder compatCat = eb.startSubCategory(new StringTextComponent(ModList.get().getModContainerById(modid).get().getModInfo().getDisplayName()));
+                compatCat.setTooltip(new StringTextComponent(TextFormatting.GRAY + "ModID: " + modid));
                 if(Compatibility.getCompatibilities().get(modid).setupClothBackground(compatCat, eb)) {
                     background.addEntry(compatCat.build());
                 }
             }
 
-            SubCategoryBuilder backgroundTypesSeen = eb.startSubCategory("key.invmove.category.types.unrecognized");
-            backgroundTypesSeen.setTooltip(I18n.format("tooltip.config.invmove.unrecognized_desc").split("\n"));
+            SubCategoryBuilder backgroundTypesSeen = eb.startSubCategory(new TranslationTextComponent("key.invmove.category.types.unrecognized"));
+            backgroundTypesSeen.setTooltip(Arrays.stream(I18n.format("tooltip.config.invmove.unrecognized_desc").split("\n")).map(StringTextComponent::new).toArray(StringTextComponent[]::new));
             for(String scr : UI_BACKGROUND.seenScreens.keySet()){
-                backgroundTypesSeen.add(eb.startBooleanToggle(scr, !UI_BACKGROUND.seenScreens.get(scr)).setDefaultValue(true).setSaveConsumer(b -> {
+                backgroundTypesSeen.add(eb.startBooleanToggle(new StringTextComponent(scr), !UI_BACKGROUND.seenScreens.get(scr)).setDefaultValue(true).setSaveConsumer(b -> {
                     UI_BACKGROUND.seenScreens.put(scr, !b);
                 }).setYesNoTextSupplier(background_yesNoText).build());
             }
