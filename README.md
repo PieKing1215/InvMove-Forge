@@ -66,32 +66,32 @@ If there's a mod you want to be added, also please start a ticket in the [issue 
 *(The initial list of supported mods was arbitrarily chosen from a mod pack I'm playing.)*
 *(More are being added mostly by going through curseforge sorted by popularity)*
 
-InvMove explicitly supports the following mods (as of version 0.4.4):
-- [Botania](https://www.curseforge.com/minecraft/mc-mods/botania)
+InvMove explicitly supports the following mods (as of version 0.4.6):
+- [Botania](https://www.curseforge.com/minecraft/mc-mods/botania) (1.12-1.16.1)
 - [CC: Tweaked](https://www.curseforge.com/minecraft/mc-mods/cc-tweaked)
-- [Charm](https://www.curseforge.com/minecraft/mc-mods/charm)
+- [Charm](https://www.curseforge.com/minecraft/mc-mods/charm) (1.12-1.15)
 - [Cooking for Blockheads](https://www.curseforge.com/minecraft/mc-mods/cooking-for-blockheads)
-- [Create](https://www.curseforge.com/minecraft/mc-mods/create) (1.14+)
+- [Create](https://www.curseforge.com/minecraft/mc-mods/create) (1.14-1.15)
 - [Curios API](https://www.curseforge.com/minecraft/mc-mods/curios) (1.14+)
-- [EmbellishCraft](https://www.curseforge.com/minecraft/mc-mods/embellishcraft) (1.14+)
-- [Ender Storage 1.8.+](https://www.curseforge.com/minecraft/mc-mods/ender-storage-1-8)
+- [EmbellishCraft](https://www.curseforge.com/minecraft/mc-mods/embellishcraft) (1.14-1.16.1)
+- [Ender Storage 1.8.+](https://www.curseforge.com/minecraft/mc-mods/ender-storage-1-8) (1.12-1.15)
 - [Engineer's Decor](https://www.curseforge.com/minecraft/mc-mods/engineers-decor)
 - [FreeCamera](https://www.curseforge.com/minecraft/mc-mods/freecamera) (1.12)
-- [Immersive Engineering](https://www.curseforge.com/minecraft/mc-mods/immersive-engineering)
-- [Industrial Foregoing](https://www.curseforge.com/minecraft/mc-mods/industrial-foregoing)
+- [Immersive Engineering](https://www.curseforge.com/minecraft/mc-mods/immersive-engineering) (1.12-1.16.1)
+- [Industrial Foregoing](https://www.curseforge.com/minecraft/mc-mods/industrial-foregoing) (1.12-1.16.1)
 - [Iron Chests](https://www.curseforge.com/minecraft/mc-mods/iron-chests)
 - [ItemPhysic Full](https://www.curseforge.com/minecraft/mc-mods/itemphysic)
 - [Just Enough Items (JEI)](https://www.curseforge.com/minecraft/mc-mods/jei)
 - [Locks](https://www.curseforge.com/minecraft/mc-mods/locks) (1.14+)
-- [Mekanism](https://www.curseforge.com/minecraft/mc-mods/mekanism)
-- [Mekanism Generators](https://www.curseforge.com/minecraft/mc-mods/mekanism-generators) (1.14+)
-- [MrCrayfish's Furniture Mod](https://www.curseforge.com/minecraft/mc-mods/mrcrayfish-furniture-mod) (1.14+)
-- [Music Maker Mod](https://www.curseforge.com/minecraft/mc-mods/music-maker-mod) (1.14+)
+- [Mekanism](https://www.curseforge.com/minecraft/mc-mods/mekanism) (1.12-1.16.1)
+- [Mekanism Generators](https://www.curseforge.com/minecraft/mc-mods/mekanism-generators) (1.14-1.16.1)
+- [MrCrayfish's Furniture Mod](https://www.curseforge.com/minecraft/mc-mods/mrcrayfish-furniture-mod) (1.14-1.16.1)
+- [Music Maker Mod](https://www.curseforge.com/minecraft/mc-mods/music-maker-mod) (1.14-1.15)
 - [Optifine](https://www.optifine.net/)
 - [Patchouli](https://www.curseforge.com/minecraft/mc-mods/patchouli)
-- [Quark](https://www.curseforge.com/minecraft/mc-mods/quark)
+- [Quark](https://www.curseforge.com/minecraft/mc-mods/quark) (1.12-1.16.1)
 - [Refined Storage](https://www.curseforge.com/minecraft/mc-mods/refined-storage)
-- [Waystones](https://www.curseforge.com/minecraft/mc-mods/waystones)
+- [Waystones](https://www.curseforge.com/minecraft/mc-mods/waystones) (1.12-1.16.1)
 </details>
 
 ## Usage
@@ -103,6 +103,8 @@ This mod may not be reposted to any other third-party websites.<br>
 [#StopModReposts](https://stopmodreposts.org)
 
 Tested on<br>
+Forge 33.0.22 for MC 1.16.2,<br>
+Forge 32.0.108 for MC 1.16.1,<br>
 Forge 31.2.31 for MC 1.15.2,<br>
 Forge 28.2.23 for MC 1.14.4,<br>
 Forge 14.23.5.2854 for MC 1.12.2,<br>
