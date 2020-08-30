@@ -26,7 +26,7 @@ repositories {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'maven-publish'
 
-version = '1.16.2-0.4.6'
+version = '1.16.1-0.4.6'
 group = 'me.pieking1215.invmove'
 archivesBaseName = 'InvMove'
 
@@ -76,64 +76,66 @@ minecraft {
 
 dependencies {
 
-    minecraft 'net.minecraftforge:forge:1.16.2-33.0.22'
+    minecraft 'net.minecraftforge:forge:1.16.1-32.0.108'
 
     // Cloth Config API (Forge)
     // www.curseforge.com/minecraft/mc-mods/cloth-config-forge
-    runtimeOnly fg.deobf("curse.maven:cloth-config-forge:3032280")
-    compileOnly fg.deobf("curse.maven:cloth-config-forge:3032280")
+    runtimeOnly fg.deobf("curse.maven:cloth-config-forge:3005595")
+    compileOnly fg.deobf("curse.maven:cloth-config-forge:3005595")
 
     // Just Enough Items (JEI)
     // www.curseforge.com/minecraft/mc-mods/jei
-    runtimeOnly fg.deobf("curse.maven:jei:3043175")
-    compileOnly fg.deobf("curse.maven:jei:3043175")
+    runtimeOnly fg.deobf("curse.maven:jei:3028697")
+    compileOnly fg.deobf("curse.maven:jei:3028697")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
     // Immersive Engineering
     // www.curseforge.com/minecraft/mc-mods/immersive-engineering
-    //runtimeOnly fg.deobf("curse.maven:immersive-engineering:3034892")
-    //compileOnly fg.deobf("curse.maven:immersive-engineering:3034892")
+    runtimeOnly fg.deobf("curse.maven:immersive-engineering:3034892")
+    compileOnly fg.deobf("curse.maven:immersive-engineering:3034892")
 
     // Engineer's Decor
     // www.curseforge.com/minecraft/mc-mods/engineers-decor
-    runtimeOnly fg.deobf("curse.maven:engineers-decor:3044376")
-    compileOnly fg.deobf("curse.maven:engineers-decor:3044376")
+    runtimeOnly fg.deobf("curse.maven:engineers-decor:3044462")
+    compileOnly fg.deobf("curse.maven:engineers-decor:3044462")
 
     // CC: Tweaked
     // www.curseforge.com/minecraft/mc-mods/cc-tweaked
-    runtimeOnly fg.deobf("curse.maven:cc-tweaked:3040098")
-    compileOnly fg.deobf("curse.maven:cc-tweaked:3040098")
+    runtimeOnly fg.deobf("curse.maven:cc-tweaked:3016342")
+    compileOnly fg.deobf("curse.maven:cc-tweaked:3016342")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
+    // NOT AVAILABLE FOR 1.16.1 YET
     // Music Maker Mod
     // www.curseforge.com/minecraft/mc-mods/music-maker-mod
     //runtimeOnly fg.deobf("curse.maven:music-maker-mod:2959062")
     //compileOnly fg.deobf("curse.maven:music-maker-mod:2959062")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
+    // Mapper Base
+    // www.curseforge.com/minecraft/mc-mods/mapper-base
+    runtimeOnly fg.deobf("curse.maven:mapper-base:3041782")
+    compileOnly fg.deobf("curse.maven:mapper-base:3041782")
+
     // EmbellishCraft
     // www.curseforge.com/minecraft/mc-mods/embellishcraft
-    //runtimeOnly fg.deobf("curse.maven:embellishcraft:3041798")
-    //compileOnly fg.deobf("curse.maven:embellishcraft:3041798")
+    runtimeOnly fg.deobf("curse.maven:embellishcraft:3041798")
+    compileOnly fg.deobf("curse.maven:embellishcraft:3041798")
 
     // Refined Storage
     // www.curseforge.com/minecraft/mc-mods/refined-storage
-    runtimeOnly fg.deobf("curse.maven:refined-storage:3041175")
-    compileOnly fg.deobf("curse.maven:refined-storage:3041175")
+    runtimeOnly fg.deobf("curse.maven:refined-storage:3007496")
+    compileOnly fg.deobf("curse.maven:refined-storage:3007496")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
     // MrCrayfish's Furniture Mod
     // www.curseforge.com/minecraft/mc-mods/mrcrayfish-furniture-mod
-    //runtimeOnly fg.deobf("curse.maven:mrcrayfish-furniture-mod:3022181")
-    //compileOnly fg.deobf("curse.maven:mrcrayfish-furniture-mod:3022181")
+    runtimeOnly fg.deobf("curse.maven:mrcrayfish-furniture-mod:3022181")
+    compileOnly fg.deobf("curse.maven:mrcrayfish-furniture-mod:3022181")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
+    // NOT AVAILABLE FOR 1.16.1 YET
     // Charm
     // www.curseforge.com/minecraft/mc-mods/charm
     //runtimeOnly fg.deobf("curse.maven:charm:2973470")
     //compileOnly fg.deobf("curse.maven:charm:2973470")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
+    // NOT AVAILABLE FOR 1.16.1 YET
     // Create
     // www.curseforge.com/minecraft/mc-mods/create
     //runtimeOnly fg.deobf("curse.maven:create:2979593")
@@ -141,25 +143,23 @@ dependencies {
 
     // Curios API
     // www.curseforge.com/minecraft/mc-mods/curios
-    runtimeOnly fg.deobf("curse.maven:curios:3042479")
-    compileOnly fg.deobf("curse.maven:curios:3042479")
+    runtimeOnly fg.deobf("curse.maven:curios:3023024")
+    compileOnly fg.deobf("curse.maven:curios:3023024")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
     // AutoRegLib
     // www.curseforge.com/minecraft/mc-mods/autoreglib
-    //runtimeOnly fg.deobf("curse.maven:autoreglib:3042660")
-    //compileOnly fg.deobf("curse.maven:autoreglib:3042660")
+    runtimeOnly fg.deobf("curse.maven:autoreglib:3017289")
+    compileOnly fg.deobf("curse.maven:autoreglib:3017289")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
     // Quark
     // www.curseforge.com/minecraft/mc-mods/quark
-    //runtimeOnly fg.deobf("curse.maven:quark:3042729")
-    //compileOnly fg.deobf("curse.maven:quark:3042729")
+    runtimeOnly fg.deobf("curse.maven:quark:3042729")
+    compileOnly fg.deobf("curse.maven:quark:3042729")
 
     // Iron Chests
     // www.curseforge.com/minecraft/mc-mods/iron-chests
-    runtimeOnly fg.deobf("curse.maven:iron-chests:3043892")
-    compileOnly fg.deobf("curse.maven:iron-chests:3043892")
+    runtimeOnly fg.deobf("curse.maven:iron-chests:3043887")
+    compileOnly fg.deobf("curse.maven:iron-chests:3043887")
 
     // Cooking for Blockheads
     // www.curseforge.com/minecraft/mc-mods/cooking-for-blockheads
@@ -169,87 +169,78 @@ dependencies {
     // Hangs dev environment when loading world
     // Patchouli
     // www.curseforge.com/minecraft/mc-mods/patchouli
-    //runtimeOnly fg.deobf("curse.maven:patchouli:3037298")
-    compileOnly fg.deobf("curse.maven:patchouli:3037298")
+    //runtimeOnly fg.deobf("curse.maven:patchouli:3006047")
+    compileOnly fg.deobf("curse.maven:patchouli:3006047")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
+    // NOT AVAILABLE FOR 1.16.1 YET
     // CodeChicken Lib 1.8.+
     // www.curseforge.com/minecraft/mc-mods/codechicken-lib-1-8
     //runtimeOnly fg.deobf("curse.maven:codechicken-lib-1-8:2969414")
     //compileOnly fg.deobf("curse.maven:codechicken-lib-1-8:2969414")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
     // Botania
     // www.curseforge.com/minecraft/mc-mods/botania
     //runtimeOnly fg.deobf("curse.maven:botania:3040183")
-    //compileOnly fg.deobf("curse.maven:botania:3040183")
+    compileOnly fg.deobf("curse.maven:botania:3040183")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
+    // NOT AVAILABLE FOR 1.16.1 YET
     // Ender Storage 1.8.+
     // www.curseforge.com/minecraft/mc-mods/ender-storage-1-8
     //runtimeOnly fg.deobf("curse.maven:ender-storage-1-8:2969923")
     //compileOnly fg.deobf("curse.maven:ender-storage-1-8:2969923")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
     // Mekanism
     // www.curseforge.com/minecraft/mc-mods/mekanism
-    //runtimeOnly fg.deobf("curse.maven:mekanism:3032353")
-    //compileOnly fg.deobf("curse.maven:mekanism:3032353")
+    runtimeOnly fg.deobf("curse.maven:mekanism:3032353")
+    compileOnly fg.deobf("curse.maven:mekanism:3032353")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
     // Mekanism Additions
     // www.curseforge.com/minecraft/mc-mods/mekanism-additions
-    //runtimeOnly fg.deobf("curse.maven:mekanism-additions:3032357")
-    //compileOnly fg.deobf("curse.maven:mekanism-additions:3032357")
+    runtimeOnly fg.deobf("curse.maven:mekanism-additions:3032357")
+    compileOnly fg.deobf("curse.maven:mekanism-additions:3032357")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
     // Mekanism Generators
     // www.curseforge.com/minecraft/mc-mods/mekanism-generators
-    //runtimeOnly fg.deobf("curse.maven:mekanism-generators:3032355")
-    //compileOnly fg.deobf("curse.maven:mekanism-generators:3032355")
+    runtimeOnly fg.deobf("curse.maven:mekanism-generators:3032355")
+    compileOnly fg.deobf("curse.maven:mekanism-generators:3032355")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
     // Mekanism Tools
     // www.curseforge.com/minecraft/mc-mods/mekanism-tools
-    //runtimeOnly fg.deobf("curse.maven:mekanism-tools:3032356")
-    //compileOnly fg.deobf("curse.maven:mekanism-tools:3032356")
+    runtimeOnly fg.deobf("curse.maven:mekanism-tools:3032356")
+    compileOnly fg.deobf("curse.maven:mekanism-tools:3032356")
 
     // Titanium
     // www.curseforge.com/minecraft/mc-mods/titanium
     runtimeOnly fg.deobf("curse.maven:titanium:3025893")
     compileOnly fg.deobf("curse.maven:titanium:3025893")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
     // Industrial Foregoing
     // www.curseforge.com/minecraft/mc-mods/industrial-foregoing
-    //runtimeOnly fg.deobf("curse.maven:industrial-foregoing:3034225")
-    //compileOnly fg.deobf("curse.maven:industrial-foregoing:3034225")
+    runtimeOnly fg.deobf("curse.maven:industrial-foregoing:3034225")
+    compileOnly fg.deobf("curse.maven:industrial-foregoing:3034225")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
     // Waystones
     // www.curseforge.com/minecraft/mc-mods/waystones
-    //runtimeOnly fg.deobf("curse.maven:waystones:3035119")
-    //compileOnly fg.deobf("curse.maven:waystones:3035119")
+    runtimeOnly fg.deobf("curse.maven:waystones:3035119")
+    compileOnly fg.deobf("curse.maven:waystones:3035119")
 
     // Crashes dev env runtime
     // Locks
     // www.curseforge.com/minecraft/mc-mods/locks
-    //runtimeOnly fg.deobf("curse.maven:locks:3035875")
-    compileOnly fg.deobf("curse.maven:locks:3035875")
+    runtimeOnly fg.deobf("curse.maven:locks:3020523")
+    compileOnly fg.deobf("curse.maven:locks:3020523")
 
     // utility / testing
 
     // GameMenuModOption
     // www.curseforge.com/minecraft/mc-mods/gamemenumodoption
-    runtimeOnly fg.deobf("curse.maven:gamemenumodoption:3040755")
+    runtimeOnly fg.deobf("curse.maven:gamemenumodoption:2990253")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
     // Abnormals Core
     // www.curseforge.com/minecraft/mc-mods/abnormals-core
     // for Buzzier Bees
     //runtimeOnly fg.deobf("curse.maven:abnormals-core:3043251")
 
-    // NOT AVAILABLE FOR 1.16.2 YET
     // Buzzier Bees
     // www.curseforge.com/minecraft/mc-mods/buzzier-bees
     // for testing modded signs that don't extend EditSignScreen
