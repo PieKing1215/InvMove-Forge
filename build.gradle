@@ -90,42 +90,42 @@ dependencies {
 
     // Immersive Engineering
     // www.curseforge.com/minecraft/mc-mods/immersive-engineering
-    runtimeOnly fg.deobf("curse.maven:immersive-engineering:3071994")
+    //runtimeOnly fg.deobf("curse.maven:immersive-engineering:3071994")
     compileOnly fg.deobf("curse.maven:immersive-engineering:3071994")
 
     // Engineer's Decor
     // www.curseforge.com/minecraft/mc-mods/engineers-decor
-    runtimeOnly fg.deobf("curse.maven:engineers-decor:3069658")
+    //runtimeOnly fg.deobf("curse.maven:engineers-decor:3069658")
     compileOnly fg.deobf("curse.maven:engineers-decor:3069658")
 
     // CC: Tweaked
     // www.curseforge.com/minecraft/mc-mods/cc-tweaked
-    runtimeOnly fg.deobf("curse.maven:cc-tweaked:3071576")
+    //runtimeOnly fg.deobf("curse.maven:cc-tweaked:3071576")
     compileOnly fg.deobf("curse.maven:cc-tweaked:3071576")
 
     // Music Maker Mod
     // www.curseforge.com/minecraft/mc-mods/music-maker-mod
-    runtimeOnly fg.deobf("curse.maven:music-maker-mod:3069679")
+    //runtimeOnly fg.deobf("curse.maven:music-maker-mod:3069679")
     compileOnly fg.deobf("curse.maven:music-maker-mod:3069679")
 
     // Mapper Base
     // www.curseforge.com/minecraft/mc-mods/mapper-base
-    runtimeOnly fg.deobf("curse.maven:mapper-base:3074018")
+    //runtimeOnly fg.deobf("curse.maven:mapper-base:3074018")
     compileOnly fg.deobf("curse.maven:mapper-base:3074018")
     
     // EmbellishCraft
     // www.curseforge.com/minecraft/mc-mods/embellishcraft
-    runtimeOnly fg.deobf("curse.maven:embellishcraft:3074023")
+    //runtimeOnly fg.deobf("curse.maven:embellishcraft:3074023")
     compileOnly fg.deobf("curse.maven:embellishcraft:3074023")
 
     // Refined Storage
     // www.curseforge.com/minecraft/mc-mods/refined-storage
-    runtimeOnly fg.deobf("curse.maven:refined-storage:3071888")
+    //runtimeOnly fg.deobf("curse.maven:refined-storage:3071888")
     compileOnly fg.deobf("curse.maven:refined-storage:3071888")
 
     // MrCrayfish's Furniture Mod
     // www.curseforge.com/minecraft/mc-mods/mrcrayfish-furniture-mod
-    runtimeOnly fg.deobf("curse.maven:mrcrayfish-furniture-mod:3081350")
+    //runtimeOnly fg.deobf("curse.maven:mrcrayfish-furniture-mod:3081350")
     compileOnly fg.deobf("curse.maven:mrcrayfish-furniture-mod:3081350")
 
     // NOT AVAILABLE FOR 1.16.3 FORGE YET
@@ -142,12 +142,12 @@ dependencies {
 
     // Curios API
     // www.curseforge.com/minecraft/mc-mods/curios
-    runtimeOnly fg.deobf("curse.maven:curios:3061727")
+    //runtimeOnly fg.deobf("curse.maven:curios:3061727")
     compileOnly fg.deobf("curse.maven:curios:3061727")
 
     // AutoRegLib
     // www.curseforge.com/minecraft/mc-mods/autoreglib
-    runtimeOnly fg.deobf("curse.maven:autoreglib:3088870")
+    //runtimeOnly fg.deobf("curse.maven:autoreglib:3088870")
     compileOnly fg.deobf("curse.maven:autoreglib:3088870")
 
     // Quark
@@ -157,12 +157,12 @@ dependencies {
 
     // Iron Chests
     // www.curseforge.com/minecraft/mc-mods/iron-chests
-    runtimeOnly fg.deobf("curse.maven:iron-chests:3068784")
+    //runtimeOnly fg.deobf("curse.maven:iron-chests:3068784")
     compileOnly fg.deobf("curse.maven:iron-chests:3068784")
 
     // Cooking for Blockheads
     // www.curseforge.com/minecraft/mc-mods/cooking-for-blockheads
-    runtimeOnly fg.deobf("curse.maven:cooking-for-blockheads:3066080")
+    //runtimeOnly fg.deobf("curse.maven:cooking-for-blockheads:3066080")
     compileOnly fg.deobf("curse.maven:cooking-for-blockheads:3066080")
 
     // Hangs dev environment when loading world
@@ -190,37 +190,37 @@ dependencies {
 
     // Mekanism
     // www.curseforge.com/minecraft/mc-mods/mekanism
-    runtimeOnly fg.deobf("curse.maven:mekanism:3083468")
+    //runtimeOnly fg.deobf("curse.maven:mekanism:3083468")
     compileOnly fg.deobf("curse.maven:mekanism:3083468")
 
     // Mekanism Additions
     // www.curseforge.com/minecraft/mc-mods/mekanism-additions
-    runtimeOnly fg.deobf("curse.maven:mekanism-additions:3083472")
+    //runtimeOnly fg.deobf("curse.maven:mekanism-additions:3083472")
     compileOnly fg.deobf("curse.maven:mekanism-additions:3083472")
 
     // Mekanism Generators
     // www.curseforge.com/minecraft/mc-mods/mekanism-generators
-    runtimeOnly fg.deobf("curse.maven:mekanism-generators:3083470")
+    //runtimeOnly fg.deobf("curse.maven:mekanism-generators:3083470")
     compileOnly fg.deobf("curse.maven:mekanism-generators:3083470")
 
     // Mekanism Tools
     // www.curseforge.com/minecraft/mc-mods/mekanism-tools
-    runtimeOnly fg.deobf("curse.maven:mekanism-tools:3083471")
+    //runtimeOnly fg.deobf("curse.maven:mekanism-tools:3083471")
     compileOnly fg.deobf("curse.maven:mekanism-tools:3083471")
 
     // Titanium
     // www.curseforge.com/minecraft/mc-mods/titanium
-    runtimeOnly fg.deobf("curse.maven:titanium:3056479")
+    //runtimeOnly fg.deobf("curse.maven:titanium:3056479")
     compileOnly fg.deobf("curse.maven:titanium:3056479")
 
     // Industrial Foregoing
     // www.curseforge.com/minecraft/mc-mods/industrial-foregoing
-    runtimeOnly fg.deobf("curse.maven:industrial-foregoing:3075038")
+    //runtimeOnly fg.deobf("curse.maven:industrial-foregoing:3075038")
     compileOnly fg.deobf("curse.maven:industrial-foregoing:3075038")
 
     // Waystones
     // www.curseforge.com/minecraft/mc-mods/waystones
-    runtimeOnly fg.deobf("curse.maven:waystones:3066013")
+    //runtimeOnly fg.deobf("curse.maven:waystones:3066013")
     compileOnly fg.deobf("curse.maven:waystones:3066013")
 
     // Crashes dev env runtime
