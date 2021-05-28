@@ -6,7 +6,20 @@
 
 ### Minecraft Forge mod that adds the ability to walk around while in inventories
 
-### Forge: [GitHub](https://github.com/PieKing1215/InvMove-Forge) | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/invmove) | [Modrinth](https://modrinth.com/mod/invmove)<br>Fabric: [GitHub](https://github.com/PieKing1215/InvMove-Fabric) | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/invmove-fabric) | [Modrinth](https://modrinth.com/mod/invmove-fabric)
+<table>
+<tr>
+  <td>Forge</td>
+  <td><a href="https://github.com/PieKing1215/InvMove-Forge">GitHub</a></td>
+  <td><a href="https://www.curseforge.com/minecraft/mc-mods/invmove">CurseForge</a></td>
+  <td><a href="https://modrinth.com/mod/invmove">Modrinth</a></td>
+</tr>
+<tr>
+  <td>Fabric</td>
+  <td><a href="https://github.com/PieKing1215/InvMove-Fabric">GitHub</a></td>
+  <td><a href="https://www.curseforge.com/minecraft/mc-mods/invmove-fabric">CurseForge</a></td>
+  <td><a href="https://modrinth.com/mod/invmove-fabric">Modrinth</a></td>
+</tr>
+</table>
 
 ![](https://raw.githubusercontent.com/PieKing1215/InvMove-Forge/master/demo/demo.gif)
 
