@@ -28,8 +28,8 @@ Requires [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-confi
 ## Config (In-game)
 <details>
   <summary>Click to expand.</summary>
-  
-![](demo/where_config.png)
+
+![](https://raw.githubusercontent.com/PieKing1215/InvMove-Forge/master/demo/where_config.png)
 <img src="demo/config_screen.png" alt="alt text" width="657" height="528">
 ### InvMove has an in-game config menu which can be accessed from the Forge mod list.<br>
 (for 1.14+ also highly recommend [GameMenuModOption](https://www.curseforge.com/minecraft/mc-mods/gamemenumodoption) which adds the mod list button to the pause screen)<br>
@@ -38,12 +38,14 @@ In the config menu, you can find several options:<br>
 #### General:
 - Enable: Enable the entire mod
 - Debug Display: Enables a debug overlay that can help debug compatibility problems.
+
 #### UI Movement:
 - Move In Inventories: Enable movement in inventories
 - Allow Sneaking: Allow sneaking in inventories (disabled by default because it's distracting when shift-clicking)
 - Allow Jumping: Allow jumping in inventories
 - Text Field Disables Movement: Disable movement when a text field is focused (like search bars or in an anvil)
 - (Expandable categories that let you enable/disable movement for certain inventories)
+
 #### UI Background:
 - Hide Inventory Backgrounds: Hides the background tint while in inventories.
 - (Expandable categories that let you enable/disable the background for certain inventories)
@@ -52,8 +54,8 @@ In the config menu, you can find several options:<br>
 ## Compatibility / Mod Support
 <details>
   <summary>Click to expand.</summary>
-  
-![](demo/mod_demo.gif)<br>
+
+![](https://raw.githubusercontent.com/PieKing1215/InvMove-Forge/master/demo/mod_demo.gif)<br>
 *(Note: Corail Woodcutter is no longer supported)*<br>
 ### As of version 0.4.0+, InvMove has actual mod support.<br>
 
@@ -94,6 +96,7 @@ InvMove explicitly supports the following mods (as of version 0.4.6):
 - [Quark](https://www.curseforge.com/minecraft/mc-mods/quark) (1.12-1.16.1)
 - [Refined Storage](https://www.curseforge.com/minecraft/mc-mods/refined-storage)
 - [Waystones](https://www.curseforge.com/minecraft/mc-mods/waystones) (1.12-1.16.1)
+  
 </details>
 
 ## Usage
