@@ -6,10 +6,9 @@
 
 ### Minecraft Forge mod that adds the ability to walk around while in inventories
 
-### [Fabric Version Here](https://github.com/PieKing1215/InvMove-Fabric)
-<br>
+### Forge: [GitHub](https://github.com/PieKing1215/InvMove-Forge) | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/invmove) | [Modrinth](https://modrinth.com/mod/invmove)<br>Fabric: [GitHub](https://github.com/PieKing1215/InvMove-Fabric) | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/invmove-fabric) | [Modrinth](https://modrinth.com/mod/invmove-fabric)
 
-![](demo/demo.gif)
+![](https://raw.githubusercontent.com/PieKing1215/InvMove-Forge/master/demo/demo.gif)
 
 Allows for moving, jumping, sprinting, etc. from within inventories.
 
@@ -101,7 +100,7 @@ InvMove explicitly supports the following mods (as of version 0.4.6):
 
 Feel free to use in packs if you wish.
 
-Do not download this mod from anywhere other than the InvMove GitHub page or the InvMove Curseforge page.<br>
+Do not download this mod from anywhere other than the InvMove GitHub, CurseForge, or Modrinth page.<br>
 This mod may not be reposted to any other third-party websites.<br>
 [#StopModReposts](https://stopmodreposts.org)
 
