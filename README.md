@@ -5,7 +5,7 @@
 </h1>
 
 ### Minecraft Forge mod that adds the ability to walk around while in inventories
-test
+
 <table>
 <tr>
   <td>Forge</td>
