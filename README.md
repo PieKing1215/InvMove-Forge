@@ -122,7 +122,7 @@ Do not download this mod from anywhere other than the InvMove GitHub, CurseForge
 This mod may not be reposted to any other third-party websites.<br>
 [#StopModReposts](https://stopmodreposts.org)
 
-The mod is licensed under the [GNU Lesser General Public License v3.0](COPYING)
+The mod is licensed under the [GNU Lesser General Public License v3.0](https://github.com/PieKing1215/InvMove/blob/master/COPYING)
 
 ## Upcoming
 More mod compatibilities, bug fixes, and code cleanup will come as v0.4.X.<br>
