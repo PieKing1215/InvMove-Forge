@@ -1,6 +1,6 @@
 <h1>InvMove (Forge)<br>
   <a href="https://www.curseforge.com/minecraft/mc-mods/invmove"><img src="http://cf.way2muchnoise.eu/versions/%20For%20MC%20_invmove_all(555-0C8E8E-fff-010101).svg" alt="Supported Versions"></a>
-  <a href="https://github.com/PieKing1215/InvMove/blob/master/COPYING"><img src="https://img.shields.io/github/license/PieKing1215/InvMove-Forge?style=flat&color=0C8E8E" alt="License"></a>
+  <a href="https://github.com/PieKing1215/InvMove-Forge/blob/master/COPYING"><img src="https://img.shields.io/github/license/PieKing1215/InvMove-Forge?style=flat&color=0C8E8E" alt="License"></a>
   <a href="https://www.curseforge.com/minecraft/mc-mods/invmove"><img src="http://cf.way2muchnoise.eu/full_invmove_downloads(E04E14-555-fff-010101-1C1C1C).svg" alt="CF Download Count"></a>
   <a href="https://modrinth.com/mod/invmove"><img src="https://waffle.coffee/modrinth/invmove/downloads" alt="Modrinth Download Count"></a>
   <a href="https://ko-fi.com/X8X34Y6MZ"><img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Donate on ko-fi" width="160px"></a>
@@ -36,7 +36,7 @@ I take no responsibility if you get banned or something because you used this on
 
 Made after [I couldn't find an existing mod for this](https://redd.it/egwe8w).
 
-### [Releases](https://github.com/PieKing1215/InvMove/releases)
+### [Releases](https://github.com/PieKing1215/InvMove-Forge/releases)
 
 Requires [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config-forge) (1.14+ only) so the config screen works.
 
@@ -79,8 +79,8 @@ Unrecognized GUIs will only appear in the config once they have been opened/seen
 
 Explicitly supported mods have their own sections in the config, and come with tested default settings.
 
-If you find problems with any of the explicitly supported mods, please start a ticket in the [issue tracker](https://github.com/PieKing1215/InvMove/issues).<br>
-If there's a mod you want to be added, also please start a ticket in the [issue tracker](https://github.com/PieKing1215/InvMove/issues), especially if it doesn't work enabling it from the "unrecognized" section of the config.
+If you find problems with any of the explicitly supported mods, please start a ticket in the [issue tracker](https://github.com/PieKing1215/InvMove-Forge/issues).<br>
+If there's a mod you want to be added, also please start a ticket in the [issue tracker](https://github.com/PieKing1215/InvMove-Forge/issues), especially if it doesn't work enabling it from the "unrecognized" section of the config.
 
 *(The initial list of supported mods was arbitrarily chosen from a mod pack I'm playing.)*
 *(More are being added mostly by going through curseforge sorted by popularity)*
@@ -122,7 +122,7 @@ Do not download this mod from anywhere other than the InvMove GitHub, CurseForge
 This mod may not be reposted to any other third-party websites.<br>
 [#StopModReposts](https://stopmodreposts.org)
 
-The mod is licensed under the [GNU Lesser General Public License v3.0](https://github.com/PieKing1215/InvMove/blob/master/COPYING)
+The mod is licensed under the [GNU Lesser General Public License v3.0](https://github.com/PieKing1215/InvMove-Forge/blob/master/COPYING)
 
 ## Upcoming
 More mod compatibilities, bug fixes, and code cleanup will come as v0.4.X.<br>
