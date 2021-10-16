@@ -101,6 +101,7 @@ public class Config {
         public final ForgeConfigSpec.ConfigValue<Boolean> moveInInventories;
         public final ForgeConfigSpec.ConfigValue<Boolean> sneakInInventories;
         public final ForgeConfigSpec.ConfigValue<Boolean> jumpInInventories;
+        public final ForgeConfigSpec.ConfigValue<Boolean> dismountInInventories;
         public final ForgeConfigSpec.ConfigValue<Boolean> textFieldDisablesMovement;
         public final ForgeConfigSpec.ConfigValue<Boolean> uiBackground;
         public final ForgeConfigSpec.ConfigValue<Boolean> debugDisplay;
@@ -127,6 +128,10 @@ public class Config {
                     .comment("Enables/Disables the ability to jump when moveInInventories is enabled [false/true|default:true]")
                     .translation("jumpInInventories.invmove.config")
                     .define("jumpInInventories", true);
+            dismountInInventories = builder
+                    .comment("Enables/Disables the ability to dismount when moveInInventories is enabled [false/true|default:false]")
+                    .translation("dismountInInventories.invmove.config")
+                    .define("dismountInInventories", false);
             textFieldDisablesMovement = builder
                     .comment("Enables/Disables the ability to move in inventories while a text field is focused [false/true|default:true]")
                     .translation("textFieldDisablesMovement.invmove.config")
@@ -141,6 +146,7 @@ public class Config {
 
     public static class UIBackground {
         public final ForgeConfigSpec.ConfigValue<Boolean> inventory;
+        public final ForgeConfigSpec.ConfigValue<Boolean> horseInventory;
         public final ForgeConfigSpec.ConfigValue<Boolean> creative;
         public final ForgeConfigSpec.ConfigValue<Boolean> crafting;
         public final ForgeConfigSpec.ConfigValue<Boolean> chest;
@@ -168,6 +174,10 @@ public class Config {
                     .comment("Enables/Disables the inventory menu UI background [false/true|default:false]")
                     .translation("inventory.uibackground.invmove.config")
                     .define("inventory", false);
+            horseInventory = builder
+                    .comment("Enables/Disables the horse inventory menu UI background [false/true|default:false]")
+                    .translation("horseInventory.uibackground.invmove.config")
+                    .define("horseInventory", false);
             creative = builder
                     .comment("Enables/Disables the creative menu UI background [false/true|default:false]")
                     .translation("creative.uibackground.invmove.config")
@@ -251,6 +261,7 @@ public class Config {
 
     public static class UIMovement {
         public final ForgeConfigSpec.ConfigValue<Boolean> inventory;
+        public final ForgeConfigSpec.ConfigValue<Boolean> horseInventory;
         public final ForgeConfigSpec.ConfigValue<Boolean> creative;
         public final ForgeConfigSpec.ConfigValue<Boolean> crafting;
         public final ForgeConfigSpec.ConfigValue<Boolean> chest;
@@ -278,6 +289,10 @@ public class Config {
                     .comment("Enables/Disables moving in the inventory menu [false/true|default:false]")
                     .translation("inventory.uimovement.invmove.config")
                     .define("inventory", true);
+            horseInventory = builder
+                    .comment("Enables/Disables moving in the horse inventory menu [false/true|default:false]")
+                    .translation("horseInventory.uimovement.invmove.config")
+                    .define("horseInventory", true);
             creative = builder
                     .comment("Enables/Disables moving in the creative menu [false/true|default:false]")
                     .translation("creative.uimovement.invmove.config")
@@ -375,6 +390,7 @@ public class Config {
             movement.addEntry(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.movement.enable"), getBoolSafe(GENERAL.moveInInventories, true)).setDefaultValue(true).setSaveConsumer(GENERAL.moveInInventories::set).setTooltip(Arrays.stream(I18n.format("tooltip.config.invmove.movement.enable").split("\n")).map(StringTextComponent::new).toArray(StringTextComponent[]::new)).build());
             movement.addEntry(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.movement.sneak"), getBoolSafe(GENERAL.sneakInInventories, false)).setDefaultValue(false).setSaveConsumer(GENERAL.sneakInInventories::set).setTooltip(Arrays.stream(I18n.format("tooltip.config.invmove.movement.sneak").split("\n")).map(StringTextComponent::new).toArray(StringTextComponent[]::new)).build());
             movement.addEntry(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.movement.jump"), getBoolSafe(GENERAL.jumpInInventories, true)).setDefaultValue(true).setSaveConsumer(GENERAL.jumpInInventories::set).setTooltip(Arrays.stream(I18n.format("tooltip.config.invmove.movement.jump").split("\n")).map(StringTextComponent::new).toArray(StringTextComponent[]::new)).build());
+            movement.addEntry(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.movement.dismount"), getBoolSafe(GENERAL.dismountInInventories, false)).setDefaultValue(false).setSaveConsumer(GENERAL.dismountInInventories::set).setTooltip(Arrays.stream(I18n.format("tooltip.config.invmove.movement.dismount").split("\n")).map(StringTextComponent::new).toArray(StringTextComponent[]::new)).build());
             movement.addEntry(eb.startBooleanToggle(new TranslationTextComponent("config.invmove.movement.textFieldDisables"), getBoolSafe(GENERAL.textFieldDisablesMovement, true)).setDefaultValue(true).setSaveConsumer(GENERAL.textFieldDisablesMovement::set).setTooltip(Arrays.stream(I18n.format("tooltip.config.invmove.movement.textFieldDisables").split("\n")).map(StringTextComponent::new).toArray(StringTextComponent[]::new)).build());
 
             SubCategoryBuilder movementTypes = eb.startSubCategory(new TranslationTextComponent("key.invmove.category.types"));

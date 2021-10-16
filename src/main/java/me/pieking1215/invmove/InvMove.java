@@ -3,7 +3,9 @@ package me.pieking1215.invmove;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.pieking1215.invmove.compat.Compatibility;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.gui.advancements.AdvancementsScreen;
 import net.minecraft.client.gui.recipebook.IRecipeShownListener;
 import net.minecraft.client.gui.recipebook.RecipeBookGui;
@@ -64,6 +66,7 @@ import net.minecraft.client.gui.screen.inventory.CraftingScreen;
 import net.minecraft.client.gui.screen.inventory.CreativeScreen;
 import net.minecraft.client.gui.screen.inventory.DispenserScreen;
 import net.minecraft.client.gui.screen.inventory.FurnaceScreen;
+import net.minecraft.client.gui.screen.inventory.HorseInventoryScreen;
 import net.minecraft.client.gui.screen.inventory.InventoryScreen;
 import net.minecraft.client.gui.screen.inventory.MerchantScreen;
 import net.minecraft.client.gui.screen.inventory.ShulkerBoxScreen;
@@ -71,6 +74,10 @@ import net.minecraft.client.gui.screen.inventory.SmokerScreen;
 import net.minecraft.client.gui.screen.inventory.StonecutterScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.item.BoatEntity;
+import net.minecraft.entity.item.TNTEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.tileentity.BrewingStandTileEntity;
 import net.minecraft.util.MovementInput;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -207,6 +214,7 @@ public class InvMove {
 
         Optional<Boolean> returnAndIgnoreUnrecognized = Optional.empty();
         if(screen instanceof InventoryScreen)        returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.inventory, true));
+        if(screen instanceof HorseInventoryScreen)   returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.horseInventory, true));
         if(screen instanceof CreativeScreen)         returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.creative, true));
         if(screen instanceof CraftingScreen)         returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.crafting, true));
         if(screen instanceof ChestScreen)            returnAndIgnoreUnrecognized = Optional.of(Config.getBoolSafe(Config.UI_MOVEMENT.chest, true));
@@ -263,7 +271,11 @@ public class InvMove {
         input.moveForward = input.forwardKeyDown == input.backKeyDown ? 0.0F : (float)(input.forwardKeyDown ? 1 : -1);
         input.moveStrafe = input.leftKeyDown == input.rightKeyDown ? 0.0F : (float)(input.leftKeyDown ? 1 : -1);
         input.jump = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindJump) && Config.getBoolSafe(Config.GENERAL.jumpInInventories, true);
-        input.sneaking = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSneak) && Config.getBoolSafe(Config.GENERAL.sneakInInventories, false);
+        boolean allowSneak = Config.getBoolSafe(Config.GENERAL.sneakInInventories, false);
+        if(Minecraft.getInstance().player != null && Minecraft.getInstance().player.isPassenger()){
+            allowSneak = Config.getBoolSafe(Config.GENERAL.dismountInInventories, false);
+        }
+        input.sneaking = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSneak) && allowSneak;
         if (!noDampening && (input.sneaking || slow)) {
             input.moveStrafe = (float)((double)input.moveStrafe * 0.3D);
             input.moveForward = (float)((double)input.moveForward * 0.3D);
@@ -384,6 +396,7 @@ public class InvMove {
         if(screen instanceof JigsawScreen) return false;
 
         if(screen instanceof InventoryScreen)           return !Config.getBoolSafe(Config.UI_BACKGROUND.inventory, false);
+        if(screen instanceof HorseInventoryScreen)      return !Config.getBoolSafe(Config.UI_BACKGROUND.horseInventory, false);
         if(screen instanceof CreativeScreen)            return !Config.getBoolSafe(Config.UI_BACKGROUND.creative, false);
         if(screen instanceof CraftingScreen)            return !Config.getBoolSafe(Config.UI_BACKGROUND.crafting, false);
         if(screen instanceof ChestScreen)               return !Config.getBoolSafe(Config.UI_BACKGROUND.chest, false);
