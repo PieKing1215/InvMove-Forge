@@ -128,8 +128,9 @@ public class InvMove {
             manualTickMovement(event.getMovementInput(), Minecraft.getInstance().player.isForcedDown());
 
             // set sprinting using raw keybind data
-            Minecraft.getInstance().player.setSprinting(rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSprint));
-
+            if(!Minecraft.getInstance().player.isSprinting()) {
+                Minecraft.getInstance().player.setSprinting(rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSprint));
+            }
         }
     }
 
