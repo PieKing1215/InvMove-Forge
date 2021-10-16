@@ -125,7 +125,7 @@ public class InvMove {
             Minecraft.getInstance().gameSettings.keyBindDrop.setPressed(false);
 
             // tick movement
-            manualTickMovement(event.getMovementInput(), Minecraft.getInstance().player.func_228354_I_(), Minecraft.getInstance().player.isSpectator());
+            manualTickMovement(event.getMovementInput(), Minecraft.getInstance().player.isForcedDown());
 
             // set sprinting using raw keybind data
             Minecraft.getInstance().player.setSprinting(rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSprint));
@@ -263,7 +263,7 @@ public class InvMove {
     /**
      * Clone of MovementInputFromOptions.tick but uses raw keybind data
      */
-    public static void manualTickMovement(MovementInput input, boolean slow, boolean noDampening) {
+    public static void manualTickMovement(MovementInput input, boolean forcedDown) {
         input.forwardKeyDown = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindForward);
         input.backKeyDown = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindBack);
         input.leftKeyDown = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindLeft);
@@ -276,7 +276,8 @@ public class InvMove {
             allowSneak = Config.getBoolSafe(Config.GENERAL.dismountInInventories, false);
         }
         input.sneaking = rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSneak) && allowSneak;
-        if (!noDampening && (input.sneaking || slow)) {
+
+        if (forcedDown) {
             input.moveStrafe = (float)((double)input.moveStrafe * 0.3D);
             input.moveForward = (float)((double)input.moveForward * 0.3D);
         }

@@ -1,12 +1,12 @@
 modLoader="javafml"
-loaderVersion="[33,)"
-license="GPL v3.0"
-issueTrackerURL="https://github.com/PieKing1215/InvMove/issues"
+loaderVersion="[34,)"
+license="LGPL v3.0"
+issueTrackerURL="https://github.com/PieKing1215/InvMove-Forge/issues"
 [[mods]]
 modId="invmove"
-version="0.4.6"
+version="1.16-0.5.0"
 displayName="InvMove"
-displayURL="https://github.com/PieKing1215/InvMove"
+displayURL="https://github.com/PieKing1215/InvMove-Forge"
 logoFile="logo.png"
 #credits=""
 authors="PieKing1215"
@@ -22,7 +22,7 @@ Lets you move while in inventories.'''
 [[dependencies.invmove]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.3]"
+    versionRange="[1.16,]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.invmove]]
