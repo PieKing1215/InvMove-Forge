@@ -236,6 +236,12 @@ dependencies {
     //runtimeOnly fg.deobf("curse.maven:locks-253456:3324065")
     compileOnly fg.deobf("curse.maven:locks-253456:3324065")
 
+    // Mouse Tweaks
+    // www.curseforge.com/minecraft/mc-mods/mouse-tweaks
+    // for testing https://github.com/PieKing1215/InvMove-Forge/issues/6
+    //runtimeOnly fg.deobf("curse.maven:mouse_tweaks-60089:3202662")
+    //compileOnly fg.deobf("curse.maven:mouse_tweaks-60089:3202662")
+
     // utility / testing
 
     // GameMenuModOption
