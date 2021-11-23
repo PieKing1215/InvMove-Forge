@@ -44,6 +44,7 @@ public class Compatibility {
         compatMods.put("waystones"           , "me.pieking1215.invmove.compat.WaystonesCompatibility");
         compatMods.put("industrialforegoing" , "me.pieking1215.invmove.compat.IndustrialForegoingCompatibility");
         compatMods.put("locks"               , "me.pieking1215.invmove.compat.LocksCompatibility");
+        compatMods.put("goprone"             , "me.pieking1215.invmove.compat.GoProneCompatibility");
 
         for (String s : compatMods.keySet()){
             if(ModList.get().isLoaded(s)){

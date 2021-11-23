@@ -3,6 +3,7 @@ package me.pieking1215.invmove;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.pieking1215.invmove.compat.Compatibility;
+import net.blay09.mods.waystones.compat.Compat;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
@@ -83,10 +84,12 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.InputUpdateEvent;
+import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.gui.screen.ModListScreen;
 import net.minecraftforge.fml.common.Mod;
@@ -130,6 +133,21 @@ public class InvMove {
             // set sprinting using raw keybind data
             if(!Minecraft.getInstance().player.isSprinting()) {
                 Minecraft.getInstance().player.setSprinting(rawIsKeyDown(Minecraft.getInstance().gameSettings.keyBindSprint));
+            }
+
+            if(ModList.get().isLoaded("goprone")) {
+                // I think using the explicit packages here makes it not load them until we get here
+                // (since if goprone was imported at the top, it would crash when we don't have the mod)
+                boolean prone = ((me.pieking1215.invmove.compat.GoProneCompatibility)Compatibility.getCompatibilities().get("goprone")).SPECIAL_prone_in_guis.get();
+                if(prone) {
+                    alpvax.mc.goprone.ClientProxy.prone.setKeyConflictContext(KeyConflictContext.UNIVERSAL);
+                    alpvax.mc.goprone.ClientProxy.toggleProne.setKeyConflictContext(KeyConflictContext.UNIVERSAL);
+                }
+            }
+        } else {
+            if(ModList.get().isLoaded("goprone")) {
+                alpvax.mc.goprone.ClientProxy.prone.setKeyConflictContext(KeyConflictContext.IN_GAME);
+                alpvax.mc.goprone.ClientProxy.toggleProne.setKeyConflictContext(KeyConflictContext.IN_GAME);
             }
         }
     }
@@ -282,6 +300,7 @@ public class InvMove {
             input.moveStrafe = (float)((double)input.moveStrafe * 0.3D);
             input.moveForward = (float)((double)input.moveForward * 0.3D);
         }
+
     }
 
     /**
