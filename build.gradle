@@ -135,10 +135,10 @@ dependencies {
     //runtimeOnly fg.deobf("curse.maven:mrcrayfish-furniture-mod-55438:3346467")
     compileOnly fg.deobf("curse.maven:mrcrayfish-furniture-mod-55438:3346467")
 
-    // Charm
-    // www.curseforge.com/minecraft/mc-mods/charm
-    //runtimeOnly fg.deobf("curse.maven:charm-318872:3220890")
-    compileOnly fg.deobf("curse.maven:charm-318872:3220890")
+    // Charm Reforged
+    // www.curseforge.com/minecraft/mc-mods/charm-reforged
+    runtimeOnly fg.deobf("curse.maven:charm_reforged-430988:3214651")
+    compileOnly fg.deobf("curse.maven:charm_reforged-430988:3214651")
 
     // Flywheel
     // www.curseforge.com/minecraft/mc-mods/flywheel
@@ -238,7 +238,7 @@ dependencies {
 
     // GoProne
     // www.curseforge.com/minecraft/mc-mods/goprone
-    //runtimeOnly fg.deobf("curse.maven:goprone-327968:3114132")
+    runtimeOnly fg.deobf("curse.maven:goprone-327968:3114132")
     compileOnly fg.deobf("curse.maven:goprone-327968:3114132")
 
     // Mouse Tweaks
